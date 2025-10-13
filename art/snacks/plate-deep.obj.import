@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://q1wj0hxaurh2"
+path="res://.godot/imported/plate-deep.obj-f25fa3d7c2b8306d3c9441f6bbfeb4a0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plate-deep.obj-f25fa3d7c2b8306d3c9441f6bbfeb4a0.mesh"]
+
+source_file="res://art/snacks/plate-deep.obj"
+dest_files=["res://.godot/imported/plate-deep.obj-f25fa3d7c2b8306d3c9441f6bbfeb4a0.mesh", "res://.godot/imported/plate-deep.obj-f25fa3d7c2b8306d3c9441f6bbfeb4a0.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

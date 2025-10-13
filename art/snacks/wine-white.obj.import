@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cnqgxjsa228ph"
+path="res://.godot/imported/wine-white.obj-0528bf1ceaeaa6a6ede1afcac7f68746.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wine-white.obj-0528bf1ceaeaa6a6ede1afcac7f68746.mesh"]
+
+source_file="res://art/snacks/wine-white.obj"
+dest_files=["res://.godot/imported/wine-white.obj-0528bf1ceaeaa6a6ede1afcac7f68746.mesh", "res://.godot/imported/wine-white.obj-0528bf1ceaeaa6a6ede1afcac7f68746.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

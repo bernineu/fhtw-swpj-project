@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvar5g4eoolag"
+path="res://.godot/imported/cardboardBoxOpen.obj-e80399342ae3c0619672de7243fdbebd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cardboardBoxOpen.obj-e80399342ae3c0619672de7243fdbebd.mesh"]
+
+source_file="res://art/furniture/cardboardBoxOpen.obj"
+dest_files=["res://.godot/imported/cardboardBoxOpen.obj-e80399342ae3c0619672de7243fdbebd.mesh", "res://.godot/imported/cardboardBoxOpen.obj-e80399342ae3c0619672de7243fdbebd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

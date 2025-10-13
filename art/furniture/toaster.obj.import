@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dufb4k2nv0a50"
+path="res://.godot/imported/toaster.obj-8fc6ae4a6bf08dbcda61d5c010538bbc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/toaster.obj-8fc6ae4a6bf08dbcda61d5c010538bbc.mesh"]
+
+source_file="res://art/furniture/toaster.obj"
+dest_files=["res://.godot/imported/toaster.obj-8fc6ae4a6bf08dbcda61d5c010538bbc.mesh", "res://.godot/imported/toaster.obj-8fc6ae4a6bf08dbcda61d5c010538bbc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

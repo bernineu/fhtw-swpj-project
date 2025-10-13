@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bw4ukbp6e13dt"
+path="res://.godot/imported/cupcake.obj-55a31821d55b5769f5f04fee351640ae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cupcake.obj-55a31821d55b5769f5f04fee351640ae.mesh"]
+
+source_file="res://art/snacks/cupcake.obj"
+dest_files=["res://.godot/imported/cupcake.obj-55a31821d55b5769f5f04fee351640ae.mesh", "res://.godot/imported/cupcake.obj-55a31821d55b5769f5f04fee351640ae.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

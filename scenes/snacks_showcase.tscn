@@ -1,0 +1,1025 @@
+[gd_scene load_steps=203 format=3 uid="uid://3mgntsxm2k0e"]
+
+[ext_resource type="ArrayMesh" uid="uid://co56rgoxaj3yn" path="res://art/snacks/apple-half.obj" id="2_1unga"]
+[ext_resource type="ArrayMesh" uid="uid://b4ti2lsxgc0o4" path="res://art/snacks/advocado-half.obj" id="2_6vkeo"]
+[ext_resource type="ArrayMesh" uid="uid://g4yl6c5qwd74" path="res://art/snacks/apple.obj" id="3_qqr4y"]
+[ext_resource type="ArrayMesh" uid="uid://cv5imos10e6l7" path="res://art/snacks/avocado.obj" id="4_jejas"]
+[ext_resource type="ArrayMesh" uid="uid://dhfauxys3siov" path="res://art/snacks/bacon-raw.obj" id="5_clo0e"]
+[ext_resource type="ArrayMesh" uid="uid://dhslb66r6637e" path="res://art/snacks/bacon.obj" id="6_3hmkw"]
+[ext_resource type="ArrayMesh" uid="uid://dhkasqyaq5xpn" path="res://art/snacks/bag-flat.obj" id="7_hn0as"]
+[ext_resource type="ArrayMesh" uid="uid://bgw47nqin0ayl" path="res://art/snacks/bag.obj" id="8_mykdl"]
+[ext_resource type="ArrayMesh" uid="uid://cafgpk86oio5u" path="res://art/snacks/banana.obj" id="9_518p8"]
+[ext_resource type="ArrayMesh" uid="uid://xgnxqvroerkj" path="res://art/snacks/barrel.obj" id="10_vujso"]
+[ext_resource type="ArrayMesh" uid="uid://bd7ca2oyxvbmv" path="res://art/snacks/beet.obj" id="11_o1w23"]
+[ext_resource type="ArrayMesh" uid="uid://c0qtv6t61jno3" path="res://art/snacks/bottle-ketchup.obj" id="12_cbphe"]
+[ext_resource type="ArrayMesh" uid="uid://5n85vtgcq3l8" path="res://art/snacks/bottle-musterd.obj" id="13_q7yxn"]
+[ext_resource type="ArrayMesh" uid="uid://b7sqjprqsv727" path="res://art/snacks/bottle-oil.obj" id="14_uknpa"]
+[ext_resource type="ArrayMesh" uid="uid://dkseyta0fk0vk" path="res://art/snacks/bowl-broth.obj" id="15_ytm4c"]
+[ext_resource type="ArrayMesh" uid="uid://snbg71tw1mwd" path="res://art/snacks/bowl-cereal.obj" id="16_in6q6"]
+[ext_resource type="ArrayMesh" uid="uid://d08ktap73wgsq" path="res://art/snacks/bowl-soup.obj" id="17_b4sm7"]
+[ext_resource type="ArrayMesh" uid="uid://ssvuhbst1qc0" path="res://art/snacks/bowl.obj" id="18_mx55t"]
+[ext_resource type="ArrayMesh" uid="uid://b33ldranxaj21" path="res://art/snacks/bread.obj" id="19_0qvnq"]
+[ext_resource type="ArrayMesh" uid="uid://cq3qdnwg3qmmu" path="res://art/snacks/broccoli.obj" id="20_rpyf8"]
+[ext_resource type="ArrayMesh" uid="uid://devcyuc3rhjd6" path="res://art/snacks/burger-cheese-double.obj" id="21_agbqm"]
+[ext_resource type="ArrayMesh" uid="uid://t2xsxty20rpg" path="res://art/snacks/burger-cheese.obj" id="22_q0w2x"]
+[ext_resource type="ArrayMesh" uid="uid://cj2s8khmnhrqp" path="res://art/snacks/burger-double.obj" id="23_8ylmy"]
+[ext_resource type="ArrayMesh" uid="uid://bhfj3pntmvida" path="res://art/snacks/burger.obj" id="24_h48pj"]
+[ext_resource type="ArrayMesh" uid="uid://dlipjxoqxlox" path="res://art/snacks/cabbage.obj" id="25_vquwn"]
+[ext_resource type="ArrayMesh" uid="uid://cos1n8ywgpj7a" path="res://art/snacks/cake-birthday.obj" id="26_3tyyr"]
+[ext_resource type="ArrayMesh" uid="uid://ctf1aud4jc2qj" path="res://art/snacks/cake-slicer.obj" id="27_nwetc"]
+[ext_resource type="ArrayMesh" uid="uid://bgl2cjeke3gs3" path="res://art/snacks/cake.obj" id="28_dawr6"]
+[ext_resource type="ArrayMesh" uid="uid://o3msuadur62d" path="res://art/snacks/can-open.obj" id="29_tpkrx"]
+[ext_resource type="ArrayMesh" uid="uid://bovlxdkjprm1h" path="res://art/snacks/can-small.obj" id="30_kc15v"]
+[ext_resource type="ArrayMesh" uid="uid://cys3ht0n85pkt" path="res://art/snacks/can.obj" id="31_xjuaj"]
+[ext_resource type="ArrayMesh" uid="uid://cp0kmc18ai1aa" path="res://art/snacks/candy-bar-wrapper.obj" id="32_0jg50"]
+[ext_resource type="ArrayMesh" uid="uid://gup0n8xbqp5i" path="res://art/snacks/candy-bar.obj" id="33_n2ku3"]
+[ext_resource type="ArrayMesh" uid="uid://gslv1wh17ikm" path="res://art/snacks/carrot.obj" id="34_7wbyt"]
+[ext_resource type="ArrayMesh" uid="uid://catq1cdwtl46r" path="res://art/snacks/carton-small.obj" id="35_cr3ty"]
+[ext_resource type="ArrayMesh" uid="uid://cucwq40mejyc7" path="res://art/snacks/carton.obj" id="36_86pgu"]
+[ext_resource type="ArrayMesh" uid="uid://dbljvo1wjgsl8" path="res://art/snacks/cauliflower.obj" id="37_igfbr"]
+[ext_resource type="ArrayMesh" uid="uid://b0v8c2jdxo2sq" path="res://art/snacks/celery-stick.obj" id="38_r14kh"]
+[ext_resource type="ArrayMesh" uid="uid://dha6b2ghs7su7" path="res://art/snacks/cheese-cut.obj" id="39_8ti50"]
+[ext_resource type="ArrayMesh" uid="uid://be4kqo17if4wh" path="res://art/snacks/cheese-slicer.obj" id="40_5wsuo"]
+[ext_resource type="ArrayMesh" uid="uid://mw13nalclnhe" path="res://art/snacks/cheese.obj" id="41_fwve6"]
+[ext_resource type="ArrayMesh" uid="uid://byqdh7cte3f3j" path="res://art/snacks/cherries.obj" id="42_mwono"]
+[ext_resource type="ArrayMesh" uid="uid://b0m51kuovwlym" path="res://art/snacks/chinese.obj" id="43_xn1i0"]
+[ext_resource type="ArrayMesh" uid="uid://bf2hebymtca4s" path="res://art/snacks/chocolate-wrapper.obj" id="44_27i5s"]
+[ext_resource type="ArrayMesh" uid="uid://bhr3o2615by6q" path="res://art/snacks/chocolate.obj" id="45_yivwj"]
+[ext_resource type="ArrayMesh" uid="uid://b216u1ow6ras3" path="res://art/snacks/chopstic-decorative.obj" id="46_7hsw1"]
+[ext_resource type="ArrayMesh" uid="uid://dos6owm7pmno7" path="res://art/snacks/chopstick.obj" id="47_2forq"]
+[ext_resource type="ArrayMesh" uid="uid://8prxi5oxtyky" path="res://art/snacks/cocktail.obj" id="48_c81dw"]
+[ext_resource type="ArrayMesh" uid="uid://b6qsi3iaar8bv" path="res://art/snacks/coconut-half.obj" id="49_x8ro2"]
+[ext_resource type="ArrayMesh" uid="uid://da7p3n8btu7xi" path="res://art/snacks/coconut.obj" id="50_ewjks"]
+[ext_resource type="ArrayMesh" uid="uid://cwicdatjuqkfe" path="res://art/snacks/cookie-chocolate.obj" id="51_xgg3y"]
+[ext_resource type="ArrayMesh" uid="uid://1v4pv7pe1kjc" path="res://art/snacks/cookie.obj" id="52_nioin"]
+[ext_resource type="ArrayMesh" uid="uid://cn3mdtox85sej" path="res://art/snacks/cooking-fork.obj" id="53_wva8s"]
+[ext_resource type="ArrayMesh" uid="uid://da1s420jpp4at" path="res://art/snacks/cooking-knife-chopping.obj" id="54_xtr05"]
+[ext_resource type="ArrayMesh" uid="uid://dxqo4sw5avjq0" path="res://art/snacks/cooking-knife.obj" id="55_r4nk2"]
+[ext_resource type="ArrayMesh" uid="uid://cmmhub4l7aksu" path="res://art/snacks/cooking-spatula.obj" id="56_tbfe5"]
+[ext_resource type="ArrayMesh" uid="uid://cb554be3phstl" path="res://art/snacks/cooking-spoon.obj" id="57_vlyw1"]
+[ext_resource type="ArrayMesh" uid="uid://c14e61ex5xg01" path="res://art/snacks/corn-dog.obj" id="58_b513j"]
+[ext_resource type="ArrayMesh" uid="uid://c223i0gx1saxj" path="res://art/snacks/corn.obj" id="59_o2ch4"]
+[ext_resource type="ArrayMesh" uid="uid://c28je7svqx8x3" path="res://art/snacks/croissant.obj" id="60_cvvwh"]
+[ext_resource type="ArrayMesh" uid="uid://js0dpd02ijyc" path="res://art/snacks/cup-coffee.obj" id="61_lovfh"]
+[ext_resource type="ArrayMesh" uid="uid://cxdepxwd1mp5c" path="res://art/snacks/cup-saucer.obj" id="62_hfn3n"]
+[ext_resource type="ArrayMesh" uid="uid://clk0o6cqfygm1" path="res://art/snacks/cup-tea.obj" id="63_yt4pc"]
+[ext_resource type="ArrayMesh" uid="uid://mg1lhcd1i2k" path="res://art/snacks/cup.obj" id="64_c47am"]
+[ext_resource type="ArrayMesh" uid="uid://bw4ukbp6e13dt" path="res://art/snacks/cupcake.obj" id="65_myf8y"]
+[ext_resource type="ArrayMesh" uid="uid://ot8a1a86ucm4" path="res://art/snacks/cutting-board-japanese.obj" id="66_jlvy5"]
+[ext_resource type="ArrayMesh" uid="uid://dp8ri2oelqniw" path="res://art/snacks/cutting-board-round.obj" id="67_16w3a"]
+[ext_resource type="ArrayMesh" uid="uid://bbh52eymjjbjm" path="res://art/snacks/cutting-board.obj" id="68_k10cp"]
+[ext_resource type="ArrayMesh" uid="uid://btrg54ofma8bk" path="res://art/snacks/dim-sum.obj" id="69_en2vd"]
+[ext_resource type="ArrayMesh" uid="uid://ngotkiib52rb" path="res://art/snacks/donut-chocolate.obj" id="70_wxcbc"]
+[ext_resource type="ArrayMesh" uid="uid://w5xbo7sdiv18" path="res://art/snacks/donut-sprinkles.obj" id="71_o8ltg"]
+[ext_resource type="ArrayMesh" uid="uid://caxeb2h2gscva" path="res://art/snacks/donut.obj" id="72_6cjy3"]
+[ext_resource type="ArrayMesh" uid="uid://gow26rlac7oi" path="res://art/snacks/egg-cooked.obj" id="73_crhag"]
+[ext_resource type="ArrayMesh" uid="uid://b4vurxahmccb4" path="res://art/snacks/egg-cup.obj" id="74_e511x"]
+[ext_resource type="ArrayMesh" uid="uid://btdmtk40851st" path="res://art/snacks/egg-half.obj" id="75_4dkxs"]
+[ext_resource type="ArrayMesh" uid="uid://c1o12xyd4guhc" path="res://art/snacks/egg.obj" id="76_osl47"]
+[ext_resource type="ArrayMesh" uid="uid://dkt3tygvddntv" path="res://art/snacks/eggplant.obj" id="77_1ln5y"]
+[ext_resource type="ArrayMesh" uid="uid://c8v16kabj8nbr" path="res://art/snacks/fish-bones.obj" id="78_gjmbn"]
+[ext_resource type="ArrayMesh" uid="uid://d33dj0x1h6icm" path="res://art/snacks/fish.obj" id="79_jwp0w"]
+[ext_resource type="ArrayMesh" uid="uid://5xah7ahww1wo" path="res://art/snacks/frappe.obj" id="80_8kj33"]
+[ext_resource type="ArrayMesh" uid="uid://c85svybvvsev5" path="res://art/snacks/fries-empty.obj" id="81_i7yon"]
+[ext_resource type="ArrayMesh" uid="uid://b1m63m3c2uqdx" path="res://art/snacks/fries.obj" id="82_y6aw2"]
+[ext_resource type="ArrayMesh" uid="uid://bykcdxjio7rhj" path="res://art/snacks/frikandel-speciaal.obj" id="83_iatg3"]
+[ext_resource type="ArrayMesh" uid="uid://j56pxhajkfqm" path="res://art/snacks/frying-pan-lid.obj" id="84_0damh"]
+[ext_resource type="ArrayMesh" uid="uid://clg5m8nser5r" path="res://art/snacks/frying-pan.obj" id="85_cuh5n"]
+[ext_resource type="ArrayMesh" uid="uid://bpwulbng6lnfe" path="res://art/snacks/ginger-bread-cutter.obj" id="86_oit5m"]
+[ext_resource type="ArrayMesh" uid="uid://b2vfspjbuff17" path="res://art/snacks/ginger-bread.obj" id="87_15pto"]
+[ext_resource type="ArrayMesh" uid="uid://2k8bb8iclmro" path="res://art/snacks/glass-wine.obj" id="88_q5lya"]
+[ext_resource type="ArrayMesh" uid="uid://c3jy4koyw2bga" path="res://art/snacks/glass.obj" id="89_q1ts2"]
+[ext_resource type="ArrayMesh" uid="uid://dafqxrxin6x5t" path="res://art/snacks/grapes.obj" id="90_0x20c"]
+[ext_resource type="ArrayMesh" uid="uid://66ddbpmovpew" path="res://art/snacks/honey.obj" id="91_kdngb"]
+[ext_resource type="ArrayMesh" uid="uid://l7ptc2kbvsgw" path="res://art/snacks/hot-dog-raw.obj" id="92_8krak"]
+[ext_resource type="ArrayMesh" uid="uid://b5unryynqnud6" path="res://art/snacks/hot-dog.obj" id="93_eu7tl"]
+[ext_resource type="ArrayMesh" uid="uid://732a5235dtfl" path="res://art/snacks/ice-cream-cne.obj" id="94_7f2xr"]
+[ext_resource type="ArrayMesh" uid="uid://858oks58m2ng" path="res://art/snacks/ice-cream-cup.obj" id="95_dfaml"]
+[ext_resource type="ArrayMesh" uid="uid://clxlsy5ty2nao" path="res://art/snacks/ice-cream-scoop-chocolate.obj" id="96_ginve"]
+[ext_resource type="ArrayMesh" uid="uid://debgrrxllhe5y" path="res://art/snacks/ice-cream-scoop-mint.obj" id="97_58j65"]
+[ext_resource type="ArrayMesh" uid="uid://dyqe0o51gygey" path="res://art/snacks/ice-cream.obj" id="98_i1wqm"]
+[ext_resource type="ArrayMesh" uid="uid://bvvyahodgl3s3" path="res://art/snacks/knife-block.obj" id="99_xmltw"]
+[ext_resource type="ArrayMesh" uid="uid://ds2shjqk5rt7o" path="res://art/snacks/leek.obj" id="100_tjugm"]
+[ext_resource type="ArrayMesh" uid="uid://8ki2bk6l1lf1" path="res://art/snacks/lemon-half.obj" id="101_rnsox"]
+[ext_resource type="ArrayMesh" uid="uid://hgco83ski33v" path="res://art/snacks/lemon.obj" id="102_7lv68"]
+[ext_resource type="ArrayMesh" uid="uid://bomre0p5sljks" path="res://art/snacks/loaf-baguette.obj" id="103_qqqwp"]
+[ext_resource type="ArrayMesh" uid="uid://d3okc7jiknyhl" path="res://art/snacks/loaf-round.obj" id="104_yynjn"]
+[ext_resource type="ArrayMesh" uid="uid://bp7xqh0mx2jcv" path="res://art/snacks/loaf.obj" id="105_ofaqg"]
+[ext_resource type="ArrayMesh" uid="uid://vfh8m416rg1x" path="res://art/snacks/lollypop.obj" id="106_hm6f0"]
+[ext_resource type="ArrayMesh" uid="uid://d2v2a1ssodnva" path="res://art/snacks/maki-roe.obj" id="107_2ed6s"]
+[ext_resource type="ArrayMesh" uid="uid://cqfox7fpxwadt" path="res://art/snacks/maki-salmon.obj" id="108_esadi"]
+[ext_resource type="ArrayMesh" uid="uid://vlw62u6vmuu1" path="res://art/snacks/maki-vegetable.obj" id="109_gnv4d"]
+[ext_resource type="ArrayMesh" uid="uid://dp5m85nmuy5ul" path="res://art/snacks/meat-cooked.obj" id="110_3v884"]
+[ext_resource type="ArrayMesh" uid="uid://dqjqn3qae807b" path="res://art/snacks/meat-patty.obj" id="111_1cvbc"]
+[ext_resource type="ArrayMesh" uid="uid://bbw7mcfaebpyg" path="res://art/snacks/meat-raw.obj" id="112_6h2iy"]
+[ext_resource type="ArrayMesh" uid="uid://bnjs57fr3vcnp" path="res://art/snacks/meat-ribs.obj" id="113_usew6"]
+[ext_resource type="ArrayMesh" uid="uid://dwaqdeinv2f1f" path="res://art/snacks/meat-sausage.obj" id="114_o12pm"]
+[ext_resource type="ArrayMesh" uid="uid://cmeuh5yqgir6a" path="res://art/snacks/meat-tenderizer.obj" id="115_871by"]
+[ext_resource type="ArrayMesh" uid="uid://dpiqtqniac481" path="res://art/snacks/mincemeat-pie.obj" id="116_fsuda"]
+[ext_resource type="ArrayMesh" uid="uid://bdd5vagd6hjd7" path="res://art/snacks/mortar-pestle.obj" id="117_r3f07"]
+[ext_resource type="ArrayMesh" uid="uid://bcdijbbco3dxk" path="res://art/snacks/mortar.obj" id="118_e55r2"]
+[ext_resource type="ArrayMesh" uid="uid://cel16whro013i" path="res://art/snacks/muffin.obj" id="119_45v2b"]
+[ext_resource type="ArrayMesh" uid="uid://bmqfw36gvt5ke" path="res://art/snacks/mug.obj" id="120_yjgs8"]
+[ext_resource type="ArrayMesh" uid="uid://w7b3snyjaqc3" path="res://art/snacks/mushroom-half.obj" id="121_npjkx"]
+[ext_resource type="ArrayMesh" uid="uid://b5i0xa5bvq5x2" path="res://art/snacks/mushroom.obj" id="122_ppb7f"]
+[ext_resource type="ArrayMesh" uid="uid://dgx5vlwkl1tdg" path="res://art/snacks/mussel-open.obj" id="123_24qp2"]
+[ext_resource type="ArrayMesh" uid="uid://dpc68ggnl3kpv" path="res://art/snacks/mussel.obj" id="124_6274c"]
+[ext_resource type="ArrayMesh" uid="uid://dn1d0dufva56p" path="res://art/snacks/onion-half.obj" id="125_7nn2s"]
+[ext_resource type="ArrayMesh" uid="uid://bl7qyalmntmu7" path="res://art/snacks/onion.obj" id="126_mc55l"]
+[ext_resource type="ArrayMesh" uid="uid://by5h5lik1fyi2" path="res://art/snacks/orange.obj" id="127_kb0ae"]
+[ext_resource type="ArrayMesh" uid="uid://c5plpjhh7jmw3" path="res://art/snacks/pan-stew.obj" id="128_x8csd"]
+[ext_resource type="ArrayMesh" uid="uid://cc8wehkfh2qq7" path="res://art/snacks/pan.obj" id="129_egjqx"]
+[ext_resource type="ArrayMesh" uid="uid://by82yuj5c0rfu" path="res://art/snacks/pancakes.obj" id="130_rofse"]
+[ext_resource type="ArrayMesh" uid="uid://50l2iljdatdk" path="res://art/snacks/paprika-slice.obj" id="131_i3gxe"]
+[ext_resource type="ArrayMesh" uid="uid://bqwuifytvaokq" path="res://art/snacks/paprika.obj" id="132_3mg41"]
+[ext_resource type="ArrayMesh" uid="uid://bam5jw36cwcdb" path="res://art/snacks/peanut-butter.obj" id="133_s2svh"]
+[ext_resource type="ArrayMesh" uid="uid://haty77naueku" path="res://art/snacks/pear-half.obj" id="134_6mr81"]
+[ext_resource type="ArrayMesh" uid="uid://cf2yxul4hje87" path="res://art/snacks/pear.obj" id="135_hdxbv"]
+[ext_resource type="ArrayMesh" uid="uid://ypprsr7i26n5" path="res://art/snacks/pepper-mill.obj" id="136_ifvoy"]
+[ext_resource type="ArrayMesh" uid="uid://bgrfphp2lepjq" path="res://art/snacks/pepper.obj" id="137_gdvck"]
+[ext_resource type="ArrayMesh" uid="uid://e3itb5726gl8" path="res://art/snacks/pie.obj" id="138_p7mkt"]
+[ext_resource type="ArrayMesh" uid="uid://lqdy0y0q7k37" path="res://art/snacks/pineapple.obj" id="139_ytucp"]
+[ext_resource type="ArrayMesh" uid="uid://b48lowah8c8p8" path="res://art/snacks/pizza-box.obj" id="140_wcwyn"]
+[ext_resource type="ArrayMesh" uid="uid://c5fofxxaknjrh" path="res://art/snacks/pizza-cutter.obj" id="141_nkq0k"]
+[ext_resource type="ArrayMesh" uid="uid://dajc15diluca1" path="res://art/snacks/pizza.obj" id="142_qsqix"]
+[ext_resource type="ArrayMesh" uid="uid://co10jh74fb50b" path="res://art/snacks/plate-broken.obj" id="143_bi17e"]
+[ext_resource type="ArrayMesh" uid="uid://q1wj0hxaurh2" path="res://art/snacks/plate-deep.obj" id="144_jdlvo"]
+[ext_resource type="ArrayMesh" uid="uid://xp1if1wu2ltf" path="res://art/snacks/plate-dinner.obj" id="145_my5dh"]
+[ext_resource type="ArrayMesh" uid="uid://de2msh34q1daa" path="res://art/snacks/plate-rectangle.obj" id="146_qrs4k"]
+[ext_resource type="ArrayMesh" uid="uid://5eadx8xgjfn7" path="res://art/snacks/plate-sauerkraut.obj" id="147_fgdlm"]
+[ext_resource type="ArrayMesh" uid="uid://ddwrqc3i7rppj" path="res://art/snacks/plate.obj" id="148_6ueae"]
+[ext_resource type="ArrayMesh" uid="uid://d1ynf4eb08yu4" path="res://art/snacks/popsicle-chocolate.obj" id="149_841xj"]
+[ext_resource type="ArrayMesh" uid="uid://cw8g6jc0u6f48" path="res://art/snacks/popsicle-stick.obj" id="150_8gq71"]
+[ext_resource type="ArrayMesh" uid="uid://bvrp01i5axsep" path="res://art/snacks/popsicle.obj" id="151_t6p1i"]
+[ext_resource type="ArrayMesh" uid="uid://dcngu0bi6wmgk" path="res://art/snacks/pot-lid.obj" id="152_lw1rk"]
+[ext_resource type="ArrayMesh" uid="uid://bmxd6xdiu0gn2" path="res://art/snacks/pot-stew-lid.obj" id="153_mwyng"]
+[ext_resource type="ArrayMesh" uid="uid://ou7gyasvqgo" path="res://art/snacks/pot-stew.obj" id="154_pv3cp"]
+[ext_resource type="ArrayMesh" uid="uid://iw3klgbl2vua" path="res://art/snacks/pot.obj" id="155_tu58d"]
+[ext_resource type="ArrayMesh" uid="uid://dd65ifraf25rs" path="res://art/snacks/pudding.obj" id="156_kbidf"]
+[ext_resource type="ArrayMesh" uid="uid://c6s8r2nr2u4yt" path="res://art/snacks/pumpkin-basic.obj" id="157_w8uyg"]
+[ext_resource type="ArrayMesh" uid="uid://6k7xfme3lcne" path="res://art/snacks/pumpkin.obj" id="158_bbttc"]
+[ext_resource type="ArrayMesh" uid="uid://e48wakgwlupt" path="res://art/snacks/radish.obj" id="159_nu68e"]
+[ext_resource type="ArrayMesh" uid="uid://o0ucu8jtfcuu" path="res://art/snacks/rice-ball.obj" id="160_ok77e"]
+[ext_resource type="ArrayMesh" uid="uid://brk85b5laqoh7" path="res://art/snacks/rollingPin.obj" id="161_0mrsi"]
+[ext_resource type="ArrayMesh" uid="uid://08s4qg2nh20b" path="res://art/snacks/salad.obj" id="162_bylat"]
+[ext_resource type="ArrayMesh" uid="uid://o8sqtgm2s11q" path="res://art/snacks/sandwich.obj" id="163_f6slr"]
+[ext_resource type="ArrayMesh" uid="uid://bsq0smg8fpujm" path="res://art/snacks/sausage-half.obj" id="164_wmlmi"]
+[ext_resource type="ArrayMesh" uid="uid://ctqw8qee63yth" path="res://art/snacks/sausage.obj" id="165_lnmjg"]
+[ext_resource type="ArrayMesh" uid="uid://bfg63efbh8l5e" path="res://art/snacks/shaker-pepper.obj" id="166_na6ww"]
+[ext_resource type="ArrayMesh" uid="uid://gi52txai3tgr" path="res://art/snacks/shaker-salt.obj" id="167_hwmep"]
+[ext_resource type="ArrayMesh" uid="uid://dqvolnd61sqly" path="res://art/snacks/skewer-vegetables.obj" id="168_qtpam"]
+[ext_resource type="ArrayMesh" uid="uid://ds4y2pkcv7x6a" path="res://art/snacks/skewer.obj" id="169_fqylt"]
+[ext_resource type="ArrayMesh" uid="uid://ug7kjapi12jg" path="res://art/snacks/soda-bottle.obj" id="170_h7hx6"]
+[ext_resource type="ArrayMesh" uid="uid://dq6rgerewd4g7" path="res://art/snacks/soda-can-crushed.obj" id="171_l7uxb"]
+[ext_resource type="ArrayMesh" uid="uid://chxnskv0s7d2g" path="res://art/snacks/soda-can.obj" id="172_b4tb8"]
+[ext_resource type="ArrayMesh" uid="uid://due88yq0yiree" path="res://art/snacks/soda-glass.obj" id="173_gp7lv"]
+[ext_resource type="ArrayMesh" uid="uid://di36a1xc62g8v" path="res://art/snacks/soda.obj" id="174_hjyej"]
+[ext_resource type="ArrayMesh" uid="uid://bf53vwulyw2ni" path="res://art/snacks/soy.obj" id="175_qk3gi"]
+[ext_resource type="ArrayMesh" uid="uid://mfo4ac7plqcu" path="res://art/snacks/steamer.obj" id="176_yj7b3"]
+[ext_resource type="ArrayMesh" uid="uid://bmbfovy8wq4s3" path="res://art/snacks/strawberry.obj" id="177_2eddt"]
+[ext_resource type="ArrayMesh" uid="uid://ddmnh0aoj0c11" path="res://art/snacks/styrofoam-dinner.obj" id="178_amgtr"]
+[ext_resource type="ArrayMesh" uid="uid://bitxgs1n3o3q2" path="res://art/snacks/styrofoam.obj" id="179_8m3nq"]
+[ext_resource type="ArrayMesh" uid="uid://b0hdiyvnbhrmc" path="res://art/snacks/sub.obj" id="180_bivy5"]
+[ext_resource type="ArrayMesh" uid="uid://gxkkygb5no8" path="res://art/snacks/sundae.obj" id="181_58vs0"]
+[ext_resource type="ArrayMesh" uid="uid://drlqc6vs1f827" path="res://art/snacks/sushi-egg.obj" id="182_b5lxp"]
+[ext_resource type="ArrayMesh" uid="uid://c1jmnt6mqfglq" path="res://art/snacks/sushi-salmon.obj" id="183_vekfg"]
+[ext_resource type="ArrayMesh" uid="uid://cxae14t32gph3" path="res://art/snacks/taco.obj" id="184_qngmw"]
+[ext_resource type="ArrayMesh" uid="uid://dywnyu6ouul5d" path="res://art/snacks/tajine-lid.obj" id="185_p62l7"]
+[ext_resource type="ArrayMesh" uid="uid://djkioemktpoju" path="res://art/snacks/tajine.obj" id="186_v8xn7"]
+[ext_resource type="ArrayMesh" uid="uid://bpen1dlhi6g73" path="res://art/snacks/tomato-slice.obj" id="187_m0biv"]
+[ext_resource type="ArrayMesh" uid="uid://2md7foujgh0h" path="res://art/snacks/tomato.obj" id="188_0bkpu"]
+[ext_resource type="ArrayMesh" uid="uid://dpdo5mpmpbgts" path="res://art/snacks/turkey.obj" id="189_6n6gs"]
+[ext_resource type="ArrayMesh" uid="uid://bq07vgpd38f2o" path="res://art/snacks/utensil-fork.obj" id="190_k6y7k"]
+[ext_resource type="ArrayMesh" uid="uid://dm4wmhgpbuy3m" path="res://art/snacks/utensil-knife.obj" id="191_qf3pb"]
+[ext_resource type="ArrayMesh" uid="uid://bp8f8c3k3p1tu" path="res://art/snacks/utensil-spoon.obj" id="192_2ie0h"]
+[ext_resource type="ArrayMesh" uid="uid://chrtl8anqv3qa" path="res://art/snacks/waffle.obj" id="193_bwbol"]
+[ext_resource type="ArrayMesh" uid="uid://cijalxyqiuhy1" path="res://art/snacks/watermelon.obj" id="194_slajm"]
+[ext_resource type="ArrayMesh" uid="uid://waccqou57d6k" path="res://art/snacks/whipped-cream.obj" id="195_hdcon"]
+[ext_resource type="ArrayMesh" uid="uid://cis0y4p3juw7x" path="res://art/snacks/whisk.obj" id="196_tx2r0"]
+[ext_resource type="ArrayMesh" uid="uid://cd80jdbd1th3d" path="res://art/snacks/whole-ham.obj" id="197_cr7a0"]
+[ext_resource type="ArrayMesh" uid="uid://c8hh13gs5mdhd" path="res://art/snacks/wholer-ham.obj" id="198_5ow2n"]
+[ext_resource type="ArrayMesh" uid="uid://dquvfneubclar" path="res://art/snacks/wine-red.obj" id="199_njwki"]
+[ext_resource type="ArrayMesh" uid="uid://cnqgxjsa228ph" path="res://art/snacks/wine-white.obj" id="200_ooc52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ry8o"]
+size = Vector3(94.700005, 0.5, 68.200005)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1unga"]
+data = PackedVector3Array(-0.0721, 0.28079998, -0.0416, -0.0721, 0.0208, 0.0416, -0.0721, 0.0208, -0.0416, 0, 0.0208, -0.0832, -0.0721, 0.28079998, -0.0416, -0.0721, 0.0208, -0.0416, -0.0721, 0.0208, 0.0416, -0.0721, 0.28079998, -0.0416, -0.0721, 0.28079998, 0.0416, -0.0721, 0.28079998, -0.0416, 0, 0.0208, -0.0832, 0, 0.28079998, -0.0832, 0, 0.28079998, 0.0832, -0.0721, 0.0208, 0.0416, -0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, -0.0416, 0, 0.28079998, -0.0832, 0, 0.0208, -0.0832, -0.0721, 0.0208, 0.0416, 0, 0.28079998, 0.0832, 0, 0.0208, 0.0832, 0, 0.28079998, -0.0832, 0.0721, 0.0208, -0.0416, 0.0721, 0.28079998, -0.0416, 0.0721, 0.28079998, 0.0416, 0, 0.0208, 0.0832, 0, 0.28079998, 0.0832, 0.0721, 0.0208, -0.0416, 0.0721, 0.28079998, 0.0416, 0.0721, 0.28079998, -0.0416, 0, 0.0208, 0.0832, 0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, 0.0416, 0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, -0.0416, 0.0721, 0.0208, 0.0416, 0, 0, 0.0687, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0, -0.034399997, 0.059499998, 0, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0, 0, 0.0687, 0, 0.0208, 0.0687, 0.059499998, 0, -0.034399997, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0.0208, -0.034399997, -0.059499998, 0, 0.034399997, 0, 0.0208, 0.0687, 0, 0, 0.0687, 0, 0.0208, -0.0687, 0.059499998, 0, -0.034399997, 0.059499998, 0.0208, -0.034399997, 0, 0.0208, 0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0.0208, 0.034399997, 0.059499998, 0, -0.034399997, 0, 0.0208, -0.0687, 0, 0, -0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0.0208, 0.034399997, -0.059499998, 0.0208, -0.034399997, 0, 0, -0.0687, 0, 0.0208, -0.0687, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0, 0.034399997, -0.059499998, 0, -0.034399997, 0, 0, -0.0687, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0, -0.034399997, 0.0069999998, 0.3931, 0.0069999998, -0.0069999998, 0.3931, -0.0069999998, 0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, -0.0069999998, 0.0069999998, 0.3931, 0.0069999998, -0.0069999998, 0.3931, 0.0069999998, 0.059499998, 0, -0.034399997, 0, 0, 0.0687, 0.059499998, 0, 0.034399997, 0, 0, 0.0687, 0.059499998, 0, -0.034399997, 0, 0, -0.0687, 0, 0, 0.0687, 0, 0, -0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0, 0.034399997, 0, 0, -0.0687, -0.059499998, 0, -0.034399997, 0.0721, 0.28079998, 0.0416, 0.0641, 0.2974, -0.037, 0.0721, 0.28079998, -0.0416, 0, 0.2974, -0.074, 0.0721, 0.28079998, -0.0416, 0.0641, 0.2974, -0.037, 0.0641, 0.2974, -0.037, 0.0721, 0.28079998, 0.0416, 0.0641, 0.2974, 0.037, 0.0721, 0.28079998, -0.0416, 0, 0.2974, -0.074, 0, 0.28079998, -0.0832, 0, 0.28079998, 0.0832, 0.0641, 0.2974, 0.037, 0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, -0.037, 0, 0.28079998, -0.0832, 0, 0.2974, -0.074, 0.0641, 0.2974, 0.037, 0, 0.28079998, 0.0832, 0, 0.2974, 0.074, 0, 0.28079998, -0.0832, -0.0641, 0.2974, -0.037, -0.0721, 0.28079998, -0.0416, -0.0721, 0.28079998, 0.0416, 0, 0.2974, 0.074, 0, 0.28079998, 0.0832, -0.0641, 0.2974, -0.037, -0.0721, 0.28079998, 0.0416, -0.0721, 0.28079998, -0.0416, 0, 0.2974, 0.074, -0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, 0.037, -0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, -0.037, -0.0641, 0.2974, 0.037, 0, 0.2974, 0.0569, 0.0492, 0.3245, 0.0284, 0.0492, 0.2974, 0.0284, 0.0492, 0.3245, 0.0284, 0.0492, 0.2974, -0.0284, 0.0492, 0.2974, 0.0284, 0.0492, 0.3245, 0.0284, 0, 0.2974, 0.0569, 0, 0.3245, 0.0569, 0.0492, 0.2974, -0.0284, 0.0492, 0.3245, 0.0284, 0.0492, 0.3245, -0.0284, -0.0492, 0.2974, 0.0284, 0, 0.3245, 0.0569, 0, 0.2974, 0.0569, 0, 0.3245, -0.0569, 0.0492, 0.2974, -0.0284, 0.0492, 0.3245, -0.0284, 0, 0.3245, 0.0569, -0.0492, 0.2974, 0.0284, -0.0492, 0.3245, 0.0284, 0.0492, 0.2974, -0.0284, 0, 0.3245, -0.0569, 0, 0.2974, -0.0569, -0.0492, 0.2974, 0.0284, -0.0492, 0.3245, -0.0284, -0.0492, 0.3245, 0.0284, -0.0492, 0.3245, -0.0284, 0, 0.2974, -0.0569, 0, 0.3245, -0.0569, -0.0492, 0.3245, -0.0284, -0.0492, 0.2974, 0.0284, -0.0492, 0.2974, -0.0284, 0, 0.2974, -0.0569, -0.0492, 0.3245, -0.0284, -0.0492, 0.2974, -0.0284, 0.0492, 0.3245, 0.0284, 0, 0.3245, -0.0569, 0.0492, 0.3245, -0.0284, 0, 0.3245, -0.0569, 0.0492, 0.3245, 0.0284, 0.012499999, 0.3245, -0.012499999, 0.0492, 0.3245, 0.0284, 0.012499999, 0.3245, 0.012499999, 0.012499999, 0.3245, -0.012499999, 0, 0.3245, -0.0569, 0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, -0.012499999, 0.012499999, 0.3245, 0.012499999, 0.0492, 0.3245, 0.0284, 0, 0.3245, 0.0569, 0, 0.3245, -0.0569, -0.012499999, 0.3245, -0.012499999, -0.0492, 0.3245, -0.0284, 0.012499999, 0.3245, 0.012499999, 0, 0.3245, 0.0569, -0.012499999, 0.3245, 0.012499999, -0.0492, 0.3245, -0.0284, -0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, 0.012499999, -0.012499999, 0.3245, 0.012499999, 0, 0.3245, 0.0569, -0.0492, 0.3245, 0.0284, -0.012499999, 0.3245, 0.012499999, -0.0492, 0.3245, 0.0284, -0.0492, 0.3245, -0.0284, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, -0.012499999, 0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, -0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, -0.012499999, 0.3245, 0.012499999, -0.0069999998, 0.3931, 0.0069999998, 0.012499999, 0.3245, -0.012499999, -0.0069999998, 0.3931, -0.0069999998, -0.012499999, 0.3245, -0.012499999, -0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, -0.012499999, 0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, -0.0069999998, -0.012499999, 0.3245, 0.012499999, -0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, 0.012499999, -0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, 0.0069999998, 0.059499998, 0.0208, -0.034399997, 0, 0.0208, -0.0832, 0, 0.0208, -0.0687, 0, 0.0208, -0.0687, 0, 0.0208, -0.0832, -0.059499998, 0.0208, -0.034399997, 0.059499998, 0.0208, -0.034399997, 0.0721, 0.0208, -0.0416, 0, 0.0208, -0.0832, -0.059499998, 0.0208, -0.034399997, 0, 0.0208, -0.0832, -0.0721, 0.0208, -0.0416, 0.0721, 0.0208, -0.0416, 0.059499998, 0.0208, -0.034399997, 0.059499998, 0.0208, 0.034399997, -0.059499998, 0.0208, -0.034399997, -0.0721, 0.0208, -0.0416, -0.059499998, 0.0208, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0.0721, 0.0208, 0.0416, 0.0721, 0.0208, -0.0416, -0.0721, 0.0208, 0.0416, -0.059499998, 0.0208, 0.034399997, -0.0721, 0.0208, -0.0416, 0.0721, 0.0208, 0.0416, 0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0832, -0.0721, 0.0208, 0.0416, 0, 0.0208, 0.0687, -0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0832, 0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0687, 0, 0.0208, 0.0832, 0, 0.0208, 0.0687, -0.0721, 0.0208, 0.0416, -0.0492, 0.2974, 0.0284, 0, 0.2974, 0.074, -0.0641, 0.2974, 0.037, -0.0492, 0.2974, 0.0284, -0.0641, 0.2974, 0.037, -0.0641, 0.2974, -0.037, 0, 0.2974, 0.0569, 0, 0.2974, 0.074, -0.0492, 0.2974, 0.0284, -0.0641, 0.2974, -0.037, -0.0492, 0.2974, -0.0284, -0.0492, 0.2974, 0.0284, 0.0492, 0.2974, 0.0284, 0, 0.2974, 0.074, 0, 0.2974, 0.0569, -0.0641, 0.2974, -0.037, 0, 0.2974, -0.0569, -0.0492, 0.2974, -0.0284, 0.0492, 0.2974, 0.0284, 0.0641, 0.2974, 0.037, 0, 0.2974, 0.074, 0, 0.2974, -0.074, 0, 0.2974, -0.0569, -0.0641, 0.2974, -0.037, 0.0641, 0.2974, 0.037, 0.0492, 0.2974, 0.0284, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.074, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.0569, 0.0492, 0.2974, -0.0284, 0.0641, 0.2974, -0.037, 0.0641, 0.2974, 0.037, 0.0641, 0.2974, -0.037, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.074, -0.0721, 0.28079998, -0.0416, -0.0721, 0.0208, 0.0416, -0.0721, 0.0208, -0.0416, 0, 0.0208, -0.0832, -0.0721, 0.28079998, -0.0416, -0.0721, 0.0208, -0.0416, -0.0721, 0.0208, 0.0416, -0.0721, 0.28079998, -0.0416, -0.0721, 0.28079998, 0.0416, -0.0721, 0.28079998, -0.0416, 0, 0.0208, -0.0832, 0, 0.28079998, -0.0832, 0, 0.28079998, 0.0832, -0.0721, 0.0208, 0.0416, -0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, -0.0416, 0, 0.28079998, -0.0832, 0, 0.0208, -0.0832, -0.0721, 0.0208, 0.0416, 0, 0.28079998, 0.0832, 0, 0.0208, 0.0832, 0, 0.28079998, -0.0832, 0.0721, 0.0208, -0.0416, 0.0721, 0.28079998, -0.0416, 0.0721, 0.28079998, 0.0416, 0, 0.0208, 0.0832, 0, 0.28079998, 0.0832, 0.0721, 0.0208, -0.0416, 0.0721, 0.28079998, 0.0416, 0.0721, 0.28079998, -0.0416, 0, 0.0208, 0.0832, 0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, 0.0416, 0.0721, 0.28079998, 0.0416, 0.0721, 0.0208, -0.0416, 0.0721, 0.0208, 0.0416, 0, 0, 0.0687, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0, -0.034399997, 0.059499998, 0, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0, 0, 0.0687, 0, 0.0208, 0.0687, 0.059499998, 0, -0.034399997, 0.059499998, 0.0208, 0.034399997, 0.059499998, 0.0208, -0.034399997, -0.059499998, 0, 0.034399997, 0, 0.0208, 0.0687, 0, 0, 0.0687, 0, 0.0208, -0.0687, 0.059499998, 0, -0.034399997, 0.059499998, 0.0208, -0.034399997, 0, 0.0208, 0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0.0208, 0.034399997, 0.059499998, 0, -0.034399997, 0, 0.0208, -0.0687, 0, 0, -0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0.0208, 0.034399997, -0.059499998, 0.0208, -0.034399997, 0, 0, -0.0687, 0, 0.0208, -0.0687, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0, 0.034399997, -0.059499998, 0, -0.034399997, 0, 0, -0.0687, -0.059499998, 0.0208, -0.034399997, -0.059499998, 0, -0.034399997, 0.0069999998, 0.3931, 0.0069999998, -0.0069999998, 0.3931, -0.0069999998, 0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, -0.0069999998, 0.0069999998, 0.3931, 0.0069999998, -0.0069999998, 0.3931, 0.0069999998, 0.059499998, 0, -0.034399997, 0, 0, 0.0687, 0.059499998, 0, 0.034399997, 0, 0, 0.0687, 0.059499998, 0, -0.034399997, 0, 0, -0.0687, 0, 0, 0.0687, 0, 0, -0.0687, -0.059499998, 0, 0.034399997, -0.059499998, 0, 0.034399997, 0, 0, -0.0687, -0.059499998, 0, -0.034399997, 0.0721, 0.28079998, 0.0416, 0.0641, 0.2974, -0.037, 0.0721, 0.28079998, -0.0416, 0, 0.2974, -0.074, 0.0721, 0.28079998, -0.0416, 0.0641, 0.2974, -0.037, 0.0641, 0.2974, -0.037, 0.0721, 0.28079998, 0.0416, 0.0641, 0.2974, 0.037, 0.0721, 0.28079998, -0.0416, 0, 0.2974, -0.074, 0, 0.28079998, -0.0832, 0, 0.28079998, 0.0832, 0.0641, 0.2974, 0.037, 0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, -0.037, 0, 0.28079998, -0.0832, 0, 0.2974, -0.074, 0.0641, 0.2974, 0.037, 0, 0.28079998, 0.0832, 0, 0.2974, 0.074, 0, 0.28079998, -0.0832, -0.0641, 0.2974, -0.037, -0.0721, 0.28079998, -0.0416, -0.0721, 0.28079998, 0.0416, 0, 0.2974, 0.074, 0, 0.28079998, 0.0832, -0.0641, 0.2974, -0.037, -0.0721, 0.28079998, 0.0416, -0.0721, 0.28079998, -0.0416, 0, 0.2974, 0.074, -0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, 0.037, -0.0721, 0.28079998, 0.0416, -0.0641, 0.2974, -0.037, -0.0641, 0.2974, 0.037, 0, 0.2974, 0.0569, 0.0492, 0.3245, 0.0284, 0.0492, 0.2974, 0.0284, 0.0492, 0.3245, 0.0284, 0.0492, 0.2974, -0.0284, 0.0492, 0.2974, 0.0284, 0.0492, 0.3245, 0.0284, 0, 0.2974, 0.0569, 0, 0.3245, 0.0569, 0.0492, 0.2974, -0.0284, 0.0492, 0.3245, 0.0284, 0.0492, 0.3245, -0.0284, -0.0492, 0.2974, 0.0284, 0, 0.3245, 0.0569, 0, 0.2974, 0.0569, 0, 0.3245, -0.0569, 0.0492, 0.2974, -0.0284, 0.0492, 0.3245, -0.0284, 0, 0.3245, 0.0569, -0.0492, 0.2974, 0.0284, -0.0492, 0.3245, 0.0284, 0.0492, 0.2974, -0.0284, 0, 0.3245, -0.0569, 0, 0.2974, -0.0569, -0.0492, 0.2974, 0.0284, -0.0492, 0.3245, -0.0284, -0.0492, 0.3245, 0.0284, -0.0492, 0.3245, -0.0284, 0, 0.2974, -0.0569, 0, 0.3245, -0.0569, -0.0492, 0.3245, -0.0284, -0.0492, 0.2974, 0.0284, -0.0492, 0.2974, -0.0284, 0, 0.2974, -0.0569, -0.0492, 0.3245, -0.0284, -0.0492, 0.2974, -0.0284, 0.0492, 0.3245, 0.0284, 0, 0.3245, -0.0569, 0.0492, 0.3245, -0.0284, 0, 0.3245, -0.0569, 0.0492, 0.3245, 0.0284, 0.012499999, 0.3245, -0.012499999, 0.0492, 0.3245, 0.0284, 0.012499999, 0.3245, 0.012499999, 0.012499999, 0.3245, -0.012499999, 0, 0.3245, -0.0569, 0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, -0.012499999, 0.012499999, 0.3245, 0.012499999, 0.0492, 0.3245, 0.0284, 0, 0.3245, 0.0569, 0, 0.3245, -0.0569, -0.012499999, 0.3245, -0.012499999, -0.0492, 0.3245, -0.0284, 0.012499999, 0.3245, 0.012499999, 0, 0.3245, 0.0569, -0.012499999, 0.3245, 0.012499999, -0.0492, 0.3245, -0.0284, -0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, 0.012499999, -0.012499999, 0.3245, 0.012499999, 0, 0.3245, 0.0569, -0.0492, 0.3245, 0.0284, -0.012499999, 0.3245, 0.012499999, -0.0492, 0.3245, 0.0284, -0.0492, 0.3245, -0.0284, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, -0.012499999, 0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, -0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, 0.012499999, 0.3245, 0.012499999, 0.0069999998, 0.3931, 0.0069999998, -0.012499999, 0.3245, 0.012499999, -0.0069999998, 0.3931, 0.0069999998, 0.012499999, 0.3245, -0.012499999, -0.0069999998, 0.3931, -0.0069999998, -0.012499999, 0.3245, -0.012499999, -0.0069999998, 0.3931, -0.0069999998, 0.012499999, 0.3245, -0.012499999, 0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, -0.0069999998, -0.012499999, 0.3245, 0.012499999, -0.012499999, 0.3245, -0.012499999, -0.012499999, 0.3245, 0.012499999, -0.0069999998, 0.3931, -0.0069999998, -0.0069999998, 0.3931, 0.0069999998, 0.059499998, 0.0208, -0.034399997, 0, 0.0208, -0.0832, 0, 0.0208, -0.0687, 0, 0.0208, -0.0687, 0, 0.0208, -0.0832, -0.059499998, 0.0208, -0.034399997, 0.059499998, 0.0208, -0.034399997, 0.0721, 0.0208, -0.0416, 0, 0.0208, -0.0832, -0.059499998, 0.0208, -0.034399997, 0, 0.0208, -0.0832, -0.0721, 0.0208, -0.0416, 0.0721, 0.0208, -0.0416, 0.059499998, 0.0208, -0.034399997, 0.059499998, 0.0208, 0.034399997, -0.059499998, 0.0208, -0.034399997, -0.0721, 0.0208, -0.0416, -0.059499998, 0.0208, 0.034399997, 0.059499998, 0.0208, 0.034399997, 0.0721, 0.0208, 0.0416, 0.0721, 0.0208, -0.0416, -0.0721, 0.0208, 0.0416, -0.059499998, 0.0208, 0.034399997, -0.0721, 0.0208, -0.0416, 0.0721, 0.0208, 0.0416, 0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0832, -0.0721, 0.0208, 0.0416, 0, 0.0208, 0.0687, -0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0832, 0.059499998, 0.0208, 0.034399997, 0, 0.0208, 0.0687, 0, 0.0208, 0.0832, 0, 0.0208, 0.0687, -0.0721, 0.0208, 0.0416, -0.0492, 0.2974, 0.0284, 0, 0.2974, 0.074, -0.0641, 0.2974, 0.037, -0.0492, 0.2974, 0.0284, -0.0641, 0.2974, 0.037, -0.0641, 0.2974, -0.037, 0, 0.2974, 0.0569, 0, 0.2974, 0.074, -0.0492, 0.2974, 0.0284, -0.0641, 0.2974, -0.037, -0.0492, 0.2974, -0.0284, -0.0492, 0.2974, 0.0284, 0.0492, 0.2974, 0.0284, 0, 0.2974, 0.074, 0, 0.2974, 0.0569, -0.0641, 0.2974, -0.037, 0, 0.2974, -0.0569, -0.0492, 0.2974, -0.0284, 0.0492, 0.2974, 0.0284, 0.0641, 0.2974, 0.037, 0, 0.2974, 0.074, 0, 0.2974, -0.074, 0, 0.2974, -0.0569, -0.0641, 0.2974, -0.037, 0.0641, 0.2974, 0.037, 0.0492, 0.2974, 0.0284, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.074, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.0569, 0.0492, 0.2974, -0.0284, 0.0641, 0.2974, -0.037, 0.0641, 0.2974, 0.037, 0.0641, 0.2974, -0.037, 0.0492, 0.2974, -0.0284, 0, 0.2974, -0.074)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.750004, 0, 25.600002)
+shape = SubResource("BoxShape3D_6ry8o")
+
+[node name="Floor" type="CSGBox3D" parent="Ground"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 35.5, -0.25, 25.600002)
+size = Vector3(68.1, 0.5, 95.5)
+
+[node name="AdvocadoHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("2_6vkeo")
+
+[node name="AppleHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("2_1unga")
+
+[node name="Apple" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("3_qqr4y")
+
+[node name="Avocado" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("4_jejas")
+
+[node name="BaconRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("5_clo0e")
+
+[node name="Bacon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("6_3hmkw")
+
+[node name="BagFlat" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("7_hn0as")
+
+[node name="Bag" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("8_mykdl")
+
+[node name="Banana" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("9_518p8")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("10_vujso")
+
+[node name="Beet" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("11_o1w23")
+
+[node name="BottleKetchup" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 8.599999, 0.3, 5.7000003)
+mesh = ExtResource("12_cbphe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BottleKetchup"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BottleKetchup/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1unga")
+
+[node name="BottleMusterd" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("13_q7yxn")
+
+[node name="BottleOil" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("14_uknpa")
+
+[node name="BowlBroth" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("15_ytm4c")
+
+[node name="BowlCereal" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("16_in6q6")
+
+[node name="BowlSoup" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("17_b4sm7")
+
+[node name="Bowl" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("18_mx55t")
+
+[node name="Bread" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("19_0qvnq")
+
+[node name="Broccoli" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("20_rpyf8")
+
+[node name="BurgerCheeseDouble" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("21_agbqm")
+
+[node name="BurgerCheese" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("22_q0w2x")
+
+[node name="BurgerDouble" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("23_8ylmy")
+
+[node name="Burger" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("24_h48pj")
+
+[node name="Cabbage" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("25_vquwn")
+
+[node name="CakeBirthday" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("26_3tyyr")
+
+[node name="CakeSlicer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("27_nwetc")
+
+[node name="Cake" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("28_dawr6")
+
+[node name="CanOpen" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("29_tpkrx")
+
+[node name="CanSmall" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("30_kc15v")
+
+[node name="Can" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("31_xjuaj")
+
+[node name="CandyBarWrapper" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("32_0jg50")
+
+[node name="CandyBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("33_n2ku3")
+
+[node name="Carrot" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("34_7wbyt")
+
+[node name="CartonSmall" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("35_cr3ty")
+
+[node name="Carton" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("36_86pgu")
+
+[node name="Cauliflower" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("37_igfbr")
+
+[node name="CeleryStick" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("38_r14kh")
+
+[node name="CheeseCut" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("39_8ti50")
+
+[node name="CheeseSlicer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("40_5wsuo")
+
+[node name="Cheese" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("41_fwve6")
+
+[node name="Cherries" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("42_mwono")
+
+[node name="Chinese" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("43_xn1i0")
+
+[node name="ChocolateWrapper" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("44_27i5s")
+
+[node name="Chocolate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("45_yivwj")
+
+[node name="ChopsticDecorative" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("46_7hsw1")
+
+[node name="Chopstick" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("47_2forq")
+
+[node name="Cocktail" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("48_c81dw")
+
+[node name="CoconutHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("49_x8ro2")
+
+[node name="Coconut" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("50_ewjks")
+
+[node name="CookieChocolate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("51_xgg3y")
+
+[node name="Cookie" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("52_nioin")
+
+[node name="CookingFork" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("53_wva8s")
+
+[node name="CookingKnifeChopping" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("54_xtr05")
+
+[node name="CookingKnife" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("55_r4nk2")
+
+[node name="CookingSpatula" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("56_tbfe5")
+
+[node name="CookingSpoon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("57_vlyw1")
+
+[node name="CornDog" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("58_b513j")
+
+[node name="Corn" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("59_o2ch4")
+
+[node name="Croissant" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("60_cvvwh")
+
+[node name="CupCoffee" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("61_lovfh")
+
+[node name="CupSaucer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("62_hfn3n")
+
+[node name="CupTea" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("63_yt4pc")
+
+[node name="Cup" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("64_c47am")
+
+[node name="Cupcake" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("65_myf8y")
+
+[node name="CuttingBoardJapanese" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("66_jlvy5")
+
+[node name="CuttingBoardRound" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("67_16w3a")
+
+[node name="CuttingBoard" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("68_k10cp")
+
+[node name="DimSum" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("69_en2vd")
+
+[node name="DonutChocolate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("70_wxcbc")
+
+[node name="DonutSprinkles" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("71_o8ltg")
+
+[node name="Donut" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("72_6cjy3")
+
+[node name="EggCooked" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("73_crhag")
+
+[node name="EggCup" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("74_e511x")
+
+[node name="EggHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("75_4dkxs")
+
+[node name="Egg" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("76_osl47")
+
+[node name="Eggplant" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("77_1ln5y")
+
+[node name="FishBones" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("78_gjmbn")
+
+[node name="Fish" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("79_jwp0w")
+
+[node name="Frappe" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("80_8kj33")
+
+[node name="FriesEmpty" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("81_i7yon")
+
+[node name="Fries" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("82_y6aw2")
+
+[node name="FrikandelSpeciaal" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("83_iatg3")
+
+[node name="FryingPanLid" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("84_0damh")
+
+[node name="FryingPan" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("85_cuh5n")
+
+[node name="GingerBreadCutter" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("86_oit5m")
+
+[node name="GingerBread" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("87_15pto")
+
+[node name="GlassWine" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("88_q5lya")
+
+[node name="Glass" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("89_q1ts2")
+
+[node name="Grapes" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("90_0x20c")
+
+[node name="Honey" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("91_kdngb")
+
+[node name="HotDogRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("92_8krak")
+
+[node name="HotDog" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("93_eu7tl")
+
+[node name="IceCreamCne" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("94_7f2xr")
+
+[node name="IceCreamCup" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("95_dfaml")
+
+[node name="IceCreamScoopChocolate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("96_ginve")
+
+[node name="IceCreamScoopMint" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("97_58j65")
+
+[node name="IceCream" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("98_i1wqm")
+
+[node name="KnifeBlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("99_xmltw")
+
+[node name="Leek" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("100_tjugm")
+
+[node name="LemonHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("101_rnsox")
+
+[node name="Lemon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("102_7lv68")
+
+[node name="LoafBaguette" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("103_qqqwp")
+
+[node name="LoafRound" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("104_yynjn")
+
+[node name="Loaf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("105_ofaqg")
+
+[node name="Lollypop" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("106_hm6f0")
+
+[node name="MakiRoe" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("107_2ed6s")
+
+[node name="MakiSalmon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("108_esadi")
+
+[node name="MakiVegetable" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("109_gnv4d")
+
+[node name="MeatCooked" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("110_3v884")
+
+[node name="MeatPatty" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("111_1cvbc")
+
+[node name="MeatRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("112_6h2iy")
+
+[node name="MeatRibs" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("113_usew6")
+
+[node name="MeatSausage" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("114_o12pm")
+
+[node name="MeatTenderizer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("115_871by")
+
+[node name="MincemeatPie" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("116_fsuda")
+
+[node name="MortarPestle" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("117_r3f07")
+
+[node name="Mortar" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("118_e55r2")
+
+[node name="Muffin" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("119_45v2b")
+
+[node name="Mug" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("120_yjgs8")
+
+[node name="MushroomHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("121_npjkx")
+
+[node name="Mushroom" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("122_ppb7f")
+
+[node name="MusselOpen" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("123_24qp2")
+
+[node name="Mussel" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("124_6274c")
+
+[node name="OnionHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("125_7nn2s")
+
+[node name="Onion" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("126_mc55l")
+
+[node name="Orange" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("127_kb0ae")
+
+[node name="PanStew" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("128_x8csd")
+
+[node name="Pan" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("129_egjqx")
+
+[node name="Pancakes" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("130_rofse")
+
+[node name="PaprikaSlice" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("131_i3gxe")
+
+[node name="Paprika" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("132_3mg41")
+
+[node name="PeanutButter" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("133_s2svh")
+
+[node name="PearHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("134_6mr81")
+
+[node name="Pear" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("135_hdxbv")
+
+[node name="PepperMill" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("136_ifvoy")
+
+[node name="Pepper" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("137_gdvck")
+
+[node name="Pie" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("138_p7mkt")
+
+[node name="Pineapple" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("139_ytucp")
+
+[node name="PizzaBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("140_wcwyn")
+
+[node name="PizzaCutter" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("141_nkq0k")
+
+[node name="Pizza" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("142_qsqix")
+
+[node name="PlateBroken" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("143_bi17e")
+
+[node name="PlateDeep" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("144_jdlvo")
+
+[node name="PlateDinner" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("145_my5dh")
+
+[node name="PlateRectangle" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("146_qrs4k")
+
+[node name="PlateSauerkraut" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("147_fgdlm")
+
+[node name="Plate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("148_6ueae")
+
+[node name="PopsicleChocolate" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("149_841xj")
+
+[node name="PopsicleStick" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("150_8gq71")
+
+[node name="Popsicle" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("151_t6p1i")
+
+[node name="PotLid" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("152_lw1rk")
+
+[node name="PotStewLid" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("153_mwyng")
+
+[node name="PotStew" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("154_pv3cp")
+
+[node name="Pot" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("155_tu58d")
+
+[node name="Pudding" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("156_kbidf")
+
+[node name="PumpkinBasic" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("157_w8uyg")
+
+[node name="Pumpkin" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("158_bbttc")
+
+[node name="Radish" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("159_nu68e")
+
+[node name="RiceBall" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("160_ok77e")
+
+[node name="RollingPin" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("161_0mrsi")
+
+[node name="Salad" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("162_bylat")
+
+[node name="Sandwich" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("163_f6slr")
+
+[node name="SausageHalf" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("164_wmlmi")
+
+[node name="Sausage" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("165_lnmjg")
+
+[node name="ShakerPepper" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("166_na6ww")
+
+[node name="ShakerSalt" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("167_hwmep")
+
+[node name="SkewerVegetables" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("168_qtpam")
+
+[node name="Skewer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("169_fqylt")
+
+[node name="SodaBottle" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("170_h7hx6")
+
+[node name="SodaCanCrushed" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("171_l7uxb")
+
+[node name="SodaCan" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("172_b4tb8")
+
+[node name="SodaGlass" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("173_gp7lv")
+
+[node name="Soda" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("174_hjyej")
+
+[node name="Soy" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("175_qk3gi")
+
+[node name="Steamer" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("176_yj7b3")
+
+[node name="Strawberry" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("177_2eddt")
+
+[node name="StyrofoamDinner" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("178_amgtr")
+
+[node name="Styrofoam" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("179_8m3nq")
+
+[node name="Sub" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("180_bivy5")
+
+[node name="Sundae" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("181_58vs0")
+
+[node name="SushiEgg" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("182_b5lxp")
+
+[node name="SushiSalmon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("183_vekfg")
+
+[node name="Taco" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("184_qngmw")
+
+[node name="TajineLid" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("185_p62l7")
+
+[node name="Tajine" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("186_v8xn7")
+
+[node name="TomatoSlice" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("187_m0biv")
+
+[node name="Tomato" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("188_0bkpu")
+
+[node name="Turkey" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("189_6n6gs")
+
+[node name="UtensilFork" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("190_k6y7k")
+
+[node name="UtensilKnife" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("191_qf3pb")
+
+[node name="UtensilSpoon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("192_2ie0h")
+
+[node name="Waffle" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("193_bwbol")
+
+[node name="Watermelon" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("194_slajm")
+
+[node name="WhippedCream" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("195_hdcon")
+
+[node name="Whisk" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("196_tx2r0")
+
+[node name="WholeHam" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("197_cr7a0")
+
+[node name="WholerHam" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("198_5ow2n")
+
+[node name="WineRed" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("199_njwki")
+
+[node name="WineWhite" type="MeshInstance3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1.6, 0.3, 5.7000003)
+mesh = ExtResource("200_ooc52")
