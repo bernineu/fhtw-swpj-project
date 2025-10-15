@@ -820,7 +820,7 @@ mesh = ExtResource("26_n3646")
 shape = SubResource("ConcavePolygonShape3D_n3646")
 
 [node name="CeilingFan" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 54.8, 12.8, 45.4)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 54.8, 12.8, 54.300003)
 mesh = ExtResource("27_mv8nn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CeilingFan"]
@@ -1720,7 +1720,7 @@ mesh = ExtResource("126_8cxgq")
 shape = SubResource("ConcavePolygonShape3D_8cxgq")
 
 [node name="Toaster" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 45.800003, 0, 69.1)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 32.7, 0, 63.8)
 mesh = ExtResource("127_x4s14")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Toaster"]
