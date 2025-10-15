@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://otkjxx10avb2"]
+[gd_scene load_steps=7 format=3 uid="uid://otkjxx10avb2"]
 
 [ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c38o3xg14mqxc" path="res://scenes/dog.tscn" id="2_sugp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
-size = Vector3(50, 0.5, 40)
+size = Vector3(50.646606, 0.5, 47.682617)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -23,12 +24,12 @@ glow_enabled = true
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.400001, 0, 11.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.723304, 0, 15.341309)
 shape = SubResource("BoxShape3D_0wfyh")
 
 [node name="Floor" type="CSGBox3D" parent="Ground"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.750002, -0.25, 11.549999)
-size = Vector3(40, 0.5, 50)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.737862, -0.25, 15.160107)
+size = Vector3(47.220215, 0.5, 50)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
@@ -42,20 +43,20 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 use_collision = true
 
 [node name="wall1" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3.55, 0.8)
-size = Vector3(29, 7.1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.143021, 3.55, 9.92812)
+size = Vector3(44.518524, 7.1, 1)
 
 [node name="wall2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6000001, -15.85)
-size = Vector3(1, 7.2000003, 32.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.375969, 3.6000001, -13.643419)
+size = Vector3(1, 7.2000003, 46.939526)
 
 [node name="wall3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3.6000001, -31.7)
-size = Vector3(29, 7.2000003, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.601073, 3.6000001, -36.63983)
+size = Vector3(43.385742, 7.2000003, 1)
 
 [node name="wall4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.5, -15.6)
-size = Vector3(1, 1, 33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.849186, 3.6294556, -13.057032)
+size = Vector3(1.3846436, 7.258911, 46.30664)
 
 [node name="counter1" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2, 1.5, -4.85)
@@ -75,8 +76,8 @@ radius = 1.0
 height = 3.0750003
 
 [node name="diningtable" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.449999, 1.5, -16.55)
-size = Vector3(10.1, 3, 4.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.449999, 1.5, -17.219076)
+size = Vector3(10.1, 3, 3.1911132)
 
 [node name="couchtable" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 1.1, -29.25)
@@ -123,8 +124,12 @@ operation = 2
 size = Vector3(2.7, 2.1000001, 1.9)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 5.1413327e-08, -3.145635e-08, -8.950891e-09, 0.64278764, 0.76604444, 5.9604645e-08, -0.76604444, 0.64278764, 16.940002, 15.899999, 28.699999)
+transform = Transform3D(0.9659258, -0.23456971, 0.10938167, 6.7809225e-09, 0.42261833, 0.90630776, -0.25881892, -0.87542605, 0.40821794, 18.940002, 21.899998, 30.699999)
 fov = 93.08556
+near = 0.086
 
 [node name="Player2" parent="." instance=ExtResource("2_0wfyh")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4.799999, 1.2, 13.2)
+
+[node name="Dog" parent="." instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.793786, 0.19057846, -0.6748543)
