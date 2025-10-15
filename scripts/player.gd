@@ -1,6 +1,10 @@
 extends CharacterBody3D
 
+<<<<<<< HEAD
 @export var speed: float = 15.0
+=======
+@export var speed: float = 10.0
+>>>>>>> 6915ad6 (redesigned the room with furniture)
 @export var fall_acceleration: float = 75.0
 
 var RUN_ANIM  := ""
