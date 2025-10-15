@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c38o3xg14mqxc"]
+
+[ext_resource type="PackedScene" uid="uid://deivbbfiu5h3" path="res://art/ShibaInu.gltf" id="1_c5eso"]
+[ext_resource type="Script" uid="uid://codeo1j1aeslf" path="res://scenes/dog.gd" id="1_vwjdu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kb3ao"]
+size = Vector3(1, 4.118683, 2.9296875)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_vwjdu")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="ShibaInu" parent="Node3D" instance=ExtResource("1_c5eso")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.6905859, 0.44043967)
+shape = SubResource("BoxShape3D_kb3ao")
