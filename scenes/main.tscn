@@ -20,6 +20,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.070156)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -124,7 +125,7 @@ operation = 2
 size = Vector3(2.7, 2.1000001, 1.9)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.9659258, -0.23456971, 0.10938167, 6.7809225e-09, 0.42261833, 0.90630776, -0.25881892, -0.87542605, 0.40821794, 18.940002, 21.899998, 30.699999)
+transform = Transform3D(0.96571326, -0.2256527, 0.12836951, -0.045346297, 0.34025013, 0.93924093, -0.25562, -0.9128585, 0.31835157, 22.0878, 21.899998, 28.936527)
 fov = 93.08556
 near = 0.086
 
