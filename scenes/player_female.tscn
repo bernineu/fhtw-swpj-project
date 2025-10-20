@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsnh7r1f3uepg"]
+
+[ext_resource type="Script" uid="uid://lpaykx0htfh3" path="res://scenes/player.gd" id="1_b6qse"]
+[ext_resource type="PackedScene" uid="uid://dv037maiwb5hj" path="res://art/Female_Dress.fbx" id="2_6alxu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+radius = 0.6713867
+height = 4.5011597
+
+[node name="Player_female" type="CharacterBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("1_b6qse")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Female_Dress" parent="Pivot" instance=ExtResource("2_6alxu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3423853, 0)
+shape = SubResource("CapsuleShape3D_g2els")

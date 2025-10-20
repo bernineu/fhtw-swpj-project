@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://co0wx1070yuwr"]
+[gd_scene load_steps=5 format=3 uid="uid://co0wx1070yuwr"]
 
 [ext_resource type="Script" uid="uid://blh77obwwb3og" path="res://main_menu.gd" id="1_0ykhv"]
 [ext_resource type="Texture2D" uid="uid://ct14s0u6lnng2" path="res://art/TitleScreen.jpg" id="2_2wh52"]
@@ -130,6 +130,8 @@ cache/0/40/0/underline_position = 0.0
 cache/0/40/0/underline_thickness = 0.0
 cache/0/40/0/scale = 1.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ykhv"]
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -154,3 +156,20 @@ offset_bottom = 443.0
 theme_override_fonts/font = SubResource("FontFile_0ykhv")
 theme_override_font_sizes/font_size = 40
 text = "Start"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 460.0
+offset_right = 769.0
+offset_bottom = 518.0
+alignment = 1
+
+[node name="Button_female" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0ykhv")
+text = "Female"
+
+[node name="Button_male" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Male"
