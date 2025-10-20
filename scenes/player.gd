@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed: float = 14.0
+@export var speed: float = 10.0
 @export var fall_acceleration: float = 75.0
 
 const RUN_ANIM  := "HumanArmature|Man_Run"

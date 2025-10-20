@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed: float = 10.0
+@export var speed: float = 14.0
 @export var turn_min_deg: float = 30.0
 @export var turn_max_deg: float = 800.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
