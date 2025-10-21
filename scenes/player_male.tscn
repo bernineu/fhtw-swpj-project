@@ -4,18 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://dcm75l3vqorca" path="res://art/Male_Casual.fbx" id="2_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
-radius = 0.3
-height = 2.480957
+radius = 0.6640625
+height = 4.883423
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player_male" type="CharacterBody3D"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_g2els")
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Male_Casual" parent="Pivot" instance=ExtResource("2_g2els")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0076026125, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2404785, 0.06698593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4417114, 0.06698593)
 shape = SubResource("CapsuleShape3D_g2els")

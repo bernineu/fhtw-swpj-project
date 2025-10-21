@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="sepj"
-run/main_scene="uid://otkjxx10avb2"
+run/main_scene="uid://co0wx1070yuwr"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://autoload/GameState.gd"
 
 [display]
 
