@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://otkjxx10avb2"]
+[gd_scene load_steps=10 format=3 uid="uid://otkjxx10avb2"]
 
-[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="ArrayMesh" uid="uid://dha6b2ghs7su7" path="res://art/snacks/cheese-cut.obj" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c38o3xg14mqxc" path="res://scenes/dog/dog.tscn" id="3_sugp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
 size = Vector3(94.700005, 0.5, 68.200005)
@@ -51,7 +52,7 @@ fov = 93.0
 near = 0.086
 
 [node name="Player2" parent="." instance=ExtResource("2_0wfyh")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.7999992, 1.2, 3.1999998)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.7999992, 1.2, 41)
 
 [node name="furniture" type="CSGCombiner3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -237,3 +238,9 @@ mesh = ExtResource("2_sugp2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="objects2/CheeseCut2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_jyhfs")
+
+[node name="Dog" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.1)
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 3.2, 3.2)
