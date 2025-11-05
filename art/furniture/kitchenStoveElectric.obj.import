@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dqr1b5gbhmj3x"
+path="res://.godot/imported/kitchenStoveElectric.obj-7f12a8822f71a62c0657e6f970d0a1fe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/kitchenStoveElectric.obj-7f12a8822f71a62c0657e6f970d0a1fe.mesh"]
+
+source_file="res://art/furniture/kitchenStoveElectric.obj"
+dest_files=["res://.godot/imported/kitchenStoveElectric.obj-7f12a8822f71a62c0657e6f970d0a1fe.mesh", "res://.godot/imported/kitchenStoveElectric.obj-7f12a8822f71a62c0657e6f970d0a1fe.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
