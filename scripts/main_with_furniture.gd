@@ -5,7 +5,6 @@ extends Node3D
 var point_1: Vector3
 var point_2: Vector3
 
-
 # find the object i'll spawn
 @onready var object_resource: Resource = preload("res://scenes/objects/cheese.tscn")
 
