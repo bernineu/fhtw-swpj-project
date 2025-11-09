@@ -1019,5 +1019,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9216614, 3.2, 6.5547743)
 
 [node name="Point2" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.232536, 0, 55.142776)
-
-[node name="SpawnTimer" type="Timer" parent="."]

@@ -9,12 +9,20 @@ var point_2: Vector3
 @onready var object_resource: Resource = preload("res://scenes/objects/cheese.tscn")
 
 #@onready var spawn_timer: Timer = $SpawnTimer
+var spawn_timer: Timer
 
 func _ready():
 	var scene: PackedScene = GameState.get_selected_player_scene()
 	var player: Node3D = scene.instantiate()
 	add_child(player)
 	player.global_transform = spawn_point.global_transform
+	
+	# Setup timer for automatic spawning
+	spawn_timer = Timer.new()
+	add_child(spawn_timer)
+	spawn_timer.wait_time = 3.0  # 3 seconds
+	spawn_timer.connect("timeout", spawn_object)
+	spawn_timer.start()
 
 	# for spawning:
 	randomize()		# this makes sure every playthrough is different
