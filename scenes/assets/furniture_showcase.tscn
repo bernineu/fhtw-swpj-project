@@ -757,7 +757,7 @@ mesh = ExtResource("19_ki1kv")
 shape = SubResource("ConcavePolygonShape3D_ki1kv")
 
 [node name="CabinetBed" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41, 0, 20.300001)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 32.48528, 0, 12.858898)
 mesh = ExtResource("20_6vxcu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CabinetBed"]
@@ -766,7 +766,7 @@ mesh = ExtResource("20_6vxcu")
 shape = SubResource("ConcavePolygonShape3D_6vxcu")
 
 [node name="CabinetBedDrawer" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41, 0, 20.300001)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 36.81355, 0, 13.205221)
 mesh = ExtResource("21_fcaid")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CabinetBedDrawer"]
@@ -775,7 +775,7 @@ mesh = ExtResource("21_fcaid")
 shape = SubResource("ConcavePolygonShape3D_fcaid")
 
 [node name="CabinetBedDrawerTable" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41, 0, 20.300001)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41, 0, 12.622662)
 mesh = ExtResource("22_766ew")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CabinetBedDrawerTable"]
@@ -793,7 +793,7 @@ mesh = ExtResource("23_knplh")
 shape = SubResource("ConcavePolygonShape3D_knplh")
 
 [node name="CabinetTelevisionDoors" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41, 0, 20.300001)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 41.736813, 0, 16.061586)
 mesh = ExtResource("24_owg2o")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CabinetTelevisionDoors"]
