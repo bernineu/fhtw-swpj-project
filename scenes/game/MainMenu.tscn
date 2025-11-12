@@ -168,8 +168,8 @@ alignment = 1
 [node name="Button_female" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_styles/pressed = SubResource("StyleBoxTexture_0ykhv")
-text = "Female"
+text = "Woman"
 
 [node name="Button_male" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Male"
+text = "Man"
