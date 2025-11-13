@@ -13,16 +13,17 @@ func _ready() -> void:
 	btn_man.connect("input_event", Callable(self, "man_chosen"))
 	btn_start.connect("input_event", Callable(self, "start_chosen"))
 
-
 func woman_chosen(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		print("Woman clicked in main script!")
+		start_idle_animations()
 		play_character_animation(btn_woman, "HumanArmature|Female_Jump")
 		_select_gender(GameState.Gender.FEMALE)
 
 func man_chosen(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		print("Man clicked in main script!")
+		start_idle_animations()
 		play_character_animation(btn_man, "HumanArmature|Man_Jump")
 		_select_gender(GameState.Gender.MALE)
 
