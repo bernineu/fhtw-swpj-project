@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://da2dq8n65meiq"]
 
-[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="ArrayMesh" uid="uid://dha6b2ghs7su7" path="res://art/snacks/cheese-cut.obj" id="2_sugp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
