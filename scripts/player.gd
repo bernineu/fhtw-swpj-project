@@ -28,10 +28,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var dir := Vector3.ZERO
-	if Input.is_action_pressed("move_right"):  dir.x += 1.0
-	if Input.is_action_pressed("move_left"):   dir.x -= 1.0
-	if Input.is_action_pressed("move_back"):   dir.z += 1.0
-	if Input.is_action_pressed("move_forward"):dir.z -= 1.0
+	if Input.is_action_pressed("move_right"):  dir.x -= 1.0
+	if Input.is_action_pressed("move_left"):   dir.x += 1.0
+	if Input.is_action_pressed("move_back"):   dir.z -= 1.0
+	if Input.is_action_pressed("move_forward"):dir.z += 1.0
+	
+	_camera_pivot.rotation.x+= _camera_input_direction.y * delta
+	_camera_pivot.rotation.x= clamp(_camera_pivot.rotation.x,-PI / 6.0,PI/ 3.0)
+	_camera_pivot.rotation.y -= _camera_input_direction.x * delta
+	_camera_input_direction= Vector2.ZERO
 
 	if dir != Vector3.ZERO:
 		dir = dir.normalized()
@@ -51,3 +56,22 @@ func _physics_process(delta: float) -> void:
 			anim.play(RUN_ANIM)
 		elif dir == Vector3.ZERO and IDLE_ANIM != "" and anim.current_animation != IDLE_ANIM:
 			anim.play(IDLE_ANIM)
+			
+# 3rd PErson camera
+@export_group("Camera")
+@export_range(0.0,1.0) var mouse_sensitivity := 0.25
+var _camera_input_direction:= Vector2.ZERO
+@onready var _camera_pivot: Node3D = %CameraPivot
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_click"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _unhandled_input(event: InputEvent) -> void:
+	var is_camera_motion:= (
+		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	)
+	if is_camera_motion:
+		_camera_input_direction = event.screen_relative * mouse_sensitivity
