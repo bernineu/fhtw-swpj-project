@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sepj"
-run/main_scene="uid://co0wx1070yuwr"
+run/main_scene="uid://dmjwfx0cmp8fw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=108 format=3 uid="uid://cs1jrmimj14ud"]
 
-[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player.tscn" id="1_jelaj"]
+[ext_resource type="PackedScene" uid="uid://bl6ck4n0he1ra" path="res://scenes/player/player.tscn" id="1_jelaj"]
 [ext_resource type="ArrayMesh" uid="uid://dha6b2ghs7su7" path="res://art/snacks/cheese-cut.obj" id="2_nwgqp"]
 [ext_resource type="ArrayMesh" uid="uid://cqrw3q7ct1one" path="res://art/furniture/bedSingle.obj" id="4_7w610"]
 [ext_resource type="ArrayMesh" uid="uid://d18l4tpqguu6" path="res://art/furniture/benchCushion.obj" id="6_88o53"]
