@@ -8,6 +8,12 @@ var point_2: Vector3
 # find the object i'll spawn
 @onready var object_resource: Resource = preload("res://scenes/objects/cheese.tscn")
 
+@onready var object_resources = [
+	preload("res://scenes/objects/cheese.tscn"),
+	preload("res://scenes/objects/chocolate.tscn"),
+	preload("res://scenes/objects/dogfood.tscn")
+]
+
 #@onready var spawn_timer: Timer = $SpawnTimer
 var spawn_timer: Timer
 
@@ -42,14 +48,21 @@ func get_random_point_inside(p1: Vector3, p2: Vector3) -> Vector3:
 
 func spawn_object():
 	# build the object behind the scenes
-	var object_instance: Node = object_resource.instantiate()
+	var object_instance: Node = get_random_object().instantiate()
 	# place the object in the scene tree so we can see it
 	add_child(object_instance)
-
+	
 	# generate a random spawn location
 	var spawn_location: Vector3 = get_random_point_inside(point_1, point_2)
 	# set the position to the random spawn location
 	object_instance.position = spawn_location
+
+
+func get_random_object() -> Resource:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var idx = rng.randi_range(0, object_resources.size() - 1)
+	return object_resources[idx]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
