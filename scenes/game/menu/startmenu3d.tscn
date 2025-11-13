@@ -114,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000852108, 1.906883e-07, -
 shape = SubResource("ConcavePolygonShape3D_1iy8k")
 
 [node name="PottedPlantLili" type="MeshInstance3D" parent="furniture"]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 14.664637, 0, 10.497335)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -3.3801003, 0, 6.2043858)
 mesh = ExtResource("6_nlu0e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="furniture/PottedPlantLili"]

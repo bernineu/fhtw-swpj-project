@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6kp8p7nv0txe"]
 
-[ext_resource type="PackedScene" uid="uid://dhot0n3nsxx8b" path="res://scenes/game/startmenuBg.tscn" id="1_o8tx1"]
+[ext_resource type="PackedScene" uid="uid://dhot0n3nsxx8b" path="res://scenes/game/menu/archived/startmenuBg.tscn" id="1_o8tx1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_335ou"]
 content_margin_left = 10.0
