@@ -56,6 +56,7 @@ func spawn_object():
 	var spawn_location: Vector3 = get_random_point_inside(point_1, point_2)
 	# set the position to the random spawn location
 	object_instance.position = spawn_location
+	GameState.add_object()
 
 
 func get_random_object() -> Resource:
@@ -66,5 +67,6 @@ func get_random_object() -> Resource:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	GameState.update_time_score(_delta)
 	if Input.is_action_just_pressed("lmb"):
 		spawn_object()

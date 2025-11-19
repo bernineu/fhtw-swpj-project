@@ -55,3 +55,7 @@ func _start_game():
 	if not has_selection:
 		return
 	get_tree().change_scene_to_file("res://scenes/game/main-with-furniture.tscn")
+	
+func _on_start_button_pressed() -> void:
+	GameState.reset_overflow()
+	get_tree().change_scene_to_file("res://scenes/main-with-furniture.tscn")
