@@ -67,5 +67,6 @@ func get_random_object() -> Resource:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	GameState.update_time_score(_delta)
 	if Input.is_action_just_pressed("lmb"):
 		spawn_object()

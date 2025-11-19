@@ -49,5 +49,6 @@ func _try_pickup() -> void:
 
 	# Dieses Objekt verschwinden lassen
 	GameState.remove_object()
+	GameState.add_pickup_score()
 	queue_free()
 	
