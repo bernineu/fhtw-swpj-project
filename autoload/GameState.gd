@@ -13,7 +13,7 @@ const PLAYER_SCENES := {
 }
 
 var overflow: int = 0
-var max_overflow: int = 5   # aktuell 5
+var max_overflow: int = 20   # maximale Anzahl an Objekten bis Game Over
 
 var score: int = 0
 var _time_accum: float = 0.0
