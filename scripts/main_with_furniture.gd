@@ -56,6 +56,7 @@ func spawn_object():
 	var spawn_location: Vector3 = get_random_point_inside(point_1, point_2)
 	# set the position to the random spawn location
 	object_instance.position = spawn_location
+	GameState.add_object()
 
 
 func get_random_object() -> Resource:

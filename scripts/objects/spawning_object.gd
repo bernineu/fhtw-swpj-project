@@ -48,4 +48,6 @@ func _try_pickup() -> void:
 		player.play_pickup_animation()
 
 	# Dieses Objekt verschwinden lassen
+	GameState.remove_object()
 	queue_free()
+	
