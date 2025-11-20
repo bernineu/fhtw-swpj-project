@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dmjwfx0cmp8fw"]
+[gd_scene load_steps=24 format=3 uid="uid://dmjwfx0cmp8fw"]
 
 [ext_resource type="ArrayMesh" uid="uid://boounmnska8xk" path="res://art/furniture/rugSquare.obj" id="1_ljaim"]
 [ext_resource type="Script" uid="uid://cwd6xfo801vl8" path="res://scripts/startmenu_3d_2.gd" id="1_regno"]
 [ext_resource type="ArrayMesh" uid="uid://d4aycf85x81dk" path="res://art/furniture/pottedPlant.obj" id="6_nlu0e"]
+[ext_resource type="ArrayMesh" uid="uid://dew6cgo5vo4fy" path="res://art/furniture/paneling.obj" id="7_hksqg"]
 [ext_resource type="ArrayMesh" uid="uid://bfrbifqlfanej" path="res://art/furniture/loungeDesignSofa.obj" id="7_pcdci"]
 [ext_resource type="PackedScene" uid="uid://dv037maiwb5hj" path="res://art/Female_Dress.fbx" id="8_ljaim"]
 [ext_resource type="PackedScene" uid="uid://c38o3xg14mqxc" path="res://scenes/dog/dog.tscn" id="9_hh5qn"]
@@ -163,6 +164,12 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="furniture/TableRound2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pcdci")
 
+[node name="Picture" type="MeshInstance3D" parent="furniture"]
+transform = Transform3D(4.5298742e-07, 0, 6, 0, 6, 0, -6, 0, 4.5298742e-07, 0.75534153, 6.700116, 12.87094)
+mesh = ExtResource("7_hksqg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="furniture/Picture"]
+
 [node name="Television" type="StaticBody3D" parent="."]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -3.477806, 2.179744, 13.048638)
 
@@ -214,3 +221,11 @@ shape = SubResource("CapsuleShape3D_regno")
 
 [node name="Male_Casual" parent="Man" instance=ExtResource("9_regno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.292234, 0.75, 6)
+
+[node name="ControlsLabel" type="Label3D" parent="."]
+transform = Transform3D(-0.060142666, 0, -0.9981898, 0, 1, 0, 0.9981898, 0, -0.060142666, 0.4909482, 8.557365, 14.457481)
+text = "Controls:
+WASD - movement
+G - Grab"
+font_size = 60
+outline_size = 32
