@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Export ${{ matrix.preset }} build
-        uses: firebelley/godot-export@v6
+        uses: firebelley/godot-export@v5
         with:
           relative_project_path: ./
           preset: ${{ matrix.preset }}
