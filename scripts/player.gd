@@ -120,12 +120,14 @@ func play_pickup_animation() -> void:
 	_is_playing_pickup = true
 	anim.play(PICKUP_ANIM)
 	print("Spiele Pickup-Animation:", PICKUP_ANIM)
+	speed=0.0
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	# Wenn die Pickup-Animation fertig ist, darf wieder Run/Idle laufen
 	if anim_name == PICKUP_ANIM:
 		_is_playing_pickup = false
+		speed=15.0
 
 
 func _input(event: InputEvent) -> void:
