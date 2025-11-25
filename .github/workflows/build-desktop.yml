@@ -1,0 +1,44 @@
+name: Build Desktop (macOS, Windows, Linux)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  export-all:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Export all Godot presets
+        uses: firebelley/godot-export@v7.0.0
+        with:
+          relative_project_path: ./
+          godot_executable_download_url: https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=linux.x86_64.zip&platform=linux.64
+          godot_export_templates_download_url: https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=export_templates.tpz&platform=templates
+
+          use_preset_export_path: true
+          cache: true
+
+      - name: Upload macOS build
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-build
+          path: build/macos
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows-build
+          path: build/windows
+
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Linux-build
+          path: build/linux
