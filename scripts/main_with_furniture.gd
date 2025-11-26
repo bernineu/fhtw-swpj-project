@@ -1,6 +1,9 @@
 extends Node3D
 @onready var spawn_point: Node3D = $SpawnPoint
 
+# Floor height - adjust this to match your floor level
+@export var floor_height: float = 0.5
+
 # declare two points for spawning
 var point_1: Vector3
 var point_2: Vector3
@@ -18,11 +21,14 @@ var point_2: Vector3
 var spawn_timer: Timer
 
 func _ready():
+	# Adjust furniture height first
+	adjust_furniture_height()
+
 	var scene: PackedScene = GameState.get_selected_player_scene()
 	var player: Node3D = scene.instantiate()
 	add_child(player)
 	player.global_transform = spawn_point.global_transform
-	
+
 	# Setup timer for automatic spawning
 	spawn_timer = Timer.new()
 	add_child(spawn_timer)
@@ -35,6 +41,15 @@ func _ready():
 	# define two points
 	point_1 = $Point1.position
 	point_2 = $Point2.position
+
+
+func adjust_furniture_height():
+	"""Adjust all furniture to sit on the floor at the correct height"""
+	var furniture_node = get_node_or_null("furniture")
+	if furniture_node:
+		# Move the entire furniture container to the floor height
+		furniture_node.position.y = floor_height
+		print("✅ Furniture adjusted to floor height: ", floor_height)
 
 
 func get_random_point_inside(p1: Vector3, p2: Vector3) -> Vector3:
