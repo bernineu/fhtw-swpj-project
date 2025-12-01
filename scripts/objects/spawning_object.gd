@@ -9,6 +9,9 @@ var player: Node3D = null
 var pickup_forward_dot: float = 0.5               # wie sehr "vorne" der Player stehen soll (Winkel)
 
 func _ready() -> void:
+	# Add this treat to the "treats" group so the dog can find it
+	add_to_group("treats")
+
 	# Player aus Gruppe "player" suchen (siehe player.gd → add_to_group("player"))
 	player = get_tree().get_first_node_in_group("player")
 
