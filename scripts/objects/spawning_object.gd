@@ -5,7 +5,7 @@ var rotation_speed: float = 1.0    # radians per second
 var player: Node3D = null
 var dog: Node3D = null
 
-@export var eating_distance: float = 4.0    
+@export var eating_distance: float = 3.0    
 @export var pickup_distance: float = 3.0       # wie nah der Player sein muss
 @export_range(0.0, 1.0)
 var pickup_forward_dot: float = 0.5            # wie sehr "vorne" der Player stehen soll (Winkel)
