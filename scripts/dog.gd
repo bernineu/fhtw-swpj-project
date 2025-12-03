@@ -6,6 +6,10 @@ extends CharacterBody3D
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed: float = 5.0  # How fast the dog turns toward target (radians/sec)
 
+var is_eating: bool = false
+var eat_timer: float = 0.0
+@export var eat_duration: float = 2.0
+
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
@@ -13,17 +17,30 @@ var target_update_timer: float = 0.0
 const TARGET_UPDATE_INTERVAL: float = 0.5  # Update target every 0.5 seconds
 
 func _ready():
+	add_to_group("dog")
 	anim_player = find_child("AnimationPlayer")
 	if anim_player and anim_player.has_animation("Gallop"):
 		var anim = anim_player.get_animation("Gallop")
 		anim.loop_mode = Animation.LOOP_LINEAR
 		anim_player.play("Gallop")
 
-	# Get the NavigationAgent3D
 	nav_agent = $NavigationAgent3D
-
-	# Wait for navigation to be ready before starting pathfinding
 	call_deferred("_setup_navigation")                
+
+func play_eat_animation():
+	# Wird vom spawning_object.gd aufgerufen
+	is_eating = true
+	eat_timer = eat_duration
+
+	# Aktuelles Ziel verwerfen (dieses Treat verschwindet ja gleich)
+	target_treat = null
+	if nav_agent:
+		nav_agent.set_target_position(global_position)
+
+	if anim_player and anim_player.has_animation("Eating"):
+		var anim = anim_player.get_animation("Eating")
+		anim.loop_mode = Animation.LOOP_NONE
+		anim_player.play("Eating")
 
 
 func _setup_navigation():
@@ -39,6 +56,30 @@ func _physics_process(delta):
 	# keep the dog upright
 	rotation.x = 0.0
 	rotation.z = 0.0
+
+	# --- NEU: Wenn der Hund frisst, nur Animation laufen lassen ---
+	if is_eating:
+		eat_timer -= delta
+		if eat_timer <= 0.0:
+			is_eating = false
+			# Nach dem Fressen wieder Gallop + neues Ziel suchen
+			if anim_player and anim_player.has_animation("Gallop"):
+				anim_player.play("Gallop")
+			find_nearest_treat()
+
+		# Während des Fressens nicht horizontal bewegen
+		velocity.x = 0
+		velocity.z = 0
+
+		# Gravity trotzdem normal
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		else:
+			velocity.y = 0.0
+
+		move_and_slide()
+		return
+	# --- ENDE NEU ---
 
 	# Update target treat periodically
 	target_update_timer += delta
@@ -60,24 +101,19 @@ func _physics_process(delta):
 			velocity.y = 0.0
 
 	# Move toward navigation target using NavigationAgent3D
-	# Check if we have a valid target and path
 	if target_treat == null or !is_instance_valid(target_treat):
 		velocity.x = 0
 		velocity.z = 0
 	elif nav_agent.is_navigation_finished():
-		# Reached target - stay still
 		velocity.x = 0
 		velocity.z = 0
 	elif !nav_agent.is_target_reachable():
-		# Target not reachable - try to find new target
 		velocity.x = 0
 		velocity.z = 0
 		print("⚠️ Target not reachable!")
 	else:
-		# Follow the navigation path
 		move_along_navigation_path(delta)
 
-	# move and slide
 	move_and_slide()
 
 
