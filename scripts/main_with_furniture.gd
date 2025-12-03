@@ -62,24 +62,46 @@ func adjust_furniture_height():
 		print("✅ Furniture adjusted to floor height: ", floor_height)
 
 
-func get_random_point_inside(p1: Vector3, p2: Vector3) -> Vector3:
-	var x_value: float = randf_range(p1.x, p2.x)
-	var z_value: float = randf_range(p1.z, p2.z)
-	
-	var random_point_inside: Vector3 = Vector3(x_value, 0, z_value)
-	
-	return(random_point_inside)
+func get_random_floor_point(max_tries := 20) -> Vector3:
+	var map_rid: RID = nav_region.get_navigation_map()
+	if map_rid == RID():
+		push_warning("❗ Navigation map RID ist leer.")
+		return Vector3.ZERO
+
+	var space_state := get_world_3d().direct_space_state
+
+	for i in range(max_tries):
+		var p := NavigationServer3D.map_get_random_point(
+			map_rid,
+			nav_region.navigation_layers,
+			false
+		)
+
+		var from := p + Vector3.UP * 2.0
+		var to   := p + Vector3.DOWN * 5.0
+
+		var query := PhysicsRayQueryParameters3D.create(from, to)
+		query.collide_with_areas = false
+		query.collide_with_bodies = true
+
+		var result := space_state.intersect_ray(query)
+
+		if result and result.collider.is_in_group("floor"):
+			var hit_pos: Vector3 = result.position
+			hit_pos.y += 0.1  # bisschen über Boden spawnen
+			return hit_pos
+
+	# Fallback, wenn alles schiefgeht
+	push_warning("⚠️ Kein gültiger Boden-Hit gefunden, nutze Fallback.")
+	return Vector3(0, floor_height + 0.1, 0)
+
 
 
 func spawn_object() -> void:
-	var scene: PackedScene = get_random_object()
+	var scene: PackedScene = object_resources[randi() % object_resources.size()]
 	var obj: Node3D = scene.instantiate()
 
-	var spawn_pos: Vector3 = get_random_navmesh_point()
-	# ein kleines bisschen über den Boden setzen, damit es nicht clipped
-	spawn_pos.y += 0.1
-
-	obj.global_position = spawn_pos
+	obj.global_position = get_random_floor_point()
 	add_child(obj)
 	GameState.add_object()
 
