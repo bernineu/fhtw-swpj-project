@@ -336,713 +336,713 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Highscore: "
 
-[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999863, -0.005235964, 0, 0.005235964, 0.9999863, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_21leg")
 
-[node name="furniture" type="CSGCombiner3D" parent="NavigationRegion3D2"]
+[node name="furniture" type="CSGCombiner3D" parent="NavigationRegion3D"]
 use_collision = true
 
-[node name="BedSingle" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BedSingle" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 31.62894, 0, -20.794804)
 mesh = ExtResource("4_7w610")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BedSingle"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BedSingle"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BedSingle/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BedSingle/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xhfw6")
 
-[node name="BenchCushion" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BenchCushion" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -1.1710529, 0, 26.605194)
 mesh = ExtResource("6_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BenchCushion"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BenchCushion"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BenchCushion/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BenchCushion/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_152kg")
 
-[node name="CabinetTelevisionDoors" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="CabinetTelevisionDoors" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, -15.37107, 0, -9.794804)
 mesh = ExtResource("12_db72n")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/CabinetTelevisionDoors"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/CabinetTelevisionDoors"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/CabinetTelevisionDoors/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/CabinetTelevisionDoors/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjtvk")
 
-[node name="ChairCushion" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.517541, 0, 2.7361612, 0, 8, 0, -2.7361612, 0, -7.517541, 12.628937, 0, 23.605194)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairModernCushion" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairModernCushion" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 18.028942, 0, 2.7051983)
 mesh = ExtResource("16_gtn7m")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairModernCushion"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairModernCushion"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairModernCushion/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairModernCushion/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ksmap")
 
-[node name="ChairRounded" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairRounded" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-2.7361612, 0, 7.517541, 0, 8, 0, -7.517541, 0, -2.7361612, 18.928947, 0, -15.994803)
 mesh = ExtResource("18_xs1vu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairRounded"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairRounded"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairRounded/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairRounded/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2s0kr")
 
-[node name="LoungeChairRelax" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeChairRelax" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(6.928203, 0, 4, 0, 8, 0, -4, 0, 6.928203, 14.928944, 0, 10.705196)
 mesh = ExtResource("20_6fykw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeChairRelax"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeChairRelax"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeChairRelax/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeChairRelax/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ndrjj")
 
-[node name="LoungeDesignChair" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeDesignChair" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(6.9282036, 0, 4.0000005, 0, 8, 0, -4.0000005, 0, 6.9282036, -2.471058, 0, -5.9948063)
 mesh = ExtResource("21_sk4aq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeDesignChair"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeDesignChair"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeDesignChair/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeDesignChair/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ih3m7")
 
-[node name="LoungeDesignSofaCorner" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeDesignSofaCorner" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-8, 0, -1.2079664e-06, 0, 8, 0, 1.2079664e-06, 0, -8, -8.571064, 0, -5.9948044)
 mesh = ExtResource("23_okyck")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeDesignSofaCorner"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeDesignSofaCorner"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeDesignSofaCorner/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeDesignSofaCorner/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_b6ruc")
 
-[node name="LoungeSofa" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeSofa" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(12, 0, 0, 0, 8, 0, 0, 0, 8, 10.728947, 0, 12.605194)
 mesh = ExtResource("24_ciotp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeSofa"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeSofa"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeSofa/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeSofa/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_155or")
 
-[node name="LoungeSofaLong" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeSofaLong" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -1.271061, 0, 12.605198)
 mesh = ExtResource("26_14h4l")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeSofaLong"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeSofaLong"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeSofaLong/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeSofaLong/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_63lxy")
 
-[node name="LoungeSofaOttoman" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LoungeSofaOttoman" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -1.2710571, 0, 9.205196)
 mesh = ExtResource("27_6uvs6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LoungeSofaOttoman"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LoungeSofaOttoman"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LoungeSofaOttoman/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LoungeSofaOttoman/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fjhjs")
 
-[node name="StoolBar" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="StoolBar" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -5.971052, 0, 25.405193)
 mesh = ExtResource("32_rrlt0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/StoolBar"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/StoolBar"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/StoolBar/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/StoolBar/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_6nfnn")
 
-[node name="StoolBarSquare" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="StoolBarSquare" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7.878462, 0, 1.3891854, 0, 8, 0, -1.3891854, 0, 7.878462, 16.628944, 0, 25.10519)
 mesh = ExtResource("33_8ntxs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/StoolBarSquare"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/StoolBarSquare"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/StoolBarSquare/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/StoolBarSquare/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4ue30")
 
-[node name="KitchenCabinet" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinet" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-8, 0, -6.993822e-07, 0, 8, 0, 6.993822e-07, 0, -8, 26.228943, 0, 21.705196)
 mesh = ExtResource("36_vsock")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinet"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinet"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinet/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinet/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_673bd")
 
-[node name="KitchenCabinetCornerInner" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetCornerInner" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 26.228947, 0, 21.805195)
 mesh = ExtResource("37_kyuta")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerInner"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerInner"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerInner/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerInner/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_akjxb")
 
-[node name="KitchenCabinetCornerRound" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetCornerRound" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 33.228943, 0, 21.705193)
 mesh = ExtResource("38_y2gh6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerRound"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerRound"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerRound/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerRound/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vrx01")
 
-[node name="KitchenCabinetDrawer" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetDrawer" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 26.128948, 0, 28.60519)
 mesh = ExtResource("39_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1uevf")
 
-[node name="KitchenCabinetUpper" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetUpper" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 38.82895, 8, 10.205196)
 mesh = ExtResource("40_ugvow")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpper"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpper"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpper/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpper/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tc087")
 
-[node name="KitchenCabinetUpperCorner" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetUpperCorner" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-8, 0, -6.993822e-07, 0, 8, 0, 6.993822e-07, 0, -8, 38.728943, 8, 15.305195)
 mesh = ExtResource("41_owdre")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperCorner"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperCorner"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperCorner/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperCorner/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_73205")
 
-[node name="KitchenCabinetUpperDouble" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetUpperDouble" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 38.828945, 8, 6.805195)
 mesh = ExtResource("42_oxfrr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperDouble"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperDouble"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperDouble/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperDouble/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0tljd")
 
-[node name="KitchenFridgeLarge" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenFridgeLarge" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 11, 0, 8, 0, -8, 0, -4.808253e-07, 36.12894, 0, 24.405193)
 mesh = ExtResource("46_ms3vj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenFridgeLarge"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenFridgeLarge"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenFridgeLarge/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenFridgeLarge/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_engxj")
 
-[node name="KitchenSink" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenSink" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 26.128948, 0, 32.005196)
 mesh = ExtResource("48_6ncqu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenSink"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenSink"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenSink/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenSink/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_roort")
 
-[node name="KitchenStove" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenStove" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 26.128944, 0, 25.205196)
 mesh = ExtResource("49_8h8ot")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenStove"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenStove"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenStove/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenStove/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gm02q")
 
-[node name="KitchenStoveElectric" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenStoveElectric" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 33.228943, 0, 18.105194)
 mesh = ExtResource("50_m8gk8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenStoveElectric"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenStoveElectric"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenStoveElectric/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenStoveElectric/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_07pt3")
 
-[node name="KitchenBlender" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenBlender" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(6.893654, 0, 1.2155373, 0, 7, 0, -1.2155373, 0, 6.893654, 25.228947, 1.9999999, 29.305195)
 mesh = ExtResource("51_ilyj5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenBlender"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenBlender"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenBlender/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenBlender/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2fe3h")
 
-[node name="KitchenCoffeeMachine" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCoffeeMachine" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 28.828945, 3.3, 18.305191)
 mesh = ExtResource("52_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCoffeeMachine"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCoffeeMachine"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCoffeeMachine/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCoffeeMachine/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lma71")
 
-[node name="KitchenMicrowave" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenMicrowave" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 25.22895, 3.1999998, 18.505192)
 mesh = ExtResource("53_mpicl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenMicrowave"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenMicrowave"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenMicrowave/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenMicrowave/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1t3gy")
 
-[node name="Toaster" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="Toaster" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(6.5778484, 0, -2.394141, 0, 7, 0, 2.394141, 0, 6.5778484, 32.12895, 3.4000003, 8.9051895)
 mesh = ExtResource("54_ey3ub")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/Toaster"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/Toaster"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/Toaster/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Toaster/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_db72n")
 
-[node name="KitchenCabinetUpperCorner2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetUpperCorner2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 38.82894, 8, 5.105194)
 mesh = ExtResource("41_owdre")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperCorner2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperCorner2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetUpperCorner2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetUpperCorner2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_73205")
 
-[node name="KitchenCabinetDrawer2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetDrawer2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 33.228947, 0, 14.705193)
 mesh = ExtResource("39_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1uevf")
 
-[node name="KitchenCabinetDrawer3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetDrawer3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 33.228947, 0, 11.305191)
 mesh = ExtResource("39_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetDrawer3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetDrawer3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1uevf")
 
-[node name="KitchenCabinetCornerRound2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="KitchenCabinetCornerRound2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 29.628944, 0, 4.4051914)
 mesh = ExtResource("38_y2gh6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerRound2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerRound2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/KitchenCabinetCornerRound2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/KitchenCabinetCornerRound2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vrx01")
 
-[node name="Desk" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="Desk" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, 17.728947, 0, -12.894809)
 mesh = ExtResource("54_okyck")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/Desk"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/Desk"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/Desk/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Desk/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oxfrr")
 
-[node name="DeskCorner" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="DeskCorner" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, 14.728947, 0, 3.105194)
 mesh = ExtResource("55_ciotp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/DeskCorner"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/DeskCorner"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/DeskCorner/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/DeskCorner/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4mff8")
 
-[node name="RugRounded" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="RugRounded" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-4.371139e-07, 0, 14, 0, 12, 0, -10, 0, -6.119594e-07, 12.828938, 0.2, -22.694801)
 mesh = ExtResource("59_nkyc3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/RugRounded"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/RugRounded"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/RugRounded/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/RugRounded/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3cr6a")
 
-[node name="RugSquare" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="RugSquare" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1.828949, 0.1, -18.394806)
 mesh = ExtResource("60_vslsl")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/RugSquare"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/RugSquare"]
 
-[node name="TableCrossCloth" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="TableCrossCloth" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 5.1289463, 0, 24.305195)
 mesh = ExtResource("70_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/TableCrossCloth"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/TableCrossCloth"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/TableCrossCloth/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/TableCrossCloth/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tixxp")
 
-[node name="TableCrossCloth2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="TableCrossCloth2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 10.028946, 0, 24.305195)
 mesh = ExtResource("70_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/TableCrossCloth2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/TableCrossCloth2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/TableCrossCloth2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/TableCrossCloth2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tixxp")
 
-[node name="TableCrossCloth3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="TableCrossCloth3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 14.928947, 0, 24.305195)
 mesh = ExtResource("70_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/TableCrossCloth3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/TableCrossCloth3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/TableCrossCloth3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/TableCrossCloth3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tixxp")
 
-[node name="TableCrossCloth4" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="TableCrossCloth4" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0.22894669, 0, 24.305195)
 mesh = ExtResource("70_c00d1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/TableCrossCloth4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/TableCrossCloth4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/TableCrossCloth4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/TableCrossCloth4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tixxp")
 
-[node name="BenchCushion2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BenchCushion2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 3.1289482, 0, 26.605194)
 mesh = ExtResource("6_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BenchCushion2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BenchCushion2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BenchCushion2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BenchCushion2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_152kg")
 
-[node name="BenchCushion3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BenchCushion3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 6.9289474, 0, 26.605194)
 mesh = ExtResource("6_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BenchCushion3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BenchCushion3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BenchCushion3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BenchCushion3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_152kg")
 
-[node name="BenchCushion4" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BenchCushion4" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 10.728947, 0, 26.605194)
 mesh = ExtResource("6_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BenchCushion4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BenchCushion4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BenchCushion4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BenchCushion4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_152kg")
 
-[node name="BenchCushion5" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BenchCushion5" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 14.628948, 0, 26.605194)
 mesh = ExtResource("6_88o53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BenchCushion5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BenchCushion5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BenchCushion5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BenchCushion5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_152kg")
 
-[node name="ChairCushion2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.9999995, 0, 2.3841858e-07, 0, 8, 0, -2.3841858e-07, 0, -7.9999995, 8.928936, 0, 24.505196)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairCushion3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.878461, 0, -1.389185, 0, 8, 0, 1.389185, 0, -7.878461, 6.0289364, 0, 24.505192)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairCushion4" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion4" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.9999995, 0, 2.3841858e-07, 0, 8, 0, -2.3841858e-07, 0, -7.9999995, 2.8289356, 0, 25.005196)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairCushion5" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion5" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.878462, 0, -1.3891854, 0, 8, 0, 1.3891854, 0, -7.878462, -0.571064, 0, 24.405193)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairCushion6" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion6" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.9999995, 0, 2.3841858e-07, 0, 8, 0, -2.3841858e-07, 0, -7.9999995, -3.071064, 0, 21.605194)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion6"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion6/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="ChairCushion7" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="ChairCushion7" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-7.878462, 0, -1.3891851, 0, 8, 0, 1.3891851, 0, -7.878462, -6.1710644, 0, 23.305195)
 mesh = ExtResource("14_sdha7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/ChairCushion7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/ChairCushion7"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/ChairCushion7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/ChairCushion7/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xljpf")
 
-[node name="CabinetTelevisionDoors2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="CabinetTelevisionDoors2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, -15.37107, 0, -3.394804)
 mesh = ExtResource("12_db72n")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/CabinetTelevisionDoors2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/CabinetTelevisionDoors2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/CabinetTelevisionDoors2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/CabinetTelevisionDoors2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kjtvk")
 
-[node name="TelevisionModern" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="TelevisionModern" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -16.171057, 2.5, -9.694808)
 mesh = ExtResource("73_ciotp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/TelevisionModern"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/TelevisionModern"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/TelevisionModern/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/TelevisionModern/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xnfb2")
 
-[node name="BookcaseClosed" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseClosed" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-1.7484556e-06, 0, 7, 0, 3, 0, -40, 0, -3.059797e-07, -17.671055, 0, 16.305191)
 mesh = ExtResource("69_ygopq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseClosed"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseClosed"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseClosed/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseClosed/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3yfjb")
 
-[node name="BookcaseClosedWide" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseClosedWide" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, 7, 0, 7, 0, -7, 0, -3.059797e-07, 13.2289505, 0, -23.094805)
 mesh = ExtResource("71_8ntxs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ow8q8")
 
-[node name="BookcaseOpen" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseOpen" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(12, 0, 0, 0, 7, 0, 0, 0, 7, 12.928955, 0, -21.894804)
 mesh = ExtResource("72_4erpj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseOpen"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseOpen"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseOpen/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseOpen/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3x3n6")
 
-[node name="BookcaseOpenLow" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseOpenLow" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(15, 0, 0, 0, 7, 0, 0, 0, 7, 40.328945, 0, -8.694805)
 mesh = ExtResource("73_3qitt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseOpenLow"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseOpenLow/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3jfsy")
 
-[node name="Books" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="Books" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 10.028946, 4.4, -21.394804)
 mesh = ExtResource("74_vsock")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/Books"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/Books"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/Books/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Books/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_f8jbp")
 
-[node name="LampRoundFloor" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LampRoundFloor" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -6.0710583, 0.2, 3.4051933)
 mesh = ExtResource("75_kyuta")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LampRoundFloor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LampRoundFloor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LampRoundFloor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LampRoundFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ris7v")
 
-[node name="LampRoundTable" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LampRoundTable" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 20.428947, 2.7, 4.7051945)
 mesh = ExtResource("76_y2gh6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LampRoundTable"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LampRoundTable"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LampRoundTable/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LampRoundTable/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hblji")
 
-[node name="LampSquareFloor" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="LampSquareFloor" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 17.228947, 0, -21.294806)
 mesh = ExtResource("78_ugvow")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/LampSquareFloor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/LampSquareFloor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/LampSquareFloor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/LampSquareFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_77wd4")
 
-[node name="PlantSmall1" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="PlantSmall1" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 4.428936, 2.7000003, 4.905195)
 mesh = ExtResource("81_3qitt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/PlantSmall1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/PlantSmall1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/PlantSmall1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/PlantSmall1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_c00d1")
 
-[node name="PlantSmall2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="PlantSmall2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 11.628941, 5.8, -21.194805)
 mesh = ExtResource("82_vsock")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/PlantSmall2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/PlantSmall2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/PlantSmall2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/PlantSmall2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ugvow")
 
-[node name="PlantSmall3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="PlantSmall3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -17.071054, 2.6, 22.405193)
 mesh = ExtResource("83_kyuta")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/PlantSmall3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/PlantSmall3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/PlantSmall3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/PlantSmall3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_owdre")
 
-[node name="PottedPlantLili" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="PottedPlantLili" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 27.828941, 0, -7.394804)
 mesh = ExtResource("84_y2gh6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/PottedPlantLili"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/PottedPlantLili"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/PottedPlantLili/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/PottedPlantLili/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_dyla8")
 
-[node name="CoatRack" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="CoatRack" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-0.004335569, 0.0051571936, -6.9999967, 0.009302012, 6.9999914, 0.0051513207, 6.9999924, -0.009298757, -0.004342545, -22.671057, 4.7, 27.605194)
 mesh = ExtResource("85_kyuta")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/CoatRack"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/CoatRack"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/CoatRack/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/CoatRack/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7kn66")
 
-[node name="CoatRackStanding" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="CoatRackStanding" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -16.771059, 0, 13.505196)
 mesh = ExtResource("86_y2gh6")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/CoatRackStanding"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/CoatRackStanding"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/CoatRackStanding/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/CoatRackStanding/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00084763765, 0.403145, -0.001657486)
 shape = SubResource("BoxShape3D_21leg")
 
-[node name="CoatRack2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="CoatRack2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -22.671057, 4.7, 30.305195)
 mesh = ExtResource("85_kyuta")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/CoatRack2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/CoatRack2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/CoatRack2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/CoatRack2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7kn66")
 
-[node name="BookcaseClosedWide2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseClosedWide2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, 7, 0, 7, 0, -7, 0, -3.059797e-07, 13.2289505, 0, -17.594805)
 mesh = ExtResource("71_8ntxs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ow8q8")
 
-[node name="BookcaseClosedWide3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseClosedWide3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, 7, 0, 7, 0, -7, 0, -3.059797e-07, 13.2289505, 0, -12.094805)
 mesh = ExtResource("71_8ntxs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ow8q8")
 
-[node name="BookcaseClosedWide4" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseClosedWide4" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, 7, 0, 7, 0, -7, 0, -3.059797e-07, 13.2289505, 0, -6.694805)
 mesh = ExtResource("71_8ntxs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseClosedWide4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseClosedWide4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ow8q8")
 
-[node name="Desk2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="Desk2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, 21.528946, 0, 8.105192)
 mesh = ExtResource("54_okyck")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/Desk2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/Desk2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/Desk2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Desk2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oxfrr")
 
-[node name="DeskCorner2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="DeskCorner2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 9.928947, 0, 1.3051968)
 mesh = ExtResource("55_ciotp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/DeskCorner2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/DeskCorner2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/DeskCorner2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/DeskCorner2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4mff8")
 
-[node name="Desk3" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="Desk3" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(14, 0, 0, 0, 7, 0, 0, 0, 7, 18.828945, 0, 5.5051937)
 mesh = ExtResource("54_okyck")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/Desk3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/Desk3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/Desk3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Desk3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oxfrr")
 
-[node name="BookcaseOpenLow2" type="MeshInstance3D" parent="NavigationRegion3D2/furniture"]
+[node name="BookcaseOpenLow2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
 transform = Transform3D(15, 0, 0, 0, 7, 0, 0, 0, 7, 34.928944, 0, -8.694805)
 mesh = ExtResource("73_3qitt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D2/furniture/BookcaseOpenLow2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/furniture/BookcaseOpenLow2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3jfsy")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.629341, -0.29999998, 4.223804)
 size = Vector3(67.31793, 1, 58.804672)
 
-[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D2"]
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50.451424, 2.2780647)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D2/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08135986, 0.5051106, 0.015624998)
 shape = SubResource("BoxShape3D_yemsi")
 
-[node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D2"]
+[node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9999863, 0.005235964, 0, -0.005235964, 0.9999863, 0, 0, 0)
 use_collision = true
 
-[node name="wall1" type="CSGBox3D" parent="NavigationRegion3D2/walls"]
+[node name="wall1" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24.17106, 16.861486, 4.155195)
 size = Vector3(56.7, 33.722973, 1)
 
-[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D2/walls"]
+[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.728947, 16.876171, -23.694803)
 size = Vector3(1, 33.752342, 65.200005)
 
-[node name="wall3" type="CSGBox3D" parent="NavigationRegion3D2/walls"]
+[node name="wall3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 40.928944, 16.917187, 4.0552044)
 size = Vector3(56.5, 33.834373, 1)
 
-[node name="wall4" type="CSGBox3D" parent="NavigationRegion3D2/walls"]
+[node name="wall4" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.628948, 16.92482, 32.605198)
 size = Vector3(1, 33.84964, 65.8)

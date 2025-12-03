@@ -1,5 +1,6 @@
 extends Node3D
 @onready var spawn_point: Node3D = $SpawnPoint
+@onready var nav_region: NavigationRegion3D = $NavigationRegion3D
 
 # Floor height - adjust this to match your floor level
 @export var floor_height: float = 0.5
@@ -19,6 +20,15 @@ var point_2: Vector3
 
 #@onready var spawn_timer: Timer = $SpawnTimer
 var spawn_timer: Timer
+
+func get_random_navmesh_point() -> Vector3:
+	var map_rid: RID = nav_region.get_navigation_map()
+	# 1 = Navigation-Layer-Maske (anpassen, falls du andere Layer nutzt)
+	var nav_point: Vector3 = NavigationServer3D.map_get_random_point(map_rid, 1, false)
+	
+	# Höhe anpassen, falls nötig
+	nav_point.y = floor_height
+	return nav_point
 
 func _ready():
 	# Adjust furniture height first
@@ -61,16 +71,16 @@ func get_random_point_inside(p1: Vector3, p2: Vector3) -> Vector3:
 	return(random_point_inside)
 
 
-func spawn_object():
-	# build the object behind the scenes
-	var object_instance: Node = get_random_object().instantiate()
-	# place the object in the scene tree so we can see it
-	add_child(object_instance)
-	
-	# generate a random spawn location
-	var spawn_location: Vector3 = get_random_point_inside(point_1, point_2)
-	# set the position to the random spawn location
-	object_instance.position = spawn_location
+func spawn_object() -> void:
+	var scene: PackedScene = get_random_object()
+	var obj: Node3D = scene.instantiate()
+
+	var spawn_pos: Vector3 = get_random_navmesh_point()
+	# ein kleines bisschen über den Boden setzen, damit es nicht clipped
+	spawn_pos.y += 0.1
+
+	obj.global_position = spawn_pos
+	add_child(obj)
 	GameState.add_object()
 
 
