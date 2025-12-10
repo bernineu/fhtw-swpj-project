@@ -2,3 +2,6 @@
 .godot/
 /android/
 build/
+
+# Claude Code local notes
+claude.md
