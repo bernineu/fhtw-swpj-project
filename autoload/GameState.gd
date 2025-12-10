@@ -2,6 +2,7 @@ extends Node
 
 signal overflow_changed(value: int, max_value: int)
 signal overflow_full
+signal dog_death
 signal score_changed(score: int)
 
 enum Gender { MALE, FEMALE }
@@ -66,3 +67,11 @@ func add_pickup_score() -> void:
 		return
 	score += 5
 	score_changed.emit(score)
+
+
+func trigger_dog_death_game_over() -> void:
+	"""Called when dog dies to trigger game over"""
+	if not is_game_over:
+		is_game_over = true
+		dog_death.emit()
+		print("🎮 Game Over: Dog died!")

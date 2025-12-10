@@ -20,6 +20,9 @@ const HUNGER_REDUCTION_PER_SNACK: float = 0.3
 # Chocolate counter for death mechanic
 var chocolate_eaten: int = 0
 
+# Death state
+var is_dead: bool = false
+
 # Signals for UI updates
 signal lives_changed(new_lives: int)
 signal hunger_changed(new_hunger: float)
@@ -71,6 +74,10 @@ func _setup_navigation():
 
 
 func _physics_process(delta):
+	# Death check (highest priority)
+	if is_dead:
+		return
+
 	# keep the dog upright
 	rotation.x = 0.0
 	rotation.z = 0.0
@@ -250,6 +257,13 @@ func on_snack_eaten(snack_type) -> void:
 	print("🐕 Dog ate: ", snack_name, " (type: ", snack_type, ")")
 	print("   Hunger before: %.2f" % old_hunger)
 
+	# Check for POISON (instant death)
+	# 0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON
+	if snack_type == 3:  # POISON
+		print("☠️ Dog ate POISON - instant death!")
+		die()
+		return
+
 	# Reduce hunger
 	hunger -= HUNGER_REDUCTION_PER_SNACK
 	hunger = clamp(hunger, 0.0, 1.0)
@@ -257,11 +271,14 @@ func on_snack_eaten(snack_type) -> void:
 	hunger_changed.emit(hunger)
 
 	# Track chocolate consumption for death mechanic
-	# Using the enum value from spawning_object.gd
-	# 0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON
 	if snack_type == 2:  # CHOCOLATE
 		chocolate_eaten += 1
 		print("🍫 Chocolate eaten: ", chocolate_eaten, "/3")
+
+		# Check if dog ate 3 chocolates (death condition)
+		if chocolate_eaten >= 3:
+			print("☠️ Dog ate 3 chocolates - death!")
+			die()
 
 
 func lose_life() -> void:
@@ -270,3 +287,38 @@ func lose_life() -> void:
 	lives = max(lives, 0)
 	lives_changed.emit(lives)
 	print("💔 Dog lost a life! Lives remaining: ", lives)
+
+	# Check if out of lives
+	if lives <= 0:
+		die()
+
+
+func die() -> void:
+	"""Handle dog death"""
+	if is_dead:
+		return  # Already dead
+
+	is_dead = true
+	print("💀 Dog died! Game Over!")
+
+	# Stop all movement
+	velocity = Vector3.ZERO
+	target_treat = null
+
+	# Stop eating animation if active
+	is_eating = false
+
+	# Play death animation if available
+	if anim_player and anim_player.has_animation("Death"):
+		anim_player.play("Death")
+	else:
+		# Fallback: stop current animation
+		if anim_player:
+			anim_player.stop()
+
+	# Emit death signal
+	dog_died.emit()
+
+	# Trigger game over in GameState
+	if GameState.has_method("trigger_dog_death_game_over"):
+		GameState.trigger_dog_death_game_over()
