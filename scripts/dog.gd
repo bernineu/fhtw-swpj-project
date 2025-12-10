@@ -10,6 +10,21 @@ var is_eating: bool = false
 var eat_timer: float = 0.0
 @export var eat_duration: float = 2.0
 
+# Lives and Hunger System
+var lives: int = 3
+const MAX_LIVES: int = 3
+var hunger: float = 0.0
+const HUNGER_INCREASE_PER_SEC: float = 0.01
+const HUNGER_REDUCTION_PER_SNACK: float = 0.3
+
+# Chocolate counter for death mechanic
+var chocolate_eaten: int = 0
+
+# Signals for UI updates
+signal lives_changed(new_lives: int)
+signal hunger_changed(new_hunger: float)
+signal dog_died
+
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
@@ -25,7 +40,10 @@ func _ready():
 		anim_player.play("Gallop")
 
 	nav_agent = $NavigationAgent3D
-	call_deferred("_setup_navigation")                
+	call_deferred("_setup_navigation")
+
+	# Debug: Print initial state
+	print("🐕 Dog initialized - Lives: %d, Hunger: %.2f" % [lives, hunger])                
 
 func play_eat_animation():
 	# Wird vom spawning_object.gd aufgerufen
@@ -56,6 +74,9 @@ func _physics_process(delta):
 	# keep the dog upright
 	rotation.x = 0.0
 	rotation.z = 0.0
+
+	# Update hunger (increases over time)
+	update_hunger(delta)
 
 	# --- NEU: Wenn der Hund frisst, nur Animation laufen lassen ---
 	if is_eating:
@@ -205,3 +226,47 @@ func move_along_navigation_path(delta: float):
 		velocity.x = 0
 		velocity.z = 0
 		print("⏸️ Not moving - direction too small")
+
+
+func update_hunger(delta: float) -> void:
+	"""Increase hunger over time"""
+	var old_hunger = hunger
+	hunger += HUNGER_INCREASE_PER_SEC * delta
+	hunger = clamp(hunger, 0.0, 1.0)
+
+	# Only log every 5 seconds to avoid spam
+	if int(old_hunger * 100) % 50 == 0 and int(hunger * 100) % 50 != 0:
+		print("😋 Hunger level: %.2f" % hunger)
+
+	hunger_changed.emit(hunger)
+
+
+func on_snack_eaten(snack_type) -> void:
+	"""Called by spawning_object when dog eats a snack"""
+	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
+
+	var old_hunger = hunger
+	print("🐕 Dog ate: ", snack_name, " (type: ", snack_type, ")")
+	print("   Hunger before: %.2f" % old_hunger)
+
+	# Reduce hunger
+	hunger -= HUNGER_REDUCTION_PER_SNACK
+	hunger = clamp(hunger, 0.0, 1.0)
+	print("   Hunger after: %.2f" % hunger)
+	hunger_changed.emit(hunger)
+
+	# Track chocolate consumption for death mechanic
+	# Using the enum value from spawning_object.gd
+	# 0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON
+	if snack_type == 2:  # CHOCOLATE
+		chocolate_eaten += 1
+		print("🍫 Chocolate eaten: ", chocolate_eaten, "/3")
+
+
+func lose_life() -> void:
+	"""Reduce lives by 1 and emit signal"""
+	lives -= 1
+	lives = max(lives, 0)
+	lives_changed.emit(lives)
+	print("💔 Dog lost a life! Lives remaining: ", lives)
