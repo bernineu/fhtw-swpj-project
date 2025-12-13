@@ -36,6 +36,7 @@ func _ready() -> void:
 	# Signale vom GameState verbinden
 	GameState.overflow_changed.connect(_on_overflow_changed)
 	GameState.overflow_full.connect(_on_overflow_full)
+	GameState.dog_death.connect(_on_dog_death)
 	GameState.score_changed.connect(_on_score_changed)
 
 
@@ -47,6 +48,18 @@ func _on_overflow_changed(value: int, max_value: int) -> void:
 
 
 func _on_overflow_full() -> void:
+	# Spiel pausieren
+	get_tree().paused = true
+
+	# Maus sichtbar machen, damit man klicken kann
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if game_over_panel != null:
+		game_over_panel.visible = true
+
+
+func _on_dog_death() -> void:
+	"""Handle dog death game over (same as overflow)"""
 	# Spiel pausieren
 	get_tree().paused = true
 

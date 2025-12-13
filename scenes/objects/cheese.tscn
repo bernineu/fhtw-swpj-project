@@ -14,6 +14,7 @@ data = PackedVector3Array(-0.0265, 0, 0.061199997, -0.054199997, 0.020499999, 0.
 
 [node name="Cheese" type="Node3D"]
 script = ExtResource("1_wmrna")
+snack_type = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.3640323, -1.8469844, -2.0129615e-08, 1.7996461, 2.3034422, -0.67485315, 0.41548106, 0.5317915, 2.9231102, 0, 1.78, 0)

@@ -1,11 +1,29 @@
 extends Node3D
 
+# Snack Type System
+enum SnackType {
+	DOG_FOOD,
+	CHEESE,
+	CHOCOLATE,
+	POISON
+}
+
+@export var snack_type: SnackType = SnackType.DOG_FOOD
+
+# Base utility values for each snack type (from Regelwerk)
+const SNACK_UTILITY_VALUES = {
+	SnackType.DOG_FOOD: 0.2,
+	SnackType.CHEESE: 0.15,
+	SnackType.CHOCOLATE: 0.1,
+	SnackType.POISON: 0.05
+}
+
 var rotation_speed: float = 1.0    # radians per second
 
 var player: Node3D = null
 var dog: Node3D = null
 
-@export var eating_distance: float = 3.0    
+@export var eating_distance: float = 3.0
 @export var pickup_distance: float = 3.0       # wie nah der Player sein muss
 @export_range(0.0, 1.0)
 var pickup_forward_dot: float = 0.5            # wie sehr "vorne" der Player stehen soll (Winkel)
@@ -37,7 +55,6 @@ func _process(delta: float) -> void:
 
 func _try_eating() -> void:
 	if dog == null or !is_instance_valid(dog):
-		
 		return
 
 	# Vektor vom Objekt zum Hund
@@ -52,20 +69,41 @@ func _try_eating() -> void:
 	var dog_forward: Vector3 = -dog.global_transform.basis.z
 	var to_object_from_dog: Vector3 = (global_transform.origin - dog.global_transform.origin).normalized()
 	# var dot_val := dog_forward.dot(to_object_from_dog)
-	# 0.3 ≈ ca. 70° vor dem Hund; 
+	# 0.3 ≈ ca. 70° vor dem Hund;
 	# if dot_val < 0.3:
 		# return
 
-	# Hund-Animation triggern
+	# Hund-Animation triggern und Snack-Typ mitteilen
 	if dog.has_method("play_eat_animation"):
-		
 		dog.play_eat_animation()
+
+	# Inform dog about what snack type was eaten
+	if dog.has_method("on_snack_eaten"):
+		dog.on_snack_eaten(snack_type)
 
 	# Dieses Objekt verschwinden lassen
 	GameState.remove_object()
-	# Falls du extra Hund-Score willst:
-	# GameState.add_dog_score()
 	queue_free()
+
+
+func get_snack_utility_value() -> float:
+	"""Returns the base utility value for this snack type"""
+	return SNACK_UTILITY_VALUES.get(snack_type, 0.0)
+
+
+func get_snack_type_name() -> String:
+	"""Returns the string name of the snack type"""
+	match snack_type:
+		SnackType.DOG_FOOD:
+			return "DOG_FOOD"
+		SnackType.CHEESE:
+			return "CHEESE"
+		SnackType.CHOCOLATE:
+			return "CHOCOLATE"
+		SnackType.POISON:
+			return "POISON"
+		_:
+			return "UNKNOWN"
 
 
 func _try_pickup() -> void:
