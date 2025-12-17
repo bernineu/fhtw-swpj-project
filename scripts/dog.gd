@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 var is_eating: bool = false
 var eat_timer: float = 0.0
+var current_eating_snack_type: int = -1  # Track what snack is being eaten
 @export var eat_duration: float = 2.0
 
 # Lives and Hunger System
@@ -22,6 +23,11 @@ var chocolate_eaten: int = 0
 
 # Death state
 var is_dead: bool = false
+
+# Discipline state
+var is_being_disciplined: bool = false
+var discipline_pause_timer: float = 0.0
+const DISCIPLINE_PAUSE_DURATION: float = 2.0  # Dog pauses for 2 seconds when disciplined
 
 # Signals for UI updates
 signal lives_changed(new_lives: int)
@@ -85,11 +91,34 @@ func _physics_process(delta):
 	# Update hunger (increases over time)
 	update_hunger(delta)
 
+	# --- Discipline pause (second priority) ---
+	if is_being_disciplined:
+		discipline_pause_timer -= delta
+		if discipline_pause_timer <= 0.0:
+			is_being_disciplined = false
+			# Resume normal animation
+			if anim_player and anim_player.has_animation("Gallop"):
+				anim_player.play("Gallop")
+
+		# Stop all movement while disciplined
+		velocity.x = 0
+		velocity.z = 0
+
+		# Gravity still applies
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		else:
+			velocity.y = 0.0
+
+		move_and_slide()
+		return
+
 	# --- NEU: Wenn der Hund frisst, nur Animation laufen lassen ---
 	if is_eating:
 		eat_timer -= delta
 		if eat_timer <= 0.0:
 			is_eating = false
+			current_eating_snack_type = -1  # Clear eating snack type
 			# Nach dem Fressen wieder Gallop + neues Ziel suchen
 			if anim_player and anim_player.has_animation("Gallop"):
 				anim_player.play("Gallop")
@@ -250,6 +279,9 @@ func update_hunger(delta: float) -> void:
 
 func on_snack_eaten(snack_type) -> void:
 	"""Called by spawning_object when dog eats a snack"""
+	# Store the snack type being eaten (for discipline mechanic)
+	current_eating_snack_type = snack_type
+
 	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
 	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
 
@@ -322,3 +354,42 @@ func die() -> void:
 	# Trigger game over in GameState
 	if GameState.has_method("trigger_dog_death_game_over"):
 		GameState.trigger_dog_death_game_over()
+
+
+func on_disciplined(snack_type) -> void:
+	"""Called when player disciplines the dog
+	This will be expanded in Phase 4 with learning system (Tasks 9-11)
+	snack_type: The type of snack the dog is targeting/eating
+	"""
+	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
+
+	print("🚫 Dog disciplined for: ", snack_name)
+	print("   Current action: ", "EATING" if is_eating else "MOVING_TO_SNACK")
+
+	# Stop current action and pause
+	is_being_disciplined = true
+	discipline_pause_timer = DISCIPLINE_PAUSE_DURATION
+
+	# Stop eating if currently eating
+	is_eating = false
+	eat_timer = 0.0
+	current_eating_snack_type = -1  # Clear eating snack type
+
+	# Clear current target
+	target_treat = null
+	if nav_agent:
+		nav_agent.set_target_position(global_position)
+
+	# Play idle animation
+	if anim_player and anim_player.has_animation("Idle"):
+		anim_player.play("Idle")
+
+	print("   Dog paused for %.1f seconds" % DISCIPLINE_PAUSE_DURATION)
+
+	# TODO Phase 4 (Task 9): Increment discipline counter for this snack type
+	# TODO Phase 4 (Task 10): Start 10-second short-term learning timer
+	# TODO Phase 4 (Task 11): Apply progressive learning modifiers
+
+	# Placeholder: Just log for now
+	# In Phase 4, this will affect the dog's utility calculations

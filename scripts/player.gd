@@ -3,12 +3,20 @@ extends CharacterBody3D
 @export var speed: float = 15.0
 @export var fall_acceleration: float = 75.0
 
+# Discipline mechanic
+@export_group("Discipline")
+@export var discipline_range: float = 5.0  # Maximum range for discipline
+@export var discipline_cooldown_duration: float = 1.0  # Cooldown in seconds
+var discipline_cooldown: float = 0.0  # Current cooldown timer
+
 var RUN_ANIM  := ""
 var IDLE_ANIM := ""
 var PICKUP_ANIM := ""
+var DISCIPLINE_ANIM := ""
 
 var anim: AnimationPlayer
 var _is_playing_pickup := false
+var _is_playing_discipline := false
 @onready var pivot: Node3D = $Pivot
 
 # 3rd Person camera
@@ -40,6 +48,10 @@ func _ready() -> void:
 			if PICKUP_ANIM == "" and ("sword" in lname or "slash" in lname or "attack" in lname):
 				PICKUP_ANIM = name
 
+			# Discipline animation: clapping
+			if DISCIPLINE_ANIM == "" and "clap" in lname:
+				DISCIPLINE_ANIM = name
+
 		# Fallback, falls die obige Suche nichts findet
 		if PICKUP_ANIM == "" and anim.has_animation("Female_SwordSlash"):
 			PICKUP_ANIM = "Female_SwordSlash"
@@ -48,6 +60,7 @@ func _ready() -> void:
 		print("RUN_ANIM =", RUN_ANIM)
 		print("IDLE_ANIM =", IDLE_ANIM)
 		print("PICKUP_ANIM =", PICKUP_ANIM)
+		print("DISCIPLINE_ANIM =", DISCIPLINE_ANIM)
 
 		if RUN_ANIM != "" and anim.has_animation(RUN_ANIM):
 			var a := anim.get_animation(RUN_ANIM)
@@ -102,8 +115,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# --- DISCIPLINE MECHANIC ---
+	# Update cooldown timer
+	if discipline_cooldown > 0:
+		discipline_cooldown -= delta
+
 	# --- ANIMATION ---
-	if anim and not _is_playing_pickup:
+	if anim and not _is_playing_pickup and not _is_playing_discipline:
 		if dir != Vector3.ZERO and RUN_ANIM != "" and anim.current_animation != RUN_ANIM:
 			anim.play(RUN_ANIM)
 		elif dir == Vector3.ZERO and IDLE_ANIM != "" and anim.current_animation != IDLE_ANIM:
@@ -123,10 +141,28 @@ func play_pickup_animation() -> void:
 	speed=0.0
 
 
+func play_discipline_animation() -> void:
+	if not anim:
+		return
+	if DISCIPLINE_ANIM == "":
+		print("play_discipline_animation: Keine Discipline-Animation gesetzt")
+		return
+
+	_is_playing_discipline = true
+	anim.play(DISCIPLINE_ANIM)
+	print("Spiele Discipline-Animation:", DISCIPLINE_ANIM)
+	speed = 0.0
+
+
 func _on_animation_finished(anim_name: StringName) -> void:
 	# Wenn die Pickup-Animation fertig ist, darf wieder Run/Idle laufen
 	if anim_name == PICKUP_ANIM:
 		_is_playing_pickup = false
+		speed=15.0
+
+	# Wenn die Discipline-Animation fertig ist, darf wieder Run/Idle laufen
+	if anim_name == DISCIPLINE_ANIM:
+		_is_playing_discipline = false
 		speed=15.0
 
 
@@ -136,6 +172,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	# Handle discipline input (E key)
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_E:
+			attempt_discipline()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	var is_camera_motion := (
@@ -143,3 +184,68 @@ func _unhandled_input(event: InputEvent) -> void:
 	)
 	if is_camera_motion:
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
+
+
+func attempt_discipline() -> void:
+	"""Attempt to discipline the dog if within range and not on cooldown"""
+	# Check cooldown
+	if discipline_cooldown > 0:
+		print("⏳ Discipline on cooldown: %.1f seconds remaining" % discipline_cooldown)
+		return
+
+	# Find the dog
+	var dogs = get_tree().get_nodes_in_group("dog")
+	if dogs.is_empty():
+		print("❌ No dog found in scene")
+		return
+
+	var dog = dogs[0]  # Get the first dog
+
+	# Check if dog is within discipline range
+	var distance = global_position.distance_to(dog.global_position)
+	if distance > discipline_range:
+		print("❌ Dog too far away: %.1f units (max: %.1f)" % [distance, discipline_range])
+		return
+
+	# Get the snack type the dog is targeting
+	var snack_type = get_dog_target_snack_type(dog)
+	if snack_type == -1:
+		print("❌ Dog is not targeting any snack")
+		return
+
+	# Discipline the dog
+	print("✅ Disciplining dog at distance: %.1f units" % distance)
+	dog.on_disciplined(snack_type)
+
+	# Set cooldown
+	discipline_cooldown = discipline_cooldown_duration
+
+	# Visual feedback - play clapping animation
+	play_discipline_animation()
+
+	# TODO: Add particle effect
+	# TODO: Add sound effect
+
+
+func get_dog_target_snack_type(dog) -> int:
+	"""Get the snack type the dog is currently targeting or eating
+	Returns -1 if dog has no target"""
+	if not dog.has_method("on_disciplined"):
+		return -1
+
+	# Check if dog is currently eating - if so, return the snack type being eaten
+	if "is_eating" in dog and dog.is_eating:
+		if "current_eating_snack_type" in dog:
+			return dog.current_eating_snack_type
+
+	# Check if dog has a target treat (moving toward it)
+	if "target_treat" in dog and dog.target_treat != null and is_instance_valid(dog.target_treat):
+		var treat = dog.target_treat
+		# Get the snack type from the treat's spawning_object script
+		if "snack_type" in treat:
+			return treat.snack_type
+		# Fallback: try to get from parent if it's a child node
+		if treat.get_parent() and "snack_type" in treat.get_parent():
+			return treat.get_parent().snack_type
+
+	return -1  # No valid target
