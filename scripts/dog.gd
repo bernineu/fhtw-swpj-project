@@ -381,9 +381,12 @@ func on_disciplined(snack_type) -> void:
 	if nav_agent:
 		nav_agent.set_target_position(global_position)
 
-	# Play idle animation
-	if anim_player and anim_player.has_animation("Idle"):
-		anim_player.play("Idle")
+	# Play submissive/disciplined animation (head low = ashamed)
+	if anim_player:
+		if anim_player.has_animation("Idle_2_HeadLow"):
+			anim_player.play("Idle_2_HeadLow")
+		elif anim_player.has_animation("Idle"):
+			anim_player.play("Idle")
 
 	print("   Dog paused for %.1f seconds" % DISCIPLINE_PAUSE_DURATION)
 
