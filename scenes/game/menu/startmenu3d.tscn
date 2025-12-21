@@ -172,7 +172,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_pcdci")
 
 [node name="Picture" type="MeshInstance3D" parent="furniture"]
-transform = Transform3D(-13, 0, 1.9629454e-06, 0, 13, 0, -1.9629454e-06, 0, -13, -8.738249, 7.731683, 0.5332277)
+transform = Transform3D(-17, 0, 2.5669287e-06, 0, 17, 0, -2.5669287e-06, 0, -17, -10, 6.5, 0.533)
 mesh = ExtResource("7_hksqg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="furniture/Picture"]
@@ -239,8 +239,10 @@ modulate = Color(0.9529412, 0.4627451, 0.44705883, 1)
 outline_modulate = Color(0.9529412, 0.4627451, 0.44705883, 1)
 text = "Controls
 movement:
-WASD 
+WASD
 Grab:
-G "
+G
+Discipline Dog:
+E "
 font_size = 150
 outline_size = 6
