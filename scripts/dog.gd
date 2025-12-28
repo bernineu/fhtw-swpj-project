@@ -516,12 +516,61 @@ func calculate_flee_utility() -> float:
 	return utility
 
 
+func calculate_idle_utility() -> float:
+	"""Calculate utility score for idling (doing nothing)
+
+	Formula (from Regelwerk 3.4):
+	Utility_IDLE = Base_Score + Orientierungs_Faktor + Disziplin_Faktor
+
+	Returns: Utility score clamped to [0.0, 1.0]
+	"""
+	var utility: float = 0.0
+
+	# 1. Base Score = 0.1 (low priority)
+	const BASE_SCORE = 0.1
+	utility += BASE_SCORE
+
+	# 2. Orientation Factor (Orientierungs-Faktor)
+	# If no clear action options, add bonus
+	var orientation_factor = 0.0
+	var treats = get_tree().get_nodes_in_group("treats")
+	var player = get_tree().get_first_node_in_group("player")
+
+	var has_treats = treats.size() > 0
+	var player_nearby = false
+	if player and is_instance_valid(player):
+		var player_distance = global_position.distance_to(player.global_position)
+		player_nearby = player_distance < 4.0
+
+	# No clear options: no treats and player not nearby
+	if not has_treats and not player_nearby:
+		orientation_factor = 0.2
+	utility += orientation_factor
+
+	# 3. Discipline Factor (Disziplin-Faktor)
+	# If recently disciplined (< 2 seconds), increase idle utility
+	var discipline_factor = 0.0
+	if is_being_disciplined:
+		discipline_factor = 0.3
+	utility += discipline_factor
+
+	# Clamp final result to [0.0, 1.0]
+	utility = clamp(utility, 0.0, 1.0)
+
+	# Debug output
+	if utility > 0.1:  # Only print if not baseline
+		print("  💤 IDLE utility: %.2f (base:%.2f orientation:%.2f discipline:%.2f)"
+			% [utility, BASE_SCORE, orientation_factor, discipline_factor])
+
+	return utility
+
+
 func evaluate_and_choose_action() -> void:
 	"""Evaluate all possible actions and choose the one with highest utility
 
 	Task 6: EAT_SNACK utility for all treats ✅
 	Task 7: FLEE_FROM_OWNER utility ✅
-	TODO Task 8: Compare utilities and choose best action
+	Task 8: Complete decision loop ✅
 	"""
 
 	print("🧠 Evaluating actions...")
@@ -543,8 +592,8 @@ func evaluate_and_choose_action() -> void:
 	# Calculate FLEE utility
 	var flee_utility = calculate_flee_utility()
 
-	# TODO Task 8: Calculate other action utilities (IDLE, POOP, etc.)
-	var idle_utility = 0.1  # Low baseline
+	# Calculate IDLE utility
+	var idle_utility = calculate_idle_utility()
 
 	# Special handling: If currently eating, decide whether to interrupt
 	if is_eating:
@@ -573,22 +622,47 @@ func evaluate_and_choose_action() -> void:
 		return
 
 	# Normal utility comparison when not eating
-	var max_utility = max(best_eat_utility, flee_utility, idle_utility)
+	# Build list of possible actions with their utilities
+	var actions = []
+	if best_treat != null:
+		actions.append({"name": "EAT_SNACK", "utility": best_eat_utility, "treat": best_treat})
+	actions.append({"name": "FLEE", "utility": flee_utility, "treat": null})
+	actions.append({"name": "IDLE", "utility": idle_utility, "treat": null})
 
-	if max_utility == best_eat_utility and best_treat != null:
-		current_action = "EAT_SNACK"
-		target_treat = best_treat
+	# Find maximum utility
+	var max_utility = 0.0
+	for action in actions:
+		if action.utility > max_utility:
+			max_utility = action.utility
+
+	# Find all actions with max utility (handle ties)
+	var best_actions = []
+	for action in actions:
+		if abs(action.utility - max_utility) < 0.001:  # Float comparison tolerance
+			best_actions.append(action)
+
+	# Choose action (random selection if tie)
+	var chosen_action = null
+	if best_actions.size() > 1:
+		# Tie! Choose randomly
+		var random_index = randi() % best_actions.size()
+		chosen_action = best_actions[random_index]
+		print("⚖️ Tie between %d actions - choosing randomly" % best_actions.size())
+	else:
+		chosen_action = best_actions[0]
+
+	# Execute chosen action
+	current_action = chosen_action.name
+	target_treat = chosen_action.treat
+
+	if current_action == "EAT_SNACK":
 		# Set navigation target
-		if nav_agent:
-			nav_agent.set_target_position(best_treat.global_position)
+		if nav_agent and target_treat:
+			nav_agent.set_target_position(target_treat.global_position)
 		print("✅ Action: EAT_SNACK (utility: %.2f)" % best_eat_utility)
-	elif max_utility == flee_utility:
-		current_action = "FLEE"
-		target_treat = null
+	elif current_action == "FLEE":
 		print("✅ Action: FLEE (utility: %.2f)" % flee_utility)
 	else:
-		current_action = "IDLE"
-		target_treat = null
 		print("✅ Action: IDLE (utility: %.2f)" % idle_utility)
 
 
