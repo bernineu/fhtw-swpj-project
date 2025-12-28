@@ -11,6 +11,12 @@ var eat_timer: float = 0.0
 var current_eating_snack_type: int = -1  # Track what snack is being eaten
 @export var eat_duration: float = 2.0
 
+# Carrying food state (when fleeing while eating)
+var carrying_food: bool = false
+var carried_snack_type: int = -1
+var carrying_food_timer: float = 0.0
+const FINISH_CARRIED_FOOD_DELAY: float = 3.0  # Seconds before finishing carried food
+
 # Lives and Hunger System
 var lives: int = 3
 const MAX_LIVES: int = 3
@@ -116,30 +122,23 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# --- NEU: Wenn der Hund frisst, nur Animation laufen lassen ---
+	# Update eating timer (but allow utility AI to interrupt)
 	if is_eating:
 		eat_timer -= delta
 		if eat_timer <= 0.0:
 			is_eating = false
 			current_eating_snack_type = -1  # Clear eating snack type
-			# Nach dem Fressen wieder Gallop + neues Ziel suchen
+			# Nach dem Fressen wieder Gallop
 			if anim_player and anim_player.has_animation("Gallop"):
 				anim_player.play("Gallop")
-			find_nearest_treat()
+		# Note: No early return - let utility AI decide whether to continue eating or flee
 
-		# Während des Fressens nicht horizontal bewegen
-		velocity.x = 0
-		velocity.z = 0
-
-		# Gravity trotzdem normal
-		if not is_on_floor():
-			velocity.y -= gravity * delta
-		else:
-			velocity.y = 0.0
-
-		move_and_slide()
-		return
-	# --- ENDE NEU ---
+	# Update carrying food timer
+	if carrying_food:
+		carrying_food_timer += delta
+		if carrying_food_timer >= FINISH_CARRIED_FOOD_DELAY:
+			finish_carried_food()
+			carrying_food_timer = 0.0
 
 	# =========================================================================
 	# PHASE 2: UTILITY AI DECISION LOOP
@@ -459,11 +458,69 @@ func calculate_eat_utility(treat: Node3D) -> float:
 	return utility
 
 
+func calculate_flee_utility() -> float:
+	"""Calculate utility score for fleeing from the player
+
+	Formula (from Regelwerk 3.2):
+	Utility_FLEE = Base_Score + Bedrohungs_Faktor + Fress_Schutz_Faktor
+	               - Snack_Opportunitäts_Faktor
+
+	Returns: Utility score clamped to [0.0, 1.0]
+	"""
+	var utility: float = 0.0
+
+	# 1. Base Score = 0.3
+	const BASE_SCORE = 0.3
+	utility += BASE_SCORE
+
+	# 2. Threat Factor (Bedrohungs-Faktor) based on player distance
+	var threat_factor = 0.0
+	var player = get_tree().get_first_node_in_group("player")
+	if player and is_instance_valid(player):
+		var player_distance = global_position.distance_to(player.global_position)
+		if player_distance < 2.0:
+			threat_factor = 0.5  # Very close - high threat
+		elif player_distance < 4.0:
+			threat_factor = 0.2  # Medium distance - moderate threat
+		# > 4 units: 0.0 (no threat)
+	utility += threat_factor
+
+	# 3. Eating Protection Factor (Fress-Schutz-Faktor)
+	var eating_protection_factor = 0.0
+	if is_eating:
+		eating_protection_factor = 0.4  # Want to flee while eating to protect food
+	utility += eating_protection_factor
+
+	# 4. Snack Opportunity Factor (Snack-Opportunitäts-Faktor)
+	# If there's a safe snack nearby, reduce flee utility (prefer eating)
+	var snack_opportunity_factor = 0.0
+	if player and is_instance_valid(player):
+		var treats = get_tree().get_nodes_in_group("treats")
+		for treat in treats:
+			if treat and is_instance_valid(treat):
+				var player_to_treat = player.global_position.distance_to(treat.global_position)
+				if player_to_treat > 5.0:
+					# Safe snack found (far from player)
+					snack_opportunity_factor = 0.2
+					break
+	utility -= snack_opportunity_factor
+
+	# Clamp final result to [0.0, 1.0]
+	utility = clamp(utility, 0.0, 1.0)
+
+	# Debug output
+	if utility > 0.0:
+		print("  🏃 FLEE utility: %.2f (base:%.2f threat:%.2f eating:%.2f -opportunity:%.2f)"
+			% [utility, BASE_SCORE, threat_factor, eating_protection_factor, snack_opportunity_factor])
+
+	return utility
+
+
 func evaluate_and_choose_action() -> void:
 	"""Evaluate all possible actions and choose the one with highest utility
 
 	Task 6: EAT_SNACK utility for all treats ✅
-	TODO Task 7: Calculate FLEE_FROM_OWNER utility
+	Task 7: FLEE_FROM_OWNER utility ✅
 	TODO Task 8: Compare utilities and choose best action
 	"""
 
@@ -483,13 +540,39 @@ func evaluate_and_choose_action() -> void:
 				best_eat_utility = utility
 				best_treat = treat
 
-	# TODO Task 7: Calculate FLEE utility
-	var flee_utility = 0.0  # Placeholder
+	# Calculate FLEE utility
+	var flee_utility = calculate_flee_utility()
 
 	# TODO Task 8: Calculate other action utilities (IDLE, POOP, etc.)
 	var idle_utility = 0.1  # Low baseline
 
-	# Compare all utilities and choose the best action
+	# Special handling: If currently eating, decide whether to interrupt
+	if is_eating:
+		# While eating, only flee if flee utility is significantly high
+		if flee_utility > 0.6:  # High threshold to interrupt eating
+			# Interrupt eating to flee WITH the food!
+			carrying_food = true
+			carried_snack_type = current_eating_snack_type
+			carrying_food_timer = 0.0  # Reset timer
+			is_eating = false
+			current_eating_snack_type = -1
+
+			if anim_player and anim_player.has_animation("Gallop"):
+				anim_player.play("Gallop")
+
+			current_action = "FLEE"
+			target_treat = null
+			print("⚠️ Interrupting eating to FLEE WITH FOOD! (utility: %.2f)" % flee_utility)
+
+			# TODO: Visualize carrying food (assign to team member)
+			update_carrying_food_visual()
+		else:
+			# Continue eating (stay idle)
+			current_action = "IDLE"
+			print("✅ Action: Continue eating (flee utility too low: %.2f)" % flee_utility)
+		return
+
+	# Normal utility comparison when not eating
 	var max_utility = max(best_eat_utility, flee_utility, idle_utility)
 
 	if max_utility == best_eat_utility and best_treat != null:
@@ -543,17 +626,87 @@ func execute_eat_snack(delta: float) -> void:
 
 
 func execute_flee(delta: float) -> void:
-	"""Flee away from the player (placeholder for Task 7)"""
-	# TODO Task 7: Implement flee behavior
-	# For now, just stop
-	velocity.x = 0
-	velocity.z = 0
+	"""Flee away from the player"""
+	var player = get_tree().get_first_node_in_group("player")
+	if player and is_instance_valid(player):
+		# Calculate direction away from player
+		var to_player = player.global_position - global_position
+		to_player.y = 0  # Keep on horizontal plane
+		var flee_direction = -to_player.normalized()  # Opposite of player direction
+
+		# Move directly away (simple flee - no pathfinding)
+		velocity.x = flee_direction.x * speed
+		velocity.z = flee_direction.z * speed
+
+		# Rotate to face flee direction
+		if flee_direction.length() > 0.01:
+			var target_rotation = atan2(flee_direction.x, flee_direction.z)
+			rotation.y = target_rotation
+	else:
+		# No player found - stop
+		velocity.x = 0
+		velocity.z = 0
 
 
 func execute_idle(delta: float) -> void:
 	"""Do nothing - stand still"""
 	velocity.x = 0
 	velocity.z = 0
+
+
+func finish_carried_food() -> void:
+	"""Finish eating the food the dog is carrying
+	Called after fleeing to safety or after enough time has passed"""
+	if not carrying_food:
+		return
+
+	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var snack_name = snack_names[carried_snack_type] if carried_snack_type < snack_names.size() else "UNKNOWN"
+
+	print("🐕 Dog finished eating carried food: ", snack_name)
+
+	# Apply the food effects (hunger reduction, chocolate counter, etc.)
+	# Reduce hunger
+	hunger -= HUNGER_REDUCTION_PER_SNACK
+	hunger = clamp(hunger, 0.0, 1.0)
+	hunger_changed.emit(hunger)
+
+	# Track chocolate consumption
+	if carried_snack_type == 2:  # CHOCOLATE
+		chocolate_eaten += 1
+		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
+		if chocolate_eaten >= 3:
+			die()
+
+	# Check for POISON
+	if carried_snack_type == 3:  # POISON
+		die()
+
+	# Clear carrying state
+	carrying_food = false
+	carried_snack_type = -1
+
+	# TODO: Remove visual indicator (assign to team member)
+	update_carrying_food_visual()
+
+
+func update_carrying_food_visual() -> void:
+	"""Update visual representation of dog carrying food
+
+	TODO: Implement visual feedback (assign to team member)
+	Options:
+	- Attach treat model to dog's mouth/head
+	- Show particle effects (food crumbs)
+	- Display icon above dog
+	- Play special animation if available
+	- Change dog's appearance/color tint
+
+	Current state can be checked with:
+	- carrying_food (bool): Is the dog carrying food?
+	- carried_snack_type (int): What type of snack? (0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON)
+	"""
+	# Placeholder - no visual changes yet
+	pass
 
 
 ## ============================================================================
