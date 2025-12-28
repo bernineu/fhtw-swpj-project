@@ -29,6 +29,11 @@ var is_being_disciplined: bool = false
 var discipline_pause_timer: float = 0.0
 const DISCIPLINE_PAUSE_DURATION: float = 2.0  # Dog pauses for 2 seconds when disciplined
 
+# Utility AI state tracking (Phase 2)
+var current_action: String = "IDLE"
+var utility_update_timer: float = 0.0
+const UTILITY_UPDATE_INTERVAL: float = 0.3  # Evaluate utility every 0.3 seconds
+
 # Signals for UI updates
 signal lives_changed(new_lives: int)
 signal hunger_changed(new_hunger: float)
@@ -37,8 +42,6 @@ signal dog_died
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
-var target_update_timer: float = 0.0
-const TARGET_UPDATE_INTERVAL: float = 0.5  # Update target every 0.5 seconds
 
 func _ready():
 	add_to_group("dog")
@@ -138,11 +141,15 @@ func _physics_process(delta):
 		return
 	# --- ENDE NEU ---
 
-	# Update target treat periodically
-	target_update_timer += delta
-	if target_update_timer >= TARGET_UPDATE_INTERVAL:
-		target_update_timer = 0.0
-		find_nearest_treat()
+	# =========================================================================
+	# PHASE 2: UTILITY AI DECISION LOOP
+	# =========================================================================
+
+	# Utility evaluation (every 0.3 seconds)
+	utility_update_timer += delta
+	if utility_update_timer >= UTILITY_UPDATE_INTERVAL:
+		utility_update_timer = 0.0
+		evaluate_and_choose_action()
 
 	# Check if we need to navigate vertically (to disable gravity)
 	var navigating_vertically = false
@@ -157,19 +164,8 @@ func _physics_process(delta):
 		else:
 			velocity.y = 0.0
 
-	# Move toward navigation target using NavigationAgent3D
-	if target_treat == null or !is_instance_valid(target_treat):
-		velocity.x = 0
-		velocity.z = 0
-	elif nav_agent.is_navigation_finished():
-		velocity.x = 0
-		velocity.z = 0
-	elif !nav_agent.is_target_reachable():
-		velocity.x = 0
-		velocity.z = 0
-		print("⚠️ Target not reachable!")
-	else:
-		move_along_navigation_path(delta)
+	# Execute current action (replaces old movement logic)
+	execute_current_action(delta)
 
 	move_and_slide()
 
@@ -355,6 +351,80 @@ func die() -> void:
 	if GameState.has_method("trigger_dog_death_game_over"):
 		GameState.trigger_dog_death_game_over()
 
+
+## ============================================================================
+## PHASE 2: UTILITY AI FRAMEWORK
+## ============================================================================
+
+func evaluate_and_choose_action() -> void:
+	"""Evaluate all possible actions and choose the one with highest utility
+	This will be expanded in Tasks 6-8 with actual utility calculations"""
+
+	# TODO Task 6: Calculate EAT_SNACK utility for all treats
+	# TODO Task 7: Calculate FLEE_FROM_OWNER utility
+	# TODO Task 8: Compare utilities and choose best action
+
+	# Placeholder: For now, keep the old behavior (seek nearest treat)
+	find_nearest_treat()
+
+	if target_treat != null and is_instance_valid(target_treat):
+		current_action = "EAT_SNACK"
+	else:
+		current_action = "IDLE"
+
+	print("🧠 Action chosen: ", current_action)
+
+
+func execute_current_action(delta: float) -> void:
+	"""Execute the currently selected action
+	This will be expanded in Task 8 with FLEE and other actions"""
+
+	match current_action:
+		"EAT_SNACK":
+			execute_eat_snack(delta)
+		"FLEE":
+			execute_flee(delta)
+		"IDLE":
+			execute_idle(delta)
+		_:
+			# Default to idle if unknown action
+			execute_idle(delta)
+
+
+func execute_eat_snack(delta: float) -> void:
+	"""Navigate to and eat the target treat"""
+	# Move toward navigation target using NavigationAgent3D
+	if target_treat == null or !is_instance_valid(target_treat):
+		velocity.x = 0
+		velocity.z = 0
+	elif nav_agent.is_navigation_finished():
+		velocity.x = 0
+		velocity.z = 0
+	elif !nav_agent.is_target_reachable():
+		velocity.x = 0
+		velocity.z = 0
+		print("⚠️ Target not reachable!")
+	else:
+		move_along_navigation_path(delta)
+
+
+func execute_flee(delta: float) -> void:
+	"""Flee away from the player (placeholder for Task 7)"""
+	# TODO Task 7: Implement flee behavior
+	# For now, just stop
+	velocity.x = 0
+	velocity.z = 0
+
+
+func execute_idle(delta: float) -> void:
+	"""Do nothing - stand still"""
+	velocity.x = 0
+	velocity.z = 0
+
+
+## ============================================================================
+## END PHASE 2 FRAMEWORK
+## ============================================================================
 
 func on_disciplined(snack_type) -> void:
 	"""Called when player disciplines the dog
