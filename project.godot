@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameState="*res://autoload/GameState.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false
