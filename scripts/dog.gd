@@ -11,6 +11,12 @@ var eat_timer: float = 0.0
 var current_eating_snack_type: int = -1  # Track what snack is being eaten
 @export var eat_duration: float = 2.0
 
+# Carrying food state (when fleeing while eating)
+var carrying_food: bool = false
+var carried_snack_type: int = -1
+var carrying_food_timer: float = 0.0
+const FINISH_CARRIED_FOOD_DELAY: float = 3.0  # Seconds before finishing carried food
+
 # Lives and Hunger System
 var lives: int = 3
 const MAX_LIVES: int = 3
@@ -29,6 +35,11 @@ var is_being_disciplined: bool = false
 var discipline_pause_timer: float = 0.0
 const DISCIPLINE_PAUSE_DURATION: float = 2.0  # Dog pauses for 2 seconds when disciplined
 
+# Utility AI state tracking (Phase 2)
+var current_action: String = "IDLE"
+var utility_update_timer: float = 0.0
+const UTILITY_UPDATE_INTERVAL: float = 0.3  # Evaluate utility every 0.3 seconds
+
 # Signals for UI updates
 signal lives_changed(new_lives: int)
 signal hunger_changed(new_hunger: float)
@@ -37,8 +48,6 @@ signal dog_died
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
-var target_update_timer: float = 0.0
-const TARGET_UPDATE_INTERVAL: float = 0.5  # Update target every 0.5 seconds
 
 func _ready():
 	add_to_group("dog")
@@ -113,36 +122,33 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# --- NEU: Wenn der Hund frisst, nur Animation laufen lassen ---
+	# Update eating timer (but allow utility AI to interrupt)
 	if is_eating:
 		eat_timer -= delta
 		if eat_timer <= 0.0:
 			is_eating = false
 			current_eating_snack_type = -1  # Clear eating snack type
-			# Nach dem Fressen wieder Gallop + neues Ziel suchen
+			# Nach dem Fressen wieder Gallop
 			if anim_player and anim_player.has_animation("Gallop"):
 				anim_player.play("Gallop")
-			find_nearest_treat()
+		# Note: No early return - let utility AI decide whether to continue eating or flee
 
-		# Während des Fressens nicht horizontal bewegen
-		velocity.x = 0
-		velocity.z = 0
+	# Update carrying food timer
+	if carrying_food:
+		carrying_food_timer += delta
+		if carrying_food_timer >= FINISH_CARRIED_FOOD_DELAY:
+			finish_carried_food()
+			carrying_food_timer = 0.0
 
-		# Gravity trotzdem normal
-		if not is_on_floor():
-			velocity.y -= gravity * delta
-		else:
-			velocity.y = 0.0
+	# =========================================================================
+	# PHASE 2: UTILITY AI DECISION LOOP
+	# =========================================================================
 
-		move_and_slide()
-		return
-	# --- ENDE NEU ---
-
-	# Update target treat periodically
-	target_update_timer += delta
-	if target_update_timer >= TARGET_UPDATE_INTERVAL:
-		target_update_timer = 0.0
-		find_nearest_treat()
+	# Utility evaluation (every 0.3 seconds)
+	utility_update_timer += delta
+	if utility_update_timer >= UTILITY_UPDATE_INTERVAL:
+		utility_update_timer = 0.0
+		evaluate_and_choose_action()
 
 	# Check if we need to navigate vertically (to disable gravity)
 	var navigating_vertically = false
@@ -157,19 +163,8 @@ func _physics_process(delta):
 		else:
 			velocity.y = 0.0
 
-	# Move toward navigation target using NavigationAgent3D
-	if target_treat == null or !is_instance_valid(target_treat):
-		velocity.x = 0
-		velocity.z = 0
-	elif nav_agent.is_navigation_finished():
-		velocity.x = 0
-		velocity.z = 0
-	elif !nav_agent.is_target_reachable():
-		velocity.x = 0
-		velocity.z = 0
-		print("⚠️ Target not reachable!")
-	else:
-		move_along_navigation_path(delta)
+	# Execute current action (replaces old movement logic)
+	execute_current_action(delta)
 
 	move_and_slide()
 
@@ -218,8 +213,9 @@ func move_along_navigation_path(delta: float):
 	# Get the next position in the path
 	var next_path_position = nav_agent.get_next_path_position()
 
-	print("📍 Dog at: ", global_position, " | Next waypoint: ", next_path_position)
-	print("🗺️ Path length: ", nav_agent.get_current_navigation_path().size())
+	# Debug: Uncomment for detailed navigation debugging
+	# print("📍 Dog at: ", global_position, " | Next waypoint: ", next_path_position)
+	# print("🗺️ Path length: ", nav_agent.get_current_navigation_path().size())
 
 	# Calculate direction to next waypoint
 	var direction = (next_path_position - global_position).normalized()
@@ -229,7 +225,8 @@ func move_along_navigation_path(delta: float):
 	if y_distance < 0.5:
 		direction.y = 0  # Keep movement horizontal when close to target height
 
-	print("➡️ Direction: ", direction, " | Length: ", direction.length())
+	# Debug: Uncomment for direction debugging
+	# print("➡️ Direction: ", direction, " | Length: ", direction.length())
 
 	if direction.length() > 0.01:
 		# Calculate target rotation to face the next waypoint (for visual orientation)
@@ -257,11 +254,13 @@ func move_along_navigation_path(delta: float):
 			# Move horizontally toward waypoint
 			velocity.x = horizontal_dir.x * speed
 			velocity.z = horizontal_dir.z * speed
-		print("🏃 Moving! Velocity: ", velocity)
+		# Debug: Uncomment for velocity debugging
+		# print("🏃 Moving! Velocity: ", velocity)
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		print("⏸️ Not moving - direction too small")
+		# Debug: Uncomment for movement debugging
+		# print("⏸️ Not moving - direction too small")
 
 
 func update_hunger(delta: float) -> void:
@@ -285,32 +284,33 @@ func on_snack_eaten(snack_type) -> void:
 	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
 	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
 
-	var old_hunger = hunger
-	print("🐕 Dog ate: ", snack_name, " (type: ", snack_type, ")")
-	print("   Hunger before: %.2f" % old_hunger)
+	print("🐕 Dog ate: ", snack_name)
+
+	# Debug: Uncomment for detailed hunger tracking
+	# var old_hunger = hunger
+	# print("   Hunger before: %.2f" % old_hunger)
 
 	# Check for POISON (instant death)
 	# 0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON
 	if snack_type == 3:  # POISON
-		print("☠️ Dog ate POISON - instant death!")
-		die()
+		die()  # die() will print the death message
 		return
 
 	# Reduce hunger
 	hunger -= HUNGER_REDUCTION_PER_SNACK
 	hunger = clamp(hunger, 0.0, 1.0)
-	print("   Hunger after: %.2f" % hunger)
+	# Debug: Uncomment for detailed hunger tracking
+	# print("   Hunger after: %.2f" % hunger)
 	hunger_changed.emit(hunger)
 
 	# Track chocolate consumption for death mechanic
 	if snack_type == 2:  # CHOCOLATE
 		chocolate_eaten += 1
-		print("🍫 Chocolate eaten: ", chocolate_eaten, "/3")
+		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
 
 		# Check if dog ate 3 chocolates (death condition)
 		if chocolate_eaten >= 3:
-			print("☠️ Dog ate 3 chocolates - death!")
-			die()
+			die()  # die() will print the death message
 
 
 func lose_life() -> void:
@@ -355,6 +355,437 @@ func die() -> void:
 	if GameState.has_method("trigger_dog_death_game_over"):
 		GameState.trigger_dog_death_game_over()
 
+
+## ============================================================================
+## PHASE 2: UTILITY AI FRAMEWORK
+## ============================================================================
+
+func calculate_eat_utility(treat: Node3D) -> float:
+	"""Calculate utility score for eating a specific treat
+
+	Formula (from Regelwerk 3.1):
+	Utility_EAT = Base_Score + Hunger_Faktor + Snack_Wert_Faktor
+	              - Distanz_Faktor - Besitzer_Gefahr_Faktor
+	              - Leben_Risiko_Faktor + Disziplin_Modifier
+
+	Returns: Utility score clamped to [0.0, 1.0]
+	"""
+	if treat == null or !is_instance_valid(treat):
+		return 0.0
+
+	var utility: float = 0.0
+
+	# 1. Base Score = 0.7
+	const BASE_SCORE = 0.7
+	utility += BASE_SCORE
+
+	# 2. Hunger Factor: hunger * 0.3 (linear scaling, max 0.3)
+	var hunger_factor = hunger * 0.3
+	utility += hunger_factor
+
+	# 3. Snack Value Factor (from Regelwerk Section 3.1, lines 66-70)
+	var snack_value_factor = 0.0
+	var snack_type = -1
+	if "snack_type" in treat:
+		snack_type = treat.snack_type
+		# Enum: DOG_FOOD=0, CHEESE=1, CHOCOLATE=2, POISON=3
+		match snack_type:
+			0:  # Hundefutter (DOG_FOOD)
+				snack_value_factor = 0.2
+			1:  # Käse (CHEESE)
+				snack_value_factor = 0.15
+			2:  # Schokolade (CHOCOLATE)
+				snack_value_factor = 0.1
+			3:  # Gift (POISON)
+				snack_value_factor = 0.05
+	utility += snack_value_factor
+
+	# 4. Distance Factor: (distance / max_sight_range) * 0.2
+	const MAX_SIGHT_RANGE = 20.0
+	var distance = global_position.distance_to(treat.global_position)
+	var distance_factor = (distance / MAX_SIGHT_RANGE) * 0.2
+	utility -= distance_factor
+
+	# 5. Player Danger Factor (Besitzer-Gefahr-Faktor)
+	var player_danger_factor = 0.0
+	var player = get_tree().get_first_node_in_group("player")
+	if player and is_instance_valid(player):
+		var player_distance = global_position.distance_to(player.global_position)
+		if player_distance < 3.0:
+			player_danger_factor = 0.3  # High danger
+		# 3-5 units and >5 units: 0.0 (no penalty)
+	utility -= player_danger_factor
+
+	# 6. Life Risk Factor (Leben-Risiko-Faktor) - from Regelwerk lines 82-90
+	var life_risk_factor = 0.0
+	if snack_type == 2:  # CHOCOLATE
+		match lives:
+			3:
+				life_risk_factor = 0.0
+			2:
+				life_risk_factor = 0.1  # Increased caution
+			1:
+				life_risk_factor = 0.3  # Strong caution
+			_:
+				life_risk_factor = 0.5  # 0 lives - maximum caution
+	elif snack_type == 3:  # POISON
+		match lives:
+			3:
+				life_risk_factor = 0.0
+			2:
+				life_risk_factor = 0.0  # No extra caution yet
+			1:
+				life_risk_factor = 0.2  # Light caution
+			_:
+				life_risk_factor = 0.5  # Maximum caution
+	utility -= life_risk_factor
+
+	# 7. Discipline Modifier (placeholder for Phase 4, Tasks 9-11)
+	# TODO Phase 4: Implement discipline learning system
+	var discipline_modifier = 0.0
+	utility += discipline_modifier
+
+	# Clamp final result to [0.0, 1.0]
+	utility = clamp(utility, 0.0, 1.0)
+
+	# Debug output (can be removed later)
+	if utility > 0.0:
+		var snack_name = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"][snack_type] if snack_type >= 0 else "UNKNOWN"
+		print("  🍖 %s utility: %.2f (base:%.2f hunger:%.2f snack:%.2f -dist:%.2f -danger:%.2f -risk:%.2f)"
+			% [snack_name, utility, BASE_SCORE, hunger_factor, snack_value_factor,
+			   distance_factor, player_danger_factor, life_risk_factor])
+
+	return utility
+
+
+func calculate_flee_utility() -> float:
+	"""Calculate utility score for fleeing from the player
+
+	Formula (from Regelwerk 3.2):
+	Utility_FLEE = Base_Score + Bedrohungs_Faktor + Fress_Schutz_Faktor
+	               - Snack_Opportunitäts_Faktor
+
+	Returns: Utility score clamped to [0.0, 1.0]
+	"""
+	var utility: float = 0.0
+
+	# 1. Base Score = 0.3
+	const BASE_SCORE = 0.3
+	utility += BASE_SCORE
+
+	# 2. Threat Factor (Bedrohungs-Faktor) based on player distance
+	var threat_factor = 0.0
+	var player = get_tree().get_first_node_in_group("player")
+	if player and is_instance_valid(player):
+		var player_distance = global_position.distance_to(player.global_position)
+		if player_distance < 2.0:
+			threat_factor = 0.5  # Very close - high threat
+		elif player_distance < 4.0:
+			threat_factor = 0.2  # Medium distance - moderate threat
+		# > 4 units: 0.0 (no threat)
+	utility += threat_factor
+
+	# 3. Eating Protection Factor (Fress-Schutz-Faktor)
+	var eating_protection_factor = 0.0
+	if is_eating:
+		eating_protection_factor = 0.4  # Want to flee while eating to protect food
+	utility += eating_protection_factor
+
+	# 4. Snack Opportunity Factor (Snack-Opportunitäts-Faktor)
+	# If there's a safe snack nearby, reduce flee utility (prefer eating)
+	var snack_opportunity_factor = 0.0
+	if player and is_instance_valid(player):
+		var treats = get_tree().get_nodes_in_group("treats")
+		for treat in treats:
+			if treat and is_instance_valid(treat):
+				var player_to_treat = player.global_position.distance_to(treat.global_position)
+				if player_to_treat > 5.0:
+					# Safe snack found (far from player)
+					snack_opportunity_factor = 0.2
+					break
+	utility -= snack_opportunity_factor
+
+	# Clamp final result to [0.0, 1.0]
+	utility = clamp(utility, 0.0, 1.0)
+
+	# Debug output
+	if utility > 0.0:
+		print("  🏃 FLEE utility: %.2f (base:%.2f threat:%.2f eating:%.2f -opportunity:%.2f)"
+			% [utility, BASE_SCORE, threat_factor, eating_protection_factor, snack_opportunity_factor])
+
+	return utility
+
+
+func calculate_idle_utility() -> float:
+	"""Calculate utility score for idling (doing nothing)
+
+	Formula (from Regelwerk 3.4):
+	Utility_IDLE = Base_Score + Orientierungs_Faktor + Disziplin_Faktor
+
+	Returns: Utility score clamped to [0.0, 1.0]
+	"""
+	var utility: float = 0.0
+
+	# 1. Base Score = 0.1 (low priority)
+	const BASE_SCORE = 0.1
+	utility += BASE_SCORE
+
+	# 2. Orientation Factor (Orientierungs-Faktor)
+	# If no clear action options, add bonus
+	var orientation_factor = 0.0
+	var treats = get_tree().get_nodes_in_group("treats")
+	var player = get_tree().get_first_node_in_group("player")
+
+	var has_treats = treats.size() > 0
+	var player_nearby = false
+	if player and is_instance_valid(player):
+		var player_distance = global_position.distance_to(player.global_position)
+		player_nearby = player_distance < 4.0
+
+	# No clear options: no treats and player not nearby
+	if not has_treats and not player_nearby:
+		orientation_factor = 0.2
+	utility += orientation_factor
+
+	# 3. Discipline Factor (Disziplin-Faktor)
+	# If recently disciplined (< 2 seconds), increase idle utility
+	var discipline_factor = 0.0
+	if is_being_disciplined:
+		discipline_factor = 0.3
+	utility += discipline_factor
+
+	# Clamp final result to [0.0, 1.0]
+	utility = clamp(utility, 0.0, 1.0)
+
+	# Debug output
+	if utility > 0.1:  # Only print if not baseline
+		print("  💤 IDLE utility: %.2f (base:%.2f orientation:%.2f discipline:%.2f)"
+			% [utility, BASE_SCORE, orientation_factor, discipline_factor])
+
+	return utility
+
+
+func evaluate_and_choose_action() -> void:
+	"""Evaluate all possible actions and choose the one with highest utility
+
+	Task 6: EAT_SNACK utility for all treats ✅
+	Task 7: FLEE_FROM_OWNER utility ✅
+	Task 8: Complete decision loop ✅
+	"""
+
+	print("🧠 Evaluating actions...")
+
+	# Get all available treats
+	var treats = get_tree().get_nodes_in_group("treats")
+
+	# Calculate EAT_SNACK utility for each treat
+	var best_eat_utility = 0.0
+	var best_treat: Node3D = null
+
+	for treat in treats:
+		if treat and is_instance_valid(treat):
+			var utility = calculate_eat_utility(treat)
+			if utility > best_eat_utility:
+				best_eat_utility = utility
+				best_treat = treat
+
+	# Calculate FLEE utility
+	var flee_utility = calculate_flee_utility()
+
+	# Calculate IDLE utility
+	var idle_utility = calculate_idle_utility()
+
+	# Special handling: If currently eating, decide whether to interrupt
+	if is_eating:
+		# While eating, only flee if flee utility is significantly high
+		if flee_utility > 0.6:  # High threshold to interrupt eating
+			# Interrupt eating to flee WITH the food!
+			carrying_food = true
+			carried_snack_type = current_eating_snack_type
+			carrying_food_timer = 0.0  # Reset timer
+			is_eating = false
+			current_eating_snack_type = -1
+
+			if anim_player and anim_player.has_animation("Gallop"):
+				anim_player.play("Gallop")
+
+			current_action = "FLEE"
+			target_treat = null
+			print("⚠️ Interrupting eating to FLEE WITH FOOD! (utility: %.2f)" % flee_utility)
+
+			# TODO: Visualize carrying food (assign to team member)
+			update_carrying_food_visual()
+		else:
+			# Continue eating (stay idle)
+			current_action = "IDLE"
+			print("✅ Action: Continue eating (flee utility too low: %.2f)" % flee_utility)
+		return
+
+	# Normal utility comparison when not eating
+	# Build list of possible actions with their utilities
+	var actions = []
+	if best_treat != null:
+		actions.append({"name": "EAT_SNACK", "utility": best_eat_utility, "treat": best_treat})
+	actions.append({"name": "FLEE", "utility": flee_utility, "treat": null})
+	actions.append({"name": "IDLE", "utility": idle_utility, "treat": null})
+
+	# Find maximum utility
+	var max_utility = 0.0
+	for action in actions:
+		if action.utility > max_utility:
+			max_utility = action.utility
+
+	# Find all actions with max utility (handle ties)
+	var best_actions = []
+	for action in actions:
+		if abs(action.utility - max_utility) < 0.001:  # Float comparison tolerance
+			best_actions.append(action)
+
+	# Choose action (random selection if tie)
+	var chosen_action = null
+	if best_actions.size() > 1:
+		# Tie! Choose randomly
+		var random_index = randi() % best_actions.size()
+		chosen_action = best_actions[random_index]
+		print("⚖️ Tie between %d actions - choosing randomly" % best_actions.size())
+	else:
+		chosen_action = best_actions[0]
+
+	# Execute chosen action
+	current_action = chosen_action.name
+	target_treat = chosen_action.treat
+
+	if current_action == "EAT_SNACK":
+		# Set navigation target
+		if nav_agent and target_treat:
+			nav_agent.set_target_position(target_treat.global_position)
+		print("✅ Action: EAT_SNACK (utility: %.2f)" % best_eat_utility)
+	elif current_action == "FLEE":
+		print("✅ Action: FLEE (utility: %.2f)" % flee_utility)
+	else:
+		print("✅ Action: IDLE (utility: %.2f)" % idle_utility)
+
+
+func execute_current_action(delta: float) -> void:
+	"""Execute the currently selected action
+	This will be expanded in Task 8 with FLEE and other actions"""
+
+	match current_action:
+		"EAT_SNACK":
+			execute_eat_snack(delta)
+		"FLEE":
+			execute_flee(delta)
+		"IDLE":
+			execute_idle(delta)
+		_:
+			# Default to idle if unknown action
+			execute_idle(delta)
+
+
+func execute_eat_snack(delta: float) -> void:
+	"""Navigate to and eat the target treat"""
+	# Move toward navigation target using NavigationAgent3D
+	if target_treat == null or !is_instance_valid(target_treat):
+		velocity.x = 0
+		velocity.z = 0
+	elif nav_agent.is_navigation_finished():
+		velocity.x = 0
+		velocity.z = 0
+	elif !nav_agent.is_target_reachable():
+		velocity.x = 0
+		velocity.z = 0
+		print("⚠️ Target not reachable!")
+	else:
+		move_along_navigation_path(delta)
+
+
+func execute_flee(delta: float) -> void:
+	"""Flee away from the player"""
+	var player = get_tree().get_first_node_in_group("player")
+	if player and is_instance_valid(player):
+		# Calculate direction away from player
+		var to_player = player.global_position - global_position
+		to_player.y = 0  # Keep on horizontal plane
+		var flee_direction = -to_player.normalized()  # Opposite of player direction
+
+		# Move directly away (simple flee - no pathfinding)
+		velocity.x = flee_direction.x * speed
+		velocity.z = flee_direction.z * speed
+
+		# Rotate to face flee direction
+		if flee_direction.length() > 0.01:
+			var target_rotation = atan2(flee_direction.x, flee_direction.z)
+			rotation.y = target_rotation
+	else:
+		# No player found - stop
+		velocity.x = 0
+		velocity.z = 0
+
+
+func execute_idle(delta: float) -> void:
+	"""Do nothing - stand still"""
+	velocity.x = 0
+	velocity.z = 0
+
+
+func finish_carried_food() -> void:
+	"""Finish eating the food the dog is carrying
+	Called after fleeing to safety or after enough time has passed"""
+	if not carrying_food:
+		return
+
+	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var snack_name = snack_names[carried_snack_type] if carried_snack_type < snack_names.size() else "UNKNOWN"
+
+	print("🐕 Dog finished eating carried food: ", snack_name)
+
+	# Apply the food effects (hunger reduction, chocolate counter, etc.)
+	# Reduce hunger
+	hunger -= HUNGER_REDUCTION_PER_SNACK
+	hunger = clamp(hunger, 0.0, 1.0)
+	hunger_changed.emit(hunger)
+
+	# Track chocolate consumption
+	if carried_snack_type == 2:  # CHOCOLATE
+		chocolate_eaten += 1
+		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
+		if chocolate_eaten >= 3:
+			die()
+
+	# Check for POISON
+	if carried_snack_type == 3:  # POISON
+		die()
+
+	# Clear carrying state
+	carrying_food = false
+	carried_snack_type = -1
+
+	# TODO: Remove visual indicator (assign to team member)
+	update_carrying_food_visual()
+
+
+func update_carrying_food_visual() -> void:
+	"""Update visual representation of dog carrying food
+
+	TODO: Implement visual feedback (assign to team member)
+	Options:
+	- Attach treat model to dog's mouth/head
+	- Show particle effects (food crumbs)
+	- Display icon above dog
+	- Play special animation if available
+	- Change dog's appearance/color tint
+
+	Current state can be checked with:
+	- carrying_food (bool): Is the dog carrying food?
+	- carried_snack_type (int): What type of snack? (0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON)
+	"""
+	# Placeholder - no visual changes yet
+	pass
+
+
+## ============================================================================
+## END PHASE 2 FRAMEWORK
+## ============================================================================
 
 func on_disciplined(snack_type) -> void:
 	"""Called when player disciplines the dog
