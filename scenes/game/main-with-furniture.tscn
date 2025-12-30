@@ -1,7 +1,9 @@
-[gd_scene load_steps=107 format=3 uid="uid://cs1jrmimj14ud"]
+[gd_scene load_steps=109 format=3 uid="uid://cs1jrmimj14ud"]
 
 [ext_resource type="Script" uid="uid://comca24ynvbq5" path="res://scripts/main_with_furniture.gd" id="1_yemsi"]
 [ext_resource type="ArrayMesh" uid="uid://cqrw3q7ct1one" path="res://art/furniture/bedSingle.obj" id="4_7w610"]
+[ext_resource type="Texture2D" uid="uid://dlrt8a2ovag3" path="res://art/hud_heart.png" id="4_u1cuh"]
+[ext_resource type="Texture2D" uid="uid://swbiu6jidpgl" path="res://art/hud_heart_empty.png" id="5_r3leb"]
 [ext_resource type="ArrayMesh" uid="uid://d18l4tpqguu6" path="res://art/furniture/benchCushion.obj" id="6_88o53"]
 [ext_resource type="ArrayMesh" uid="uid://dg0oly5tcftib" path="res://art/furniture/cabinetTelevisionDoors.obj" id="12_db72n"]
 [ext_resource type="ArrayMesh" uid="uid://dpssuw6huarq6" path="res://art/furniture/chairCushion.obj" id="14_sdha7"]
@@ -264,6 +266,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("52_21leg")
+heart_full = ExtResource("4_u1cuh")
+heart_empty = ExtResource("5_r3leb")
 
 [node name="OverflowBar" type="ProgressBar" parent="UI/HUD"]
 layout_mode = 1
@@ -332,6 +336,53 @@ offset_bottom = 111.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Highscore: "
+
+[node name="Hearts" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DisciplinePanel" type="PanelContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="DisciplineList" type="VBoxContainer" parent="UI/HUD/DisciplinePanel"]
+layout_mode = 2
+
+[node name="WinPanel" type="Panel" parent="UI/HUD"]
+modulate = Color(0.47058824, 1, 0.2901961, 1)
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 517.0
+
+[node name="WinLabel" type="Label" parent="UI/HUD/WinPanel"]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 133.0
+offset_right = 671.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 29
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MenuButton" type="Button" parent="UI/HUD/WinPanel"]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 314.0
+offset_right = 633.0
+offset_bottom = 338.0
+text = "back to menu"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999863, -0.005235964, 0, 0.005235964, 0.9999863, 0, 0, 0)

@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
-@export var speed: float = 15.0
+@export var speed: float = 12.0
 @export var fall_acceleration: float = 75.0
+@export var discipline_snack_radius: float = 3.0
+
 
 # Discipline mechanic
 @export_group("Discipline")
@@ -139,6 +141,7 @@ func play_pickup_animation() -> void:
 	anim.play(PICKUP_ANIM)
 	print("Spiele Pickup-Animation:", PICKUP_ANIM)
 	speed=0.0
+	
 
 
 func play_discipline_animation() -> void:
@@ -158,12 +161,12 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	# Wenn die Pickup-Animation fertig ist, darf wieder Run/Idle laufen
 	if anim_name == PICKUP_ANIM:
 		_is_playing_pickup = false
-		speed=15.0
+		speed=12.0
 
 	# Wenn die Discipline-Animation fertig ist, darf wieder Run/Idle laufen
 	if anim_name == DISCIPLINE_ANIM:
 		_is_playing_discipline = false
-		speed=15.0
+		speed=12.0
 
 
 func _input(event: InputEvent) -> void:
@@ -207,11 +210,39 @@ func attempt_discipline() -> void:
 		print("❌ Dog too far away: %.1f units (max: %.1f)" % [distance, discipline_range])
 		return
 
-	# Get the snack type the dog is targeting
-	var snack_type = get_dog_target_snack_type(dog)
-	if snack_type == -1:
-		print("❌ Dog is not targeting any snack")
-		return
+	# Nur disziplinieren, wenn Hund nahe bei einem Snack ist (oder isst)
+	var snack_type := -1
+
+	# Wenn Hund gerade isst: ok
+	if "is_eating" in dog and dog.is_eating and "current_eating_snack_type" in dog:
+		snack_type = dog.current_eating_snack_type
+	else:
+		var nearby_treat: Node3D = null
+
+		# 1) Wenn Hund ein target_treat hat und es ist nah: nimm das (am fairsten)
+		if "target_treat" in dog and dog.target_treat != null and is_instance_valid(dog.target_treat):
+			var dtt = dog.global_position.distance_to(dog.target_treat.global_position)
+			if dtt <= discipline_snack_radius:
+				nearby_treat = dog.target_treat
+
+		# 2) Sonst: nimm nächstes Treat in Radius
+		if nearby_treat == null:
+			nearby_treat = get_nearby_treat_for_dog(dog, discipline_snack_radius)
+
+		if nearby_treat == null:
+			print("❌ Discipline: Hund ist nicht nahe bei einem Snack")
+			return
+
+		# snack_type aus dem Treat lesen
+		if "snack_type" in nearby_treat:
+			snack_type = nearby_treat.snack_type
+		elif nearby_treat.get_parent() and "snack_type" in nearby_treat.get_parent():
+			snack_type = nearby_treat.get_parent().snack_type
+
+		if snack_type == -1:
+			print("❌ Discipline: Treat hat keinen snack_type")
+			return
+
 
 	# Discipline the dog
 	print("✅ Disciplining dog at distance: %.1f units" % distance)
@@ -227,25 +258,18 @@ func attempt_discipline() -> void:
 	# TODO: Add sound effect
 
 
-func get_dog_target_snack_type(dog) -> int:
-	"""Get the snack type the dog is currently targeting or eating
-	Returns -1 if dog has no target"""
-	if not dog.has_method("on_disciplined"):
-		return -1
+	
+func get_nearby_treat_for_dog(dog: Node3D, radius: float) -> Node3D:
+	# Sucht ein Treat in der Nähe des Hundes (innerhalb radius)
+	var treats = get_tree().get_nodes_in_group("treats")
+	var best: Node3D = null
+	var best_dist := INF
 
-	# Check if dog is currently eating - if so, return the snack type being eaten
-	if "is_eating" in dog and dog.is_eating:
-		if "current_eating_snack_type" in dog:
-			return dog.current_eating_snack_type
+	for t in treats:
+		if t and is_instance_valid(t):
+			var d = dog.global_position.distance_to(t.global_position)
+			if d <= radius and d < best_dist:
+				best_dist = d
+				best = t
 
-	# Check if dog has a target treat (moving toward it)
-	if "target_treat" in dog and dog.target_treat != null and is_instance_valid(dog.target_treat):
-		var treat = dog.target_treat
-		# Get the snack type from the treat's spawning_object script
-		if "snack_type" in treat:
-			return treat.snack_type
-		# Fallback: try to get from parent if it's a child node
-		if treat.get_parent() and "snack_type" in treat.get_parent():
-			return treat.get_parent().snack_type
-
-	return -1  # No valid target
+	return best

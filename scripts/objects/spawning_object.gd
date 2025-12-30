@@ -65,13 +65,10 @@ func _try_eating() -> void:
 	if distance > eating_distance:
 		return
 
-	# 2) Optional: Check, ob das Objekt grob vor dem Hund ist
-	var dog_forward: Vector3 = -dog.global_transform.basis.z
-	var to_object_from_dog: Vector3 = (global_transform.origin - dog.global_transform.origin).normalized()
-	# var dot_val := dog_forward.dot(to_object_from_dog)
-	# 0.3 ≈ ca. 70° vor dem Hund;
-	# if dot_val < 0.3:
-		# return
+	# 2) Check, ob er das Objekt essen darf
+	if dog.has_method("can_eat_treat"):
+		if not dog.can_eat_treat(self):
+			return
 
 	# Hund-Animation triggern und Snack-Typ mitteilen
 	if dog.has_method("play_eat_animation"):
@@ -125,4 +122,9 @@ func _try_pickup() -> void:
 
 	GameState.remove_object()
 	GameState.add_pickup_score()
+	visible = false
+	set_process(false)
+	# optional collision disable, falls vorhanden:
+	# $CollisionShape3D.disabled = true
+	await get_tree().create_timer(dog.eat_duration).timeout
 	queue_free()
