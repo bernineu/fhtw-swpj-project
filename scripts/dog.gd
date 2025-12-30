@@ -306,6 +306,7 @@ func on_snack_eaten(snack_type) -> void:
 	# Track chocolate consumption for death mechanic
 	if snack_type == 2:  # CHOCOLATE
 		chocolate_eaten += 1
+		lose_life()
 		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
 
 		# Check if dog ate 3 chocolates (death condition)

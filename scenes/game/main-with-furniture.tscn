@@ -1,7 +1,9 @@
-[gd_scene load_steps=107 format=3 uid="uid://cs1jrmimj14ud"]
+[gd_scene load_steps=109 format=3 uid="uid://cs1jrmimj14ud"]
 
 [ext_resource type="Script" uid="uid://comca24ynvbq5" path="res://scripts/main_with_furniture.gd" id="1_yemsi"]
 [ext_resource type="ArrayMesh" uid="uid://cqrw3q7ct1one" path="res://art/furniture/bedSingle.obj" id="4_7w610"]
+[ext_resource type="Texture2D" uid="uid://dlrt8a2ovag3" path="res://art/hud_heart.png" id="4_u1cuh"]
+[ext_resource type="Texture2D" uid="uid://swbiu6jidpgl" path="res://art/hud_heart_empty.png" id="5_r3leb"]
 [ext_resource type="ArrayMesh" uid="uid://d18l4tpqguu6" path="res://art/furniture/benchCushion.obj" id="6_88o53"]
 [ext_resource type="ArrayMesh" uid="uid://dg0oly5tcftib" path="res://art/furniture/cabinetTelevisionDoors.obj" id="12_db72n"]
 [ext_resource type="ArrayMesh" uid="uid://dpssuw6huarq6" path="res://art/furniture/chairCushion.obj" id="14_sdha7"]
@@ -264,6 +266,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("52_21leg")
+heart_full = ExtResource("4_u1cuh")
+heart_empty = ExtResource("5_r3leb")
 
 [node name="OverflowBar" type="ProgressBar" parent="UI/HUD"]
 layout_mode = 1
@@ -332,6 +336,11 @@ offset_bottom = 111.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Highscore: "
+
+[node name="Hearts" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999863, -0.005235964, 0, 0.005235964, 0.9999863, 0, 0, 0)
