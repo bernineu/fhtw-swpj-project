@@ -1,15 +1,16 @@
 extends CharacterBody3D
 
-@export var speed: float = 14.0
+@export var speed: float = 12.0
 @export var turn_min_deg: float = 30.0
 @export var turn_max_deg: float = 800.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed: float = 5.0  # How fast the dog turns toward target (radians/sec)
 
+var pending_snack_type: int = -1
 var is_eating: bool = false
 var eat_timer: float = 0.0
 var current_eating_snack_type: int = -1  # Track what snack is being eaten
-@export var eat_duration: float = 2.0
+@export var eat_duration: float = 4.0
 
 # Carrying food state (when fleeing while eating)
 var carrying_food: bool = false
@@ -44,10 +45,23 @@ const UTILITY_UPDATE_INTERVAL: float = 0.3  # Evaluate utility every 0.3 seconds
 signal lives_changed(new_lives: int)
 signal hunger_changed(new_hunger: float)
 signal dog_died
+signal discipline_changed(snack_type: int, count: int)
 
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
+
+# --- Learning / Discipline memory (per snack type) ---
+const SNACK_COUNT := 4  # DOG_FOOD, CHEESE, CHOCOLATE, POISON
+@export var discipline_threshold_block := 3
+# how many times dog was disciplined for each snack
+var discipline_counts: Array[int] = [0, 0, 0, 0]
+# strength of penalty per discipline (anpassbar!)
+@export var discipline_penalty_per_count: float = 0.25  # 0.25*3 = 0.75 reduction
+
+func is_snack_blocked(snack_type: int) -> bool:
+	return snack_type >= 0 and snack_type < SNACK_COUNT and discipline_counts[snack_type] >= discipline_threshold_block
+
 
 func _ready():
 	add_to_group("dog")
@@ -132,14 +146,17 @@ func _physics_process(delta):
 			if anim_player and anim_player.has_animation("Gallop"):
 				anim_player.play("Gallop")
 		# Note: No early return - let utility AI decide whether to continue eating or flee
-
+		
 	# Update carrying food timer
 	if carrying_food:
 		carrying_food_timer += delta
 		if carrying_food_timer >= FINISH_CARRIED_FOOD_DELAY:
 			finish_carried_food()
 			carrying_food_timer = 0.0
+			
 
+
+	
 	# =========================================================================
 	# PHASE 2: UTILITY AI DECISION LOOP
 	# =========================================================================
@@ -167,6 +184,61 @@ func _physics_process(delta):
 	execute_current_action(delta)
 
 	move_and_slide()
+	
+func _apply_eaten_snack_effect(snack_type: int) -> void:
+	if snack_type < 0:
+		return
+
+	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	print("🐕 Finished eating:", snack_names[snack_type])
+
+	# POISON -> death
+	if snack_type == 3:
+		die()
+		return
+
+	# Hunger reduzieren
+	hunger -= HUNGER_REDUCTION_PER_SNACK
+	hunger = clamp(hunger, 0.0, 1.0)
+	hunger_changed.emit(hunger)
+
+	# Chocolate -> life lose, und nach 3 chocolates sterben
+	if snack_type == 2:
+		chocolate_eaten += 1
+		lose_life()  # <-- emits lives_changed, HUD updated
+		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
+
+		if chocolate_eaten >= 3:
+			die()
+
+
+func can_eat_treat(treat: Node) -> bool:
+	if treat == null or !is_instance_valid(treat):
+		return false
+
+
+	# snack type holen
+	var st := -1
+	if "snack_type" in treat:
+		st = treat.snack_type
+	elif treat.get_parent() and "snack_type" in treat.get_parent():
+		st = treat.get_parent().snack_type
+
+	# blocked?
+	if st != -1 and is_snack_blocked(st):
+		print("BLOCKED eat attempt:", st)
+		return false
+		
+
+	# nur essen, wenn der Hund diese Aktion gewählt hat UND genau dieses Treat targetet
+	if current_action != "EAT_SNACK":
+		return false
+
+	if target_treat == null or !is_instance_valid(target_treat):
+		return false
+
+	return target_treat == treat
+
 
 
 func find_nearest_treat():
@@ -277,9 +349,9 @@ func update_hunger(delta: float) -> void:
 
 
 func on_snack_eaten(snack_type) -> void:
-	"""Called by spawning_object when dog eats a snack"""
-	# Store the snack type being eaten (for discipline mechanic)
+	# nur merken, Effekt kommt erst am Ende
 	current_eating_snack_type = snack_type
+	pending_snack_type = snack_type
 
 	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
 	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
@@ -400,6 +472,19 @@ func calculate_eat_utility(treat: Node3D) -> float:
 			3:  # Gift (POISON)
 				snack_value_factor = 0.05
 	utility += snack_value_factor
+
+
+		# 7. Discipline Modifier (learning system)
+	# If snack is blocked after 3 disciplines -> never eat
+	if snack_type >= 0 and snack_type < SNACK_COUNT:
+		if is_snack_blocked(snack_type):
+			return 0.0
+
+		# otherwise reduce utility progressively
+		var count := discipline_counts[snack_type]
+		var discipline_penalty := float(count) * discipline_penalty_per_count
+		utility -= discipline_penalty
+
 
 	# 4. Distance Factor: (distance / max_sight_range) * 0.2
 	const MAX_SIGHT_RANGE = 20.0
@@ -585,6 +670,12 @@ func evaluate_and_choose_action() -> void:
 
 	for treat in treats:
 		if treat and is_instance_valid(treat):
+			var st := -1
+			if "snack_type" in treat:
+				st = treat.snack_type
+			if st != -1 and is_snack_blocked(st):
+				continue  # ignore blocked snacks completely			
+			
 			var utility = calculate_eat_utility(treat)
 			if utility > best_eat_utility:
 				best_eat_utility = utility
@@ -788,6 +879,12 @@ func update_carrying_food_visual() -> void:
 ## END PHASE 2 FRAMEWORK
 ## ============================================================================
 
+func get_discipline_count(snack_type: int) -> int:  ## nur für initiierung
+	if snack_type < 0 or snack_type >= SNACK_COUNT:
+		return 0
+	return discipline_counts[snack_type]
+
+
 func on_disciplined(snack_type) -> void:
 	"""Called when player disciplines the dog
 	This will be expanded in Phase 4 with learning system (Tasks 9-11)
@@ -798,6 +895,17 @@ func on_disciplined(snack_type) -> void:
 
 	print("🚫 Dog disciplined for: ", snack_name)
 	print("   Current action: ", "EATING" if is_eating else "MOVING_TO_SNACK")
+
+		# --- Learning update ---
+	if snack_type >= 0 and snack_type < SNACK_COUNT:
+		discipline_counts[snack_type] = min(discipline_counts[snack_type] + 1, discipline_threshold_block)
+		discipline_changed.emit(snack_type, discipline_counts[snack_type])
+		print("📘 Learned: discipline for %s = %d/%d"
+			% [snack_name, discipline_counts[snack_type], discipline_threshold_block])
+
+		# If now blocked, immediately drop target if it's that snack
+		if is_snack_blocked(snack_type):
+			print("🚫 %s is now BLOCKED. Dog will not eat it anymore." % snack_name)
 
 	# Stop current action and pause
 	is_being_disciplined = true
