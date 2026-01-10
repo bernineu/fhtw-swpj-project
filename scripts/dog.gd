@@ -1004,6 +1004,14 @@ func on_disciplined(snack_type) -> void:
 	eat_timer = 0.0
 	current_eating_snack_type = -1  # Clear eating snack type
 
+	# Drop carried food if carrying
+	if carrying_food:
+		print("🍖 Dog disciplined while carrying food - dropping it!")
+		carrying_food = false
+		carried_snack_type = -1
+		carrying_food_timer = 0.0
+		update_carrying_food_visual()  # Remove visual
+
 	# Clear current target
 	target_treat = null
 	if nav_agent:
