@@ -52,6 +52,12 @@ var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
 
+# Stuck detection for unreachable snacks
+var stuck_detection_timer: float = 0.0
+var last_position: Vector3 = Vector3.ZERO
+const STUCK_TIMEOUT: float = 5.0  # Give up on snack after 5 seconds of being stuck
+const STUCK_DISTANCE_THRESHOLD: float = 0.5  # If moved less than 0.5 units, consider stuck
+
 # --- Learning / Discipline memory (per snack type) ---
 const SNACK_COUNT := 4  # DOG_FOOD, CHEESE, CHOCOLATE, POISON
 @export var discipline_threshold_block := 3
@@ -745,8 +751,14 @@ func evaluate_and_choose_action() -> void:
 		chosen_action = best_actions[0]
 
 	# Execute chosen action
+	var previous_target = target_treat
 	current_action = chosen_action.name
 	target_treat = chosen_action.treat
+
+	# Reset stuck timer if targeting a new snack
+	if target_treat != previous_target:
+		stuck_detection_timer = 0.0
+		last_position = global_position
 
 	if current_action == "EAT_SNACK":
 		# Set navigation target
@@ -781,13 +793,41 @@ func execute_eat_snack(delta: float) -> void:
 	if target_treat == null or !is_instance_valid(target_treat):
 		velocity.x = 0
 		velocity.z = 0
-	elif nav_agent.is_navigation_finished():
+		stuck_detection_timer = 0.0  # Reset timer when no target
+		return
+
+	# Check if dog is stuck (not moving much)
+	var distance_moved = global_position.distance_to(last_position)
+
+	if distance_moved < STUCK_DISTANCE_THRESHOLD:
+		stuck_detection_timer += delta
+
+		# Give up on snack if stuck too long
+		if stuck_detection_timer >= STUCK_TIMEOUT:
+			print("⚠️ Dog stuck trying to reach snack for %.1fs - giving up!" % stuck_detection_timer)
+			target_treat = null
+			stuck_detection_timer = 0.0
+			velocity.x = 0
+			velocity.z = 0
+			return
+	else:
+		# Dog is moving, reset stuck timer
+		stuck_detection_timer = 0.0
+
+	# Update last position for next frame
+	last_position = global_position
+
+	# Navigate to treat
+	if nav_agent.is_navigation_finished():
 		velocity.x = 0
 		velocity.z = 0
 	elif !nav_agent.is_target_reachable():
+		# Immediately give up on unreachable targets
+		print("⚠️ Target not reachable - giving up on this snack!")
+		target_treat = null
+		stuck_detection_timer = 0.0
 		velocity.x = 0
 		velocity.z = 0
-		print("⚠️ Target not reachable!")
 	else:
 		move_along_navigation_path(delta)
 
