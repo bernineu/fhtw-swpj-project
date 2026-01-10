@@ -24,15 +24,18 @@ func _init():
 	root.name = "TestRoot"
 	get_root().add_child(root)
 	
+	# IMPORTANT: Load GameState autoload manually
+	var GameStateScript = load("res://autoload/GameState.gd")
+	var game_state = GameStateScript.new()
+	game_state.name = "GameState"
+	root.add_child(game_state)
+	
+	# Make it available globally (like an autoload)
+	Engine.register_singleton("GameState", game_state)
+	
 	# Initialize GUT
 	var gut = load("res://addons/gut/gut.gd").new()
 	root.add_child(gut)
-	
-	# Configure GUT
-	gut.set_log_level(gut.LOG_LEVEL_ALL_ASSERTS)
-	gut.set_should_maximize(false)
-	gut.set_yield_between_tests(true)
-	gut.set_double_strategy(gut.DOUBLE_STRATEGY_PARTIAL)
 	
 	# Add test directories
 	print("Loading test suites...")
@@ -64,6 +67,9 @@ func _init():
 	
 	# Generate reports
 	generate_console_report()
+	
+	# Cleanup
+	Engine.unregister_singleton("GameState")
 	
 	# Exit with appropriate code
 	var exit_code = 0 if results.failed == 0 else 1

@@ -1,6 +1,6 @@
 extends GutTest
 
-# TC-GP-026: Overflow counter increases on spawn
+# Overflow counter increases on spawn
 func test_overflow_counter_increases_on_spawn():
 	GameState.reset_overflow()
 	assert_eq(GameState.overflow, 0, "Initial overflow should be 0")
@@ -11,28 +11,34 @@ func test_overflow_counter_increases_on_spawn():
 	
 	assert_eq(GameState.overflow, 5, "Overflow should be 5 after adding 5 objects")
 
-# TC-GP-027: Game over triggers at max overflow
+# Game over triggers at max overflow
 func test_game_over_triggers_at_max_overflow():
 	GameState.reset_overflow()
-	var overflow_full_triggered = false
+	var signal_data = {"triggered": false}
 	
-	GameState.overflow_full.connect(func(): overflow_full_triggered = true)
+	GameState.overflow_full.connect(func(): signal_data.triggered = true)
 	
 	# Set overflow to 19
 	for i in range(19):
 		GameState.add_object()
 	
-	assert_false(overflow_full_triggered, "Game over should not trigger at 19")
+	# Wait for signals to process
+	await wait_frames(2)
+	
+	assert_false(signal_data.triggered, "Game over should not trigger at 19")
 	assert_false(GameState.is_game_over, "Game over flag should be false")
 	
 	# Add one more to reach 20
 	GameState.add_object()
 	
-	assert_true(overflow_full_triggered, "Game over should trigger at 20")
+	# Wait for signal to process
+	await wait_frames(2)
+	
+	assert_true(signal_data.triggered, "Game over should trigger at 20")
 	assert_true(GameState.is_game_over, "Game over flag should be true")
 	assert_eq(GameState.overflow, 20, "Overflow should be clamped at 20")
 
-# TC-NEG-008: Rapid spawn causes overflow spike
+# Rapid spawn causes overflow spike
 func test_overflow_clamps_at_maximum():
 	GameState.reset_overflow()
 	
@@ -40,10 +46,12 @@ func test_overflow_clamps_at_maximum():
 	for i in range(25):
 		GameState.add_object()
 	
+	await wait_frames(2)
+	
 	assert_eq(GameState.overflow, 20, "Overflow should be clamped at 20")
 	assert_true(GameState.is_game_over, "Game over should be triggered")
 
-# TC-GP-011: Score system - pickup bonus
+# Score system - pickup bonus
 func test_pickup_score_bonus():
 	GameState.reset_overflow()
 	assert_eq(GameState.score, 0, "Initial score should be 0")
@@ -54,7 +62,7 @@ func test_pickup_score_bonus():
 	GameState.add_pickup_score()
 	assert_eq(GameState.score, 10, "Score should be 10 after two pickups")
 
-# TC-UI-004: Score updates per second
+# Score updates per second
 func test_time_score_increments():
 	GameState.reset_overflow()
 	assert_eq(GameState.score, 0, "Initial score should be 0")
@@ -76,7 +84,7 @@ func test_score_stops_on_game_over():
 	GameState.add_pickup_score()
 	assert_eq(GameState.score, 0, "Pickup score should not add when game over")
 
-# TC-INT-001: Gender selection persists
+# Gender selection persists
 func test_gender_selection_persists():
 	GameState.selected_gender = GameState.Gender.FEMALE
 	assert_eq(GameState.selected_gender, GameState.Gender.FEMALE, "Female gender should persist")
@@ -87,21 +95,22 @@ func test_gender_selection_persists():
 # Test overflow signal emission
 func test_overflow_changed_signal():
 	GameState.reset_overflow()
-	var signal_received = false
-	var received_value = -1
-	var received_max = -1
+	var signal_data = {"received": false, "value": -1, "max": -1}
 	
 	GameState.overflow_changed.connect(func(val, max_val):
-		signal_received = true
-		received_value = val
-		received_max = max_val
+		signal_data.received = true
+		signal_data.value = val
+		signal_data.max = max_val
 	)
 	
 	GameState.add_object()
 	
-	assert_true(signal_received, "overflow_changed signal should be emitted")
-	assert_eq(received_value, 1, "Signal should contain value 1")
-	assert_eq(received_max, 20, "Signal should contain max 20")
+	# Wait for signal to be processed
+	await wait_frames(2)
+	
+	assert_true(signal_data.received, "overflow_changed signal should be emitted")
+	assert_eq(signal_data.value, 1, "Signal should contain value 1")
+	assert_eq(signal_data.max, 20, "Signal should contain max 20")
 
 # Test remove object functionality
 func test_remove_object_decreases_overflow():
