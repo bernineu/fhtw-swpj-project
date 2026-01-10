@@ -17,6 +17,7 @@ var carrying_food: bool = false
 var carried_snack_type: int = -1
 var carrying_food_timer: float = 0.0
 const FINISH_CARRIED_FOOD_DELAY: float = 3.0  # Seconds before finishing carried food
+var carried_food_visual: Node3D = null  # Reference to the visual food node
 
 # Lives and Hunger System
 var lives: int = 3
@@ -859,20 +860,67 @@ func finish_carried_food() -> void:
 func update_carrying_food_visual() -> void:
 	"""Update visual representation of dog carrying food
 
-	TODO: Implement visual feedback (assign to team member)
-	Options:
-	- Attach treat model to dog's mouth/head
-	- Show particle effects (food crumbs)
-	- Display icon above dog
-	- Play special animation if available
-	- Change dog's appearance/color tint
-
-	Current state can be checked with:
-	- carrying_food (bool): Is the dog carrying food?
-	- carried_snack_type (int): What type of snack? (0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON)
+	Attaches/removes a small version of the snack model to the dog's mouth marker
+	when carrying_food state changes.
 	"""
-	# Placeholder - no visual changes yet
-	pass
+	var food_carrier_marker = get_node_or_null("FoodCarrierMarker")
+
+	if food_carrier_marker == null:
+		push_error("FoodCarrierMarker not found in dog scene!")
+		return
+
+	# Remove existing visual if present
+	if carried_food_visual != null and is_instance_valid(carried_food_visual):
+		carried_food_visual.queue_free()
+		carried_food_visual = null
+
+	# Add new visual if carrying food
+	if carrying_food and carried_snack_type >= 0:
+		# Map snack type to scene path
+		var snack_scene_paths = [
+			"res://scenes/objects/dogfood.tscn",   # 0 = DOG_FOOD
+			"res://scenes/objects/cheese.tscn",     # 1 = CHEESE
+			"res://scenes/objects/chocolate.tscn",  # 2 = CHOCOLATE
+			"res://scenes/objects/dogfood.tscn"     # 3 = POISON (use dogfood model for now)
+		]
+
+		if carried_snack_type < snack_scene_paths.size():
+			var snack_scene = load(snack_scene_paths[carried_snack_type])
+			if snack_scene:
+				var snack_instance = snack_scene.instantiate()
+
+				# Find the MeshInstance3D child (the visual part)
+				var mesh_instance = snack_instance.find_child("MeshInstance3D", true, false)
+
+				if mesh_instance:
+					# Create a new Node3D to hold only the visual
+					carried_food_visual = Node3D.new()
+					food_carrier_marker.add_child(carried_food_visual)
+
+					# Remove the mesh from the snack instance and add to our visual node
+					mesh_instance.get_parent().remove_child(mesh_instance)
+					carried_food_visual.add_child(mesh_instance)
+
+					# Remove any physics bodies from the mesh instance
+					for child in mesh_instance.get_children():
+						if child is StaticBody3D or child is RigidBody3D or child is CharacterBody3D:
+							child.queue_free()
+
+					# Scale down the food (smaller in mouth)
+					carried_food_visual.scale = Vector3(0.4, 0.4, 0.4)
+
+					print("🍖 Visual: Dog now carrying %s" % ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"][carried_snack_type])
+				else:
+					push_error("MeshInstance3D not found in snack scene!")
+
+				# Clean up the original snack instance
+				snack_instance.queue_free()
+			else:
+				push_error("Failed to load snack scene: %s" % snack_scene_paths[carried_snack_type])
+		else:
+			push_error("Invalid snack type: %d" % carried_snack_type)
+	else:
+		print("🍖 Visual: Dog no longer carrying food")
 
 
 ## ============================================================================
