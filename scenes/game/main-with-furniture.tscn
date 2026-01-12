@@ -369,7 +369,7 @@ layout_mode = 2
 modulate = Color(0.47058824, 1, 0.2901961, 1)
 layout_mode = 0
 offset_right = 1154.0
-offset_bottom = 517.0
+offset_bottom = 654.0
 
 [node name="WinLabel" type="Label" parent="UI/HUD/WinPanel"]
 layout_mode = 0
