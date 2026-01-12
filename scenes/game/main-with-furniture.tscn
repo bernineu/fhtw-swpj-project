@@ -237,11 +237,6 @@ light_color = Color(1, 1, 0.827451, 1)
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.9994967, 0.016046744, 0.027368048, -0.031465013, 0.39107332, 0.91982156, 0.0040572286, -0.92021966, 0.39138138, 8.776211, 27.958801, 22.305954)
-fov = 93.0
-near = 0.086
-
 [node name="Dog" parent="." instance=ExtResource("53_yemsi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.74906, 3.5643673, -9.239805)
 
@@ -383,6 +378,27 @@ offset_top = 314.0
 offset_right = 633.0
 offset_bottom = 338.0
 text = "back to menu"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="UI/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(230, 194)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="UI/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.9999549, 4.7668123e-05, 0.00950861, -0.009508137, -0.0061527244, 0.9999359, 0.000106168925, -0.9999811, -0.0061519933, 9.353457, 31.013607, 4.3202467)
+fov = 93.0
+near = 0.086
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999863, -0.005235964, 0, 0.005235964, 0.9999863, 0, 0, 0)
