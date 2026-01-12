@@ -104,7 +104,11 @@ func spawn_object() -> void:
 	obj.global_position = get_random_floor_point()
 	add_child(obj)
 	GameState.add_object()
-
+	
+	var dog := get_tree().get_first_node_in_group("dog")
+	if dog and is_instance_valid(dog) and ("snack_type" in obj) and dog.has_method("is_snack_blocked"):
+		if dog.is_snack_blocked(obj.snack_type) and dog.has_method("make_treat_non_blocking"):
+			dog.make_treat_non_blocking(obj)
 
 func get_random_object() -> Resource:
 	var rng = RandomNumberGenerator.new()

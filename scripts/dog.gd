@@ -973,6 +973,32 @@ func get_discipline_count(snack_type: int) -> int:  ## nur für initiierung
 	return discipline_counts[snack_type]
 
 
+func make_treat_non_blocking(treat: Node) -> void:
+	# Disables physics collision so neither player nor dog can get stuck.
+	if treat == null or !is_instance_valid(treat):
+		return
+
+
+	for cs in treat.find_children("", "CollisionShape3D", true, false):
+		if cs is CollisionShape3D:
+			cs.disabled = true
+
+	
+	for body in treat.find_children("", "PhysicsBody3D", true, false):
+		if body is PhysicsBody3D:
+			body.collision_layer = 0
+			body.collision_mask = 0
+
+
+func make_all_treats_of_type_non_blocking(snack_type: int) -> void:
+	var treats := get_tree().get_nodes_in_group("treats")
+	for t in treats:
+		if t and is_instance_valid(t) and ("snack_type" in t) and t.snack_type == snack_type:
+			make_treat_non_blocking(t)
+
+
+
+
 func on_disciplined(snack_type) -> void:
 	"""Called when player disciplines the dog
 	This will be expanded in Phase 4 with learning system (Tasks 9-11)
@@ -994,6 +1020,7 @@ func on_disciplined(snack_type) -> void:
 		# If now blocked, immediately drop target if it's that snack
 		if is_snack_blocked(snack_type):
 			print("🚫 %s is now BLOCKED. Dog will not eat it anymore." % snack_name)
+			make_all_treats_of_type_non_blocking(snack_type) 
 
 	# Stop current action and pause
 	is_being_disciplined = true
