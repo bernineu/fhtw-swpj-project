@@ -33,6 +33,7 @@ func _ready() -> void:
 
 	player = get_tree().get_first_node_in_group("player")
 	dog = get_tree().get_first_node_in_group("dog")
+	play_spawn_effect() 
 
 func _process(delta: float) -> void:
 	# weiter rotieren
@@ -102,6 +103,17 @@ func get_snack_type_name() -> String:
 		_:
 			return "UNKNOWN"
 
+
+func play_spawn_effect() -> void:
+	# Start invisible / tiny
+	scale = Vector3.ZERO
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+
+	# Pop-in effect
+	tween.tween_property(self, "scale", Vector3.ONE, 0.25)
 
 func _try_pickup() -> void:
 	var to_player: Vector3 = player.global_transform.origin - global_transform.origin
