@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkvkw5lby50bh"]
+[gd_scene load_steps=6 format=3 uid="uid://dkvkw5lby50bh"]
 
 [ext_resource type="ArrayMesh" uid="uid://bhr3o2615by6q" path="res://art/snacks/chocolate.obj" id="1_1j1jr"]
 [ext_resource type="Script" uid="uid://d0kkos2qh8di6" path="res://scripts/objects/spawning_object.gd" id="1_evpet"]
+[ext_resource type="ArrayMesh" uid="uid://o7nxxubc18vt" path="res://art/arrowbrown/arrowbrown.obj" id="2_u5f5b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evpet"]
 albedo_color = Color(0.44715488, 0.28366625, 0.120160826, 1)
@@ -15,6 +16,10 @@ data = PackedVector3Array(0.1364, 0.0169, -0.0633, 0.090399995, 0.0337, -0.0558,
 [node name="Chocolate" type="Node3D"]
 script = ExtResource("1_evpet")
 snack_type = 2
+
+[node name="Arrowbrown" type="MeshInstance3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+mesh = ExtResource("2_u5f5b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.152043, -2.4626458, -2.6839489e-08, 2.3995283, 3.0712564, -0.8998042, 0.55397475, 0.70905536, 3.8974802, 0, 1.383, 0)

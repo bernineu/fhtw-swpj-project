@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://u844ak1hmvim"]
+[gd_scene load_steps=7 format=3 uid="uid://u844ak1hmvim"]
 
 [ext_resource type="Script" uid="uid://d0kkos2qh8di6" path="res://scripts/objects/spawning_object.gd" id="1_ayh3o"]
 [ext_resource type="ArrayMesh" uid="uid://o3msuadur62d" path="res://art/snacks/can-open.obj" id="1_s27tv"]
+[ext_resource type="ArrayMesh" uid="uid://o7nxxubc18vt" path="res://art/arrowbrown/arrowbrown.obj" id="2_l8yni"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pat0b"]
+albedo_color = Color(0.19607843, 0.5529412, 0.3764706, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayh3o"]
 albedo_color = Color(0.4177943, 0.29947904, 0.15573177, 1)
@@ -14,6 +18,11 @@ data = PackedVector3Array(-0.13069999, 0.24, 0, -0.0924, 0.32, 0.0924, -0.130699
 
 [node name="Dogfood" type="Node3D"]
 script = ExtResource("1_ayh3o")
+
+[node name="Arrowbrown" type="MeshInstance3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+mesh = ExtResource("2_l8yni")
+surface_material_override/0 = SubResource("StandardMaterial3D_pat0b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.70000005, 0)

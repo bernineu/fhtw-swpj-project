@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs3yxcq3571os"]
+[gd_scene load_steps=7 format=3 uid="uid://cs3yxcq3571os"]
 
 [ext_resource type="ArrayMesh" uid="uid://dha6b2ghs7su7" path="res://art/snacks/cheese-cut.obj" id="1_3gdgc"]
 [ext_resource type="Script" uid="uid://d0kkos2qh8di6" path="res://scripts/objects/spawning_object.gd" id="1_wmrna"]
+[ext_resource type="ArrayMesh" uid="uid://o7nxxubc18vt" path="res://art/arrowbrown/arrowbrown.obj" id="2_vy55m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5y1h"]
+albedo_color = Color(1, 1, 0.3529412, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmrna"]
 albedo_color = Color(0.8422197, 0.7589159, 0.13200182, 1)
@@ -15,6 +19,11 @@ data = PackedVector3Array(-0.0265, 0, 0.061199997, -0.054199997, 0.020499999, 0.
 [node name="Cheese" type="Node3D"]
 script = ExtResource("1_wmrna")
 snack_type = 1
+
+[node name="Arrowbrown" type="MeshInstance3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+mesh = ExtResource("2_vy55m")
+surface_material_override/0 = SubResource("StandardMaterial3D_l5y1h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.3640323, -1.8469844, -2.0129615e-08, 1.7996461, 2.3034422, -0.67485315, 0.41548106, 0.5317915, 2.9231102, 0, 1.78, 0)
