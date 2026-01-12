@@ -210,12 +210,15 @@ func attempt_discipline() -> void:
 		print("❌ Dog too far away: %.1f units (max: %.1f)" % [distance, discipline_range])
 		return
 
-	# Nur disziplinieren, wenn Hund nahe bei einem Snack ist (oder isst)
+	# Nur disziplinieren, wenn Hund nahe bei einem Snack ist (oder isst/trägt)
 	var snack_type := -1
 
 	# Wenn Hund gerade isst: ok
 	if "is_eating" in dog and dog.is_eating and "current_eating_snack_type" in dog:
 		snack_type = dog.current_eating_snack_type
+	# Wenn Hund Futter trägt (carrying_food): auch ok
+	elif "carrying_food" in dog and dog.carrying_food and "carried_snack_type" in dog:
+		snack_type = dog.carried_snack_type
 	else:
 		var nearby_treat: Node3D = null
 

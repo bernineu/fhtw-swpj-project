@@ -17,6 +17,7 @@ var carrying_food: bool = false
 var carried_snack_type: int = -1
 var carrying_food_timer: float = 0.0
 const FINISH_CARRIED_FOOD_DELAY: float = 3.0  # Seconds before finishing carried food
+var carried_food_visual: Node3D = null  # Reference to the visual food node
 
 # Lives and Hunger System
 var lives: int = 3
@@ -50,6 +51,12 @@ signal discipline_changed(snack_type: int, count: int)
 var anim_player: AnimationPlayer
 var nav_agent: NavigationAgent3D
 var target_treat: Node3D = null
+
+# Stuck detection for unreachable snacks
+var stuck_detection_timer: float = 0.0
+var last_position: Vector3 = Vector3.ZERO
+const STUCK_TIMEOUT: float = 5.0  # Give up on snack after 5 seconds of being stuck
+const STUCK_DISTANCE_THRESHOLD: float = 0.5  # If moved less than 0.5 units, consider stuck
 
 # --- Learning / Discipline memory (per snack type) ---
 const SNACK_COUNT := 4  # DOG_FOOD, CHEESE, CHOCOLATE, POISON
@@ -744,8 +751,14 @@ func evaluate_and_choose_action() -> void:
 		chosen_action = best_actions[0]
 
 	# Execute chosen action
+	var previous_target = target_treat
 	current_action = chosen_action.name
 	target_treat = chosen_action.treat
+
+	# Reset stuck timer if targeting a new snack
+	if target_treat != previous_target:
+		stuck_detection_timer = 0.0
+		last_position = global_position
 
 	if current_action == "EAT_SNACK":
 		# Set navigation target
@@ -780,13 +793,41 @@ func execute_eat_snack(delta: float) -> void:
 	if target_treat == null or !is_instance_valid(target_treat):
 		velocity.x = 0
 		velocity.z = 0
-	elif nav_agent.is_navigation_finished():
+		stuck_detection_timer = 0.0  # Reset timer when no target
+		return
+
+	# Check if dog is stuck (not moving much)
+	var distance_moved = global_position.distance_to(last_position)
+
+	if distance_moved < STUCK_DISTANCE_THRESHOLD:
+		stuck_detection_timer += delta
+
+		# Give up on snack if stuck too long
+		if stuck_detection_timer >= STUCK_TIMEOUT:
+			print("⚠️ Dog stuck trying to reach snack for %.1fs - giving up!" % stuck_detection_timer)
+			target_treat = null
+			stuck_detection_timer = 0.0
+			velocity.x = 0
+			velocity.z = 0
+			return
+	else:
+		# Dog is moving, reset stuck timer
+		stuck_detection_timer = 0.0
+
+	# Update last position for next frame
+	last_position = global_position
+
+	# Navigate to treat
+	if nav_agent.is_navigation_finished():
 		velocity.x = 0
 		velocity.z = 0
 	elif !nav_agent.is_target_reachable():
+		# Immediately give up on unreachable targets
+		print("⚠️ Target not reachable - giving up on this snack!")
+		target_treat = null
+		stuck_detection_timer = 0.0
 		velocity.x = 0
 		velocity.z = 0
-		print("⚠️ Target not reachable!")
 	else:
 		move_along_navigation_path(delta)
 
@@ -859,20 +900,67 @@ func finish_carried_food() -> void:
 func update_carrying_food_visual() -> void:
 	"""Update visual representation of dog carrying food
 
-	TODO: Implement visual feedback (assign to team member)
-	Options:
-	- Attach treat model to dog's mouth/head
-	- Show particle effects (food crumbs)
-	- Display icon above dog
-	- Play special animation if available
-	- Change dog's appearance/color tint
-
-	Current state can be checked with:
-	- carrying_food (bool): Is the dog carrying food?
-	- carried_snack_type (int): What type of snack? (0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON)
+	Attaches/removes a small version of the snack model to the dog's mouth marker
+	when carrying_food state changes.
 	"""
-	# Placeholder - no visual changes yet
-	pass
+	var food_carrier_marker = get_node_or_null("FoodCarrierMarker")
+
+	if food_carrier_marker == null:
+		push_error("FoodCarrierMarker not found in dog scene!")
+		return
+
+	# Remove existing visual if present
+	if carried_food_visual != null and is_instance_valid(carried_food_visual):
+		carried_food_visual.queue_free()
+		carried_food_visual = null
+
+	# Add new visual if carrying food
+	if carrying_food and carried_snack_type >= 0:
+		# Map snack type to scene path
+		var snack_scene_paths = [
+			"res://scenes/objects/dogfood.tscn",   # 0 = DOG_FOOD
+			"res://scenes/objects/cheese.tscn",     # 1 = CHEESE
+			"res://scenes/objects/chocolate.tscn",  # 2 = CHOCOLATE
+			"res://scenes/objects/dogfood.tscn"     # 3 = POISON (use dogfood model for now)
+		]
+
+		if carried_snack_type < snack_scene_paths.size():
+			var snack_scene = load(snack_scene_paths[carried_snack_type])
+			if snack_scene:
+				var snack_instance = snack_scene.instantiate()
+
+				# Find the MeshInstance3D child (the visual part)
+				var mesh_instance = snack_instance.find_child("MeshInstance3D", true, false)
+
+				if mesh_instance:
+					# Create a new Node3D to hold only the visual
+					carried_food_visual = Node3D.new()
+					food_carrier_marker.add_child(carried_food_visual)
+
+					# Remove the mesh from the snack instance and add to our visual node
+					mesh_instance.get_parent().remove_child(mesh_instance)
+					carried_food_visual.add_child(mesh_instance)
+
+					# Remove any physics bodies from the mesh instance
+					for child in mesh_instance.get_children():
+						if child is StaticBody3D or child is RigidBody3D or child is CharacterBody3D:
+							child.queue_free()
+
+					# Scale down the food (smaller in mouth)
+					carried_food_visual.scale = Vector3(0.4, 0.4, 0.4)
+
+					print("🍖 Visual: Dog now carrying %s" % ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"][carried_snack_type])
+				else:
+					push_error("MeshInstance3D not found in snack scene!")
+
+				# Clean up the original snack instance
+				snack_instance.queue_free()
+			else:
+				push_error("Failed to load snack scene: %s" % snack_scene_paths[carried_snack_type])
+		else:
+			push_error("Invalid snack type: %d" % carried_snack_type)
+	else:
+		print("🍖 Visual: Dog no longer carrying food")
 
 
 ## ============================================================================
@@ -915,6 +1003,14 @@ func on_disciplined(snack_type) -> void:
 	is_eating = false
 	eat_timer = 0.0
 	current_eating_snack_type = -1  # Clear eating snack type
+
+	# Drop carried food if carrying
+	if carrying_food:
+		print("🍖 Dog disciplined while carrying food - dropping it!")
+		carrying_food = false
+		carried_snack_type = -1
+		carrying_food_timer = 0.0
+		update_carrying_food_visual()  # Remove visual
 
 	# Clear current target
 	target_treat = null
