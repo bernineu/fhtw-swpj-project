@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsnh7r1f3uepg"]
 
 [ext_resource type="Script" uid="uid://lpaykx0htfh3" path="res://scripts/player.gd" id="1_b6qse"]
-[ext_resource type="PackedScene" uid="uid://dv037maiwb5hj" path="res://art/Female_Dress.fbx" id="2_6alxu"]
+[ext_resource type="PackedScene" uid="uid://dh363jbrkyy5f" path="res://art/woman anim.fbx" id="3_qenj0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.6713867
@@ -12,7 +12,7 @@ script = ExtResource("1_b6qse")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="Female_Dress" parent="Pivot" instance=ExtResource("2_6alxu")]
+[node name="woman anim" parent="Pivot" instance=ExtResource("3_qenj0")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3423853, 0)
