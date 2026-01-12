@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dmjwfx0cmp8fw"]
+[gd_scene load_steps=27 format=3 uid="uid://dmjwfx0cmp8fw"]
 
 [ext_resource type="ArrayMesh" uid="uid://boounmnska8xk" path="res://art/furniture/rugSquare.obj" id="1_ljaim"]
 [ext_resource type="Script" uid="uid://cwd6xfo801vl8" path="res://scripts/startmenu_3d_2.gd" id="1_regno"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcm75l3vqorca" path="res://art/Male_Casual.fbx" id="9_regno"]
 [ext_resource type="ArrayMesh" uid="uid://b4de4soc1nwy2" path="res://art/furniture/televisionModern.obj" id="10_dpdsa"]
 [ext_resource type="ArrayMesh" uid="uid://cnlgk15hk0umt" path="res://art/furniture/cabinetTelevision.obj" id="11_jh0vi"]
+[ext_resource type="PackedScene" uid="uid://bff2ckhry7yn1" path="res://scenes/dog/dog_in_menu.tscn" id="12_fnepd"]
 [ext_resource type="ArrayMesh" uid="uid://y2ic5hgfxo2h" path="res://art/furniture/tableRound.obj" id="12_jh0vi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dtsxv"]
@@ -194,6 +195,7 @@ shape = SubResource("BoxShape3D_regno")
 
 [node name="Dog" parent="." instance=ExtResource("9_hh5qn")]
 transform = Transform3D(0.3521357, 0, -0.9359489, 0, 1, 0, 0.9359489, 0, 0.3521357, -10.430216, 0, 13.668542)
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.88386863, 0.055915356, -0.46438107, -0.0019726893, 0.9932656, 0.11584279, 0.4677312, -0.10147371, 0.87802655, -14.136565, 4.562118, 16.851498)
@@ -246,3 +248,6 @@ Discipline Dog:
 E "
 font_size = 150
 outline_size = 6
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("12_fnepd")]
+transform = Transform3D(0.6712405, 0, -0.4352427, 0, 0.8, 0, 0.4352427, 0, 0.6712405, -9.2885475, 0, 12.553251)

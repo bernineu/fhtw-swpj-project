@@ -127,7 +127,7 @@ func _build_discipline_ui() -> void:
 		c.queue_free()
 	discipline_rows.clear()
 
-	var names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var displaynames = ["🥫", "🧀", "🍫", "☠️"]
 	for i in range(4):
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 8)
@@ -139,7 +139,7 @@ func _build_discipline_ui() -> void:
 			icon.texture = snack_icons[i]
 
 		var label := Label.new()
-		label.text = "%s: 0/3" % names[i]
+		label.text = "%s: 0/3" % displaynames[i]
 
 		row.add_child(icon)
 		row.add_child(label)
@@ -158,9 +158,9 @@ func _on_overflow_changed(value: int, max_value: int) -> void:
 func _update_discipline_row(snack_type: int, count: int) -> void:
 	if snack_type < 0 or snack_type >= discipline_rows.size():
 		return
-	var names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
+	var displaynames = ["🥫", "🧀", "🍫", "☠️"]
 	var lbl: Label = discipline_rows[snack_type]["label"]
-	lbl.text = "%s: %d/3" % [names[snack_type], count]
+	lbl.text = "%s: %d/3" % [displaynames[snack_type], count]
 
 
 func _on_overflow_full() -> void:

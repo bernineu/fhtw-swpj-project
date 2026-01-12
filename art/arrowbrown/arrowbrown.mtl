@@ -1,0 +1,30 @@
+newmtl mat0
+Ns 500
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0.5 0.5 0.5
+Ke 0.0 0.0 0.0
+Ni 1.0
+d 1
+illum 3
+
+newmtl mat1
+Ns 250
+Ka 1.0 1.0 1.0
+Kd 0.41961 0.29804 0.15686
+Ks 0 0 0
+Ke 0.0 0.0 0.0
+Ni 1.0
+d 1
+illum 1
+
+newmtl mat2
+Ns 250
+Ka 1.0 1.0 1.0
+Kd 0.85 0.85 0.85
+Ks 0 0 0
+Ke 0.0 0.0 0.0
+Ni 1.0
+d 1
+illum 1
+
