@@ -1,12 +1,9 @@
 extends CharacterBody3D
 
 @export var speed: float = 12.0
-@export var turn_min_deg: float = 30.0
-@export var turn_max_deg: float = 800.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed: float = 5.0  # How fast the dog turns toward target (radians/sec)
 
-var pending_snack_type: int = -1
 var is_eating: bool = false
 var eat_timer: float = 0.0
 var current_eating_snack_type: int = -1  # Track what snack is being eaten
@@ -37,7 +34,7 @@ var is_being_disciplined: bool = false
 var discipline_pause_timer: float = 0.0
 const DISCIPLINE_PAUSE_DURATION: float = 2.0  # Dog pauses for 2 seconds when disciplined
 
-# Utility AI state tracking (Phase 2)
+# Utility AI state tracking
 var current_action: String = "IDLE"
 var utility_update_timer: float = 0.0
 const UTILITY_UPDATE_INTERVAL: float = 0.3  # Evaluate utility every 0.3 seconds
@@ -160,15 +157,8 @@ func _physics_process(delta):
 		if carrying_food_timer >= FINISH_CARRIED_FOOD_DELAY:
 			finish_carried_food()
 			carrying_food_timer = 0.0
-			
 
-
-	
-	# =========================================================================
-	# PHASE 2: UTILITY AI DECISION LOOP
-	# =========================================================================
-
-	# Utility evaluation (every 0.3 seconds)
+	# Utility AI decision loop (every 0.3 seconds)
 	utility_update_timer += delta
 	if utility_update_timer >= UTILITY_UPDATE_INTERVAL:
 		utility_update_timer = 0.0
@@ -191,53 +181,25 @@ func _physics_process(delta):
 	execute_current_action(delta)
 
 	move_and_slide()
-	
-func _apply_eaten_snack_effect(snack_type: int) -> void:
-	if snack_type < 0:
-		return
-
-	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
-	print("🐕 Finished eating:", snack_names[snack_type])
-
-	# POISON -> death
-	if snack_type == 3:
-		die()
-		return
-
-	# Hunger reduzieren
-	hunger -= HUNGER_REDUCTION_PER_SNACK
-	hunger = clamp(hunger, 0.0, 1.0)
-	hunger_changed.emit(hunger)
-
-	# Chocolate -> life lose, und nach 3 chocolates sterben
-	if snack_type == 2:
-		chocolate_eaten += 1
-		lose_life()  # <-- emits lives_changed, HUD updated
-		print("🍫 Chocolate eaten: %d/3" % chocolate_eaten)
-
-		if chocolate_eaten >= 3:
-			die()
 
 
 func can_eat_treat(treat: Node) -> bool:
 	if treat == null or !is_instance_valid(treat):
 		return false
 
-
-	# snack type holen
+	# Get snack type
 	var st := -1
 	if "snack_type" in treat:
 		st = treat.snack_type
 	elif treat.get_parent() and "snack_type" in treat.get_parent():
 		st = treat.get_parent().snack_type
 
-	# blocked?
+	# Check if blocked
 	if st != -1 and is_snack_blocked(st):
 		print("BLOCKED eat attempt:", st)
 		return false
-		
 
-	# nur essen, wenn der Hund diese Aktion gewählt hat UND genau dieses Treat targetet
+	# Only eat if dog chose EAT_SNACK action AND is targeting this specific treat
 	if current_action != "EAT_SNACK":
 		return false
 
@@ -245,7 +207,6 @@ func can_eat_treat(treat: Node) -> bool:
 		return false
 
 	return target_treat == treat
-
 
 
 func find_nearest_treat():
@@ -292,10 +253,6 @@ func move_along_navigation_path(delta: float):
 	# Get the next position in the path
 	var next_path_position = nav_agent.get_next_path_position()
 
-	# Debug: Uncomment for detailed navigation debugging
-	# print("📍 Dog at: ", global_position, " | Next waypoint: ", next_path_position)
-	# print("🗺️ Path length: ", nav_agent.get_current_navigation_path().size())
-
 	# Calculate direction to next waypoint
 	var direction = (next_path_position - global_position).normalized()
 
@@ -303,9 +260,6 @@ func move_along_navigation_path(delta: float):
 	var y_distance = abs(next_path_position.y - global_position.y)
 	if y_distance < 0.5:
 		direction.y = 0  # Keep movement horizontal when close to target height
-
-	# Debug: Uncomment for direction debugging
-	# print("➡️ Direction: ", direction, " | Length: ", direction.length())
 
 	if direction.length() > 0.01:
 		# Calculate target rotation to face the next waypoint (for visual orientation)
@@ -333,13 +287,9 @@ func move_along_navigation_path(delta: float):
 			# Move horizontally toward waypoint
 			velocity.x = horizontal_dir.x * speed
 			velocity.z = horizontal_dir.z * speed
-		# Debug: Uncomment for velocity debugging
-		# print("🏃 Moving! Velocity: ", velocity)
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		# Debug: Uncomment for movement debugging
-		# print("⏸️ Not moving - direction too small")
 
 
 func update_hunger(delta: float) -> void:
@@ -356,21 +306,13 @@ func update_hunger(delta: float) -> void:
 
 
 func on_snack_eaten(snack_type) -> void:
-	# nur merken, Effekt kommt erst am Ende
 	current_eating_snack_type = snack_type
-	pending_snack_type = snack_type
-
 	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
 	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
 
 	print("🐕 Dog ate: ", snack_name)
 
-	# Debug: Uncomment for detailed hunger tracking
-	# var old_hunger = hunger
-	# print("   Hunger before: %.2f" % old_hunger)
-
 	# Check for POISON (instant death)
-	# 0=DOG_FOOD, 1=CHEESE, 2=CHOCOLATE, 3=POISON
 	if snack_type == 3:  # POISON
 		die()  # die() will print the death message
 		return
@@ -378,8 +320,6 @@ func on_snack_eaten(snack_type) -> void:
 	# Reduce hunger
 	hunger -= HUNGER_REDUCTION_PER_SNACK
 	hunger = clamp(hunger, 0.0, 1.0)
-	# Debug: Uncomment for detailed hunger tracking
-	# print("   Hunger after: %.2f" % hunger)
 	hunger_changed.emit(hunger)
 
 	# Track chocolate consumption for death mechanic
@@ -437,7 +377,7 @@ func die() -> void:
 
 
 ## ============================================================================
-## PHASE 2: UTILITY AI FRAMEWORK
+## UTILITY AI FUNCTIONS
 ## ============================================================================
 
 func calculate_eat_utility(treat: Node3D) -> float:
@@ -480,9 +420,7 @@ func calculate_eat_utility(treat: Node3D) -> float:
 				snack_value_factor = 0.05
 	utility += snack_value_factor
 
-
-		# 7. Discipline Modifier (learning system)
-	# If snack is blocked after 3 disciplines -> never eat
+	# Discipline modifier (learning system)
 	if snack_type >= 0 and snack_type < SNACK_COUNT:
 		if is_snack_blocked(snack_type):
 			return 0.0
@@ -532,11 +470,6 @@ func calculate_eat_utility(treat: Node3D) -> float:
 			_:
 				life_risk_factor = 0.5  # Maximum caution
 	utility -= life_risk_factor
-
-	# 7. Discipline Modifier (placeholder for Phase 4, Tasks 9-11)
-	# TODO Phase 4: Implement discipline learning system
-	var discipline_modifier = 0.0
-	utility += discipline_modifier
 
 	# Clamp final result to [0.0, 1.0]
 	utility = clamp(utility, 0.0, 1.0)
@@ -659,13 +592,7 @@ func calculate_idle_utility() -> float:
 
 
 func evaluate_and_choose_action() -> void:
-	"""Evaluate all possible actions and choose the one with highest utility
-
-	Task 6: EAT_SNACK utility for all treats ✅
-	Task 7: FLEE_FROM_OWNER utility ✅
-	Task 8: Complete decision loop ✅
-	"""
-
+	"""Evaluate all possible actions and choose the one with highest utility"""
 	print("🧠 Evaluating actions...")
 
 	# Get all available treats
@@ -711,8 +638,6 @@ func evaluate_and_choose_action() -> void:
 			current_action = "FLEE"
 			target_treat = null
 			print("⚠️ Interrupting eating to FLEE WITH FOOD! (utility: %.2f)" % flee_utility)
-
-			# TODO: Visualize carrying food (assign to team member)
 			update_carrying_food_visual()
 		else:
 			# Continue eating (stay idle)
@@ -772,9 +697,7 @@ func evaluate_and_choose_action() -> void:
 
 
 func execute_current_action(delta: float) -> void:
-	"""Execute the currently selected action
-	This will be expanded in Task 8 with FLEE and other actions"""
-
+	"""Execute the currently selected action"""
 	match current_action:
 		"EAT_SNACK":
 			execute_eat_snack(delta)
@@ -892,8 +815,6 @@ func finish_carried_food() -> void:
 	# Clear carrying state
 	carrying_food = false
 	carried_snack_type = -1
-
-	# TODO: Remove visual indicator (assign to team member)
 	update_carrying_food_visual()
 
 
@@ -964,26 +885,24 @@ func update_carrying_food_visual() -> void:
 
 
 ## ============================================================================
-## END PHASE 2 FRAMEWORK
+## DISCIPLINE / LEARNING FUNCTIONS
 ## ============================================================================
 
-func get_discipline_count(snack_type: int) -> int:  ## nur für initiierung
+func get_discipline_count(snack_type: int) -> int:
 	if snack_type < 0 or snack_type >= SNACK_COUNT:
 		return 0
 	return discipline_counts[snack_type]
 
 
 func make_treat_non_blocking(treat: Node) -> void:
-	# Disables physics collision so neither player nor dog can get stuck.
+	"""Disables physics collision so neither player nor dog can get stuck."""
 	if treat == null or !is_instance_valid(treat):
 		return
-
 
 	for cs in treat.find_children("", "CollisionShape3D", true, false):
 		if cs is CollisionShape3D:
 			cs.disabled = true
 
-	
 	for body in treat.find_children("", "PhysicsBody3D", true, false):
 		if body is PhysicsBody3D:
 			body.collision_layer = 0
@@ -997,20 +916,15 @@ func make_all_treats_of_type_non_blocking(snack_type: int) -> void:
 			make_treat_non_blocking(t)
 
 
-
-
 func on_disciplined(snack_type) -> void:
-	"""Called when player disciplines the dog
-	This will be expanded in Phase 4 with learning system (Tasks 9-11)
-	snack_type: The type of snack the dog is targeting/eating
-	"""
+	"""Called when player disciplines the dog. Updates learning counters and pauses the dog."""
 	var snack_names = ["DOG_FOOD", "CHEESE", "CHOCOLATE", "POISON"]
 	var snack_name = snack_names[snack_type] if snack_type < snack_names.size() else "UNKNOWN"
 
 	print("🚫 Dog disciplined for: ", snack_name)
 	print("   Current action: ", "EATING" if is_eating else "MOVING_TO_SNACK")
 
-		# --- Learning update ---
+	# Learning update
 	if snack_type >= 0 and snack_type < SNACK_COUNT:
 		discipline_counts[snack_type] = min(discipline_counts[snack_type] + 1, discipline_threshold_block)
 		discipline_changed.emit(snack_type, discipline_counts[snack_type])
@@ -1052,10 +966,3 @@ func on_disciplined(snack_type) -> void:
 			anim_player.play("Idle")
 
 	print("   Dog paused for %.1f seconds" % DISCIPLINE_PAUSE_DURATION)
-
-	# TODO Phase 4 (Task 9): Increment discipline counter for this snack type
-	# TODO Phase 4 (Task 10): Start 10-second short-term learning timer
-	# TODO Phase 4 (Task 11): Apply progressive learning modifiers
-
-	# Placeholder: Just log for now
-	# In Phase 4, this will affect the dog's utility calculations
