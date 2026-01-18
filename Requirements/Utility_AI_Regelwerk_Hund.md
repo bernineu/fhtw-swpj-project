@@ -1,11 +1,16 @@
 # Utility AI Regelwerk für Hunde-Bewegung
 ## Design Dokumentation
 
-**Projekt:** Dog vs Owner Game  
-**User Story:** As a team, we want to design a theoretical rule set for the dog's Utility AI movement, so that we have a clear concept to implement in the next sprint.  
-**Version:** 1.0  
-**Datum:** 24. Oktober 2025  
-**Status:** Konzept
+**Projekt:** Dog vs Owner Game
+**User Story:** As a team, we want to design a theoretical rule set for the dog's Utility AI movement, so that we have a clear concept to implement in the next sprint.
+**Version:** 2.0
+**Datum:** 17. Jänner 2026
+**Status:** Teilweise Implementiert
+
+### Implementierungsstatus-Legende
+- ✅ = Vollständig implementiert
+- ⚠️ = Teilweise implementiert
+- ❌ = Nicht implementiert (geplant)
 
 ---
 
@@ -31,21 +36,24 @@ Der Hund evaluiert kontinuierlich verschiedene Handlungsoptionen und bewertet di
 
 Der Hund verfügt über folgende Aktionen:
 
-| Aktion | Beschreibung | Voraussetzungen |
-|--------|--------------|-----------------|
-| `EAT_SNACK` | Bewegung zu einem Snack und Verzehr | Snack muss sichtbar und erreichbar sein |
-| `FLEE_FROM_OWNER` | Flucht vor dem Besitzer | Besitzer in Reichweite |
-| `POOP` | Strategisches Platzieren eines Haufens | Cooldown muss bereit sein |
-| `IDLE` | Kurzes Warten/Orientieren | Immer verfügbar |
-| `DIE` | Spielende durch Tod des Hundes | Todesbedingung erfüllt |
+| Aktion | Beschreibung | Voraussetzungen | Status |
+|--------|--------------|-----------------|--------|
+| `EAT_SNACK` | Bewegung zu einem Snack und Verzehr | Snack muss sichtbar und erreichbar sein | ✅ |
+| `FLEE_FROM_OWNER` | Flucht vor dem Besitzer | Besitzer in Reichweite | ✅ |
+| `POOP` | Strategisches Platzieren eines Haufens | Cooldown muss bereit sein | ❌ |
+| `IDLE` | Kurzes Warten/Orientieren | Immer verfügbar | ✅ |
+| `DIE` | Spielende durch Tod des Hundes | Todesbedingung erfüllt | ✅ |
+| `CARRY_FOOD` | Essen mitnehmen während Flucht | Beim Fressen und hohe Flucht-Utility | ✅ (Bonus)
 
 ---
 
 ## 3. Utility-Berechnungen
 
-### 3.1 EAT_SNACK Utility
+### 3.1 EAT_SNACK Utility ✅
 
 **Zweck:** Bewertet die Attraktivität eines Snacks unter Berücksichtigung von Hunger, Gefahr und Snack-Typ.
+
+**Implementiert in:** `scripts/dog.gd` → `calculate_eat_utility()`
 
 **Formel:**
 ```
@@ -74,10 +82,9 @@ Endergebnis: clamp(Utility_EAT, 0.0, 1.0)
 Distanz_Faktor = (Distanz_zum_Snack / Max_Sichtweite) * 0.2
 ```
 
-**Besitzer-Gefahr-Faktor:**
-- Besitzer > 5 Einheiten entfernt: -0.0 (keine Gefahr)
-- Besitzer 3-5 Einheiten entfernt: -0.0 (geringe Gefahr)
-- Besitzer < 3 Einheiten entfernt: +0.3 (hohe Gefahr, reduziert Utility)
+**Besitzer-Gefahr-Faktor:** ✅
+- Besitzer >= 3 Einheiten entfernt: 0.0 (keine Gefahr)
+- Besitzer < 3 Einheiten entfernt: 0.3 (hohe Gefahr, reduziert Utility)
 
 **Leben-Risiko-Faktor:**
 - Bei 3 Leben: keine Änderung
@@ -90,9 +97,11 @@ Distanz_Faktor = (Distanz_zum_Snack / Max_Sichtweite) * 0.2
 
 ---
 
-### 3.2 FLEE_FROM_OWNER Utility
+### 3.2 FLEE_FROM_OWNER Utility ✅
 
 **Zweck:** Bewertet die Notwendigkeit, vor dem Besitzer zu fliehen.
+
+**Implementiert in:** `scripts/dog.gd` → `calculate_flee_utility()`
 
 **Formel:**
 ```
@@ -108,10 +117,10 @@ Endergebnis: clamp(Utility_FLEE, 0.0, 1.0)
 |-----------|------|--------------|
 | `Base_Score` | 0.3 | Grundlegende Fluchtneigung |
 
-**Bedrohungs-Faktor:**
+**Bedrohungs-Faktor:** ✅
 - Distanz < 2 Einheiten: +0.5
 - Distanz 2-4 Einheiten: +0.2
-- Besitzer bewegt sich aktiv auf Hund zu: +0.2
+- ❌ Besitzer bewegt sich aktiv auf Hund zu: +0.2 (nicht implementiert)
 
 **Fress-Schutz-Faktor:**
 - Hund ist aktuell am Fressen: +0.4
@@ -121,7 +130,9 @@ Endergebnis: clamp(Utility_FLEE, 0.0, 1.0)
 
 ---
 
-### 3.3 POOP Utility
+### 3.3 POOP Utility ❌
+
+**Status:** Nicht implementiert - geplant für zukünftige Version
 
 **Zweck:** Bewertet die strategische Platzierung eines Haufens zur Behinderung des Besitzers.
 
@@ -152,9 +163,11 @@ Falls Cooldown nicht bereit: Utility_POOP = 0.0
 
 ---
 
-### 3.4 IDLE Utility
+### 3.4 IDLE Utility ✅
 
 **Zweck:** Ermöglicht dem Hund kurze Pausen zur Neuorientierung.
+
+**Implementiert in:** `scripts/dog.gd` → `calculate_idle_utility()`
 
 **Formel:**
 ```
@@ -177,9 +190,11 @@ Endergebnis: clamp(Utility_IDLE, 0.0, 1.0)
 
 ---
 
-### 3.5 DIE Action
+### 3.5 DIE Action ✅
 
 **Zweck:** Repräsentiert das Spielende durch Tod des Hundes. Dies ist keine bewusste Entscheidung der AI, sondern ein erzwungener Zustand.
+
+**Implementiert in:** `scripts/dog.gd` → `die()`
 
 **Auslösende Bedingungen:**
 
@@ -217,9 +232,11 @@ Vor jeder Aktionsauswahl:
 
 ---
 
-## 4. Verhaltensmodifikatoren
+## 4. Verhaltensmodifikatoren ❌
 
-### 4.1 Persönlichkeitsparameter
+**Status:** Persönlichkeitsparameter und Schwierigkeitsgrade sind nicht implementiert.
+
+### 4.1 Persönlichkeitsparameter ❌
 
 Die KI des Hundes kann durch folgende Parameter charakterisiert werden:
 
@@ -239,7 +256,7 @@ Gift_Wert = Base_Gift_Wert * (1.0 - cleverness * 0.5)
 Schokolade_Wert = Base_Schokolade_Wert * (1.0 + risk_taking * 0.2)
 ```
 
-### 4.2 Schwierigkeitsgrade
+### 4.2 Schwierigkeitsgrade ❌
 
 Verschiedene Hunde-Charaktere mit unterschiedlichen Persönlichkeitsprofilen:
 
@@ -269,7 +286,9 @@ obedience: 0.2
 
 ---
 
-## 5. Entscheidungslogik
+## 5. Entscheidungslogik ✅
+
+**Implementiert in:** `scripts/dog.gd` → `_physics_process()`, `evaluate_and_choose_action()`
 
 ### 5.1 Haupt-Update-Schleife
 
@@ -322,51 +341,70 @@ Die KI durchläuft pro Update-Zyklus folgende Schritte:
 
 ## 6. Spezielle Regelungen
 
-### 6.1 Anti-Stuck Mechanismus
+### 6.1 Anti-Stuck Mechanismus ✅
+
+**Implementiert in:** `scripts/dog.gd` → `execute_eat_snack()`
 
 **Problem:** Hund könnte in Entscheidungsschleife stecken bleiben.
 
-**Lösung:**
-- Wenn Hund 3 Sekunden lang keine neue Aktion ausführt → Erzwinge IDLE
-- Wenn Pfad zu gewähltem Ziel blockiert → Wähle zweitbeste Aktion
-- Nach 5 Sekunden IDLE → Erzwinge Zufallsbewegung
+**Aktuelle Implementierung:**
+- Stuck-Detection: Wenn Hund < 0.5 Einheiten in 5 Sekunden bewegt → Ziel aufgeben
+- Konstanten im Code:
+  - `STUCK_TIMEOUT = 5.0` Sekunden
+  - `STUCK_DISTANCE_THRESHOLD = 0.5` Einheiten
+- Wenn `nav_agent.is_target_reachable()` false → sofort aufgeben
 
-### 6.2 Lerneffekt nach Disziplinierung (Erweitertes System)
+**Ursprüngliche Planung (nicht vollständig implementiert):**
+- ❌ Wenn Hund 3 Sekunden lang keine neue Aktion ausführt → Erzwinge IDLE
+- ✅ Wenn Pfad zu gewähltem Ziel blockiert → Wähle zweitbeste Aktion
+- ❌ Nach 5 Sekunden IDLE → Erzwinge Zufallsbewegung
+
+### 6.2 Lerneffekt nach Disziplinierung (Erweitertes System) ⚠️
+
+**Implementiert in:** `scripts/dog.gd` → `on_disciplined()`, `calculate_eat_utility()`
+
+**Status:** Teilweise implementiert - Basis-Lernsystem funktioniert, aber nicht alle Features.
 
 Das Lernsystem basiert auf wiederholter Disziplinierung und ermöglicht es dem Hund, bestimmte Snacks dauerhaft zu meiden.
 
-#### 6.2.1 Disziplin-Counter pro Snack-Typ
+#### 6.2.1 Disziplin-Counter pro Snack-Typ ✅
 
 Jeder Snack-Typ hat einen eigenen Disziplin-Counter:
 
-```
-Disziplin_Counters = {
-  "Schokolade": 0,
-  "Käse": 0,
-  "Hundefutter": 0,
-  "Gift": 0
-}
+```gdscript
+# Aktuelle Implementierung in dog.gd:
+var discipline_counts: Array[int] = [0, 0, 0, 0]  # DOG_FOOD, CHEESE, CHOCOLATE, POISON
+@export var discipline_threshold_block := 3
+@export var discipline_penalty_per_count: float = 0.25
 ```
 
-**Erhöhung des Counters:**
-- +1 wenn Hund diszipliniert wird, während er zu diesem Snack-Typ unterwegs ist
-- +1 wenn Hund diszipliniert wird, während er diesen Snack-Typ isst
+**Erhöhung des Counters:** ✅
+- +1 wenn Hund diszipliniert wird (egal ob unterwegs oder beim Essen)
+- Maximum: 3 (discipline_threshold_block)
 
-**Verfall des Counters:**
-- -1 alle 60 Sekunden (langsames Vergessen)
-- Minimum: 0
+**Verfall des Counters:** ❌
+- Nicht implementiert - Counter bleibt permanent
+- Geplant: -1 alle 60 Sekunden (langsames Vergessen)
 
-#### 6.2.2 Auswirkungen auf Snack-Attraktivität
+#### 6.2.2 Auswirkungen auf Snack-Attraktivität ⚠️
 
-**Kurzfristiges Lernen (nach einzelner Disziplinierung):**
+**Kurzfristiges Lernen (nach einzelner Disziplinierung):** ❌
 ```
-Dauer: 10 Sekunden nach Disziplinierung
-
-Utility_Modifier = -0.2 für den betroffenen Snack-Typ
+Nicht implementiert!
+Geplant: 10 Sekunden Timer mit -0.2 Modifier
 ```
 
-**Progressives Lernen (nach mehrfacher Disziplinierung):**
+**Progressives Lernen (nach mehrfacher Disziplinierung):** ✅
 
+**Aktuelle Implementierung (vereinfacht):**
+| Disziplin-Counter | Utility-Modifier | Beschreibung |
+|-------------------|------------------|--------------|
+| 0 | 0.0 | Normales Verhalten |
+| 1 | -0.25 | Leichte Vorsicht |
+| 2 | -0.50 | Deutliche Vorsicht |
+| 3 | BLOCKED | Snack wird komplett ignoriert |
+
+**Ursprüngliche Planung (nicht implementiert):**
 | Disziplin-Counter | Utility-Modifier | Beschreibung |
 |-------------------|------------------|--------------|
 | 0 | +0.0 | Keine Disziplinierung - normales Verhalten |
@@ -374,28 +412,22 @@ Utility_Modifier = -0.2 für den betroffenen Snack-Typ
 | 2 | -0.35 | Deutliche Vorsicht |
 | 3+ | -0.60 | Starke Vermeidung (praktisch keine Attraktivität mehr) |
 
-**Formel für finale Snack-Utility:**
-```
-Base_Utility_EAT = [normale Berechnung aus Abschnitt 3.1]
+**Aktuelle Formel im Code:**
+```gdscript
+# In calculate_eat_utility():
+if is_snack_blocked(snack_type):
+    return 0.0  # Komplett blockiert bei 3 Disziplinierungen
 
-Disziplin_Modifier = Berechne_Disziplin_Modifier(Snack_Typ)
-
-// Kurzfristiges Lernen (falls kürzlich diszipliniert)
-IF (Zeit_seit_letzter_Disziplinierung < 10 Sekunden):
-  Kurzfristig_Modifier = -0.2
-ELSE:
-  Kurzfristig_Modifier = 0.0
-
-// Progressives Lernen
-Progressiv_Modifier = Lookup_Progressiv_Modifier(Disziplin_Counter[Snack_Typ])
-
-Final_Utility_EAT = Base_Utility_EAT + Kurzfristig_Modifier + Progressiv_Modifier
-Final_Utility_EAT = clamp(Final_Utility_EAT, 0.0, 1.0)
+var count := discipline_counts[snack_type]
+var discipline_penalty := float(count) * discipline_penalty_per_count  # 0.25 pro Count
+utility -= discipline_penalty
 ```
 
-#### 6.2.3 Spezialfälle
+#### 6.2.3 Spezialfälle ❌
 
-**Schokolade (3x diszipliniert):**
+**Status:** Spezialfälle für verschiedene Snack-Typen sind nicht implementiert. Alle Snacks werden gleich behandelt.
+
+**Geplant - Schokolade (3x diszipliniert):**
 ```
 IF Disziplin_Counter["Schokolade"] >= 3:
   // Schokolade wird praktisch nicht mehr angerührt
@@ -403,22 +435,24 @@ IF Disziplin_Counter["Schokolade"] >= 3:
   // Dies führt typischerweise zu Utility ≈ 0.0
 ```
 
-**Gift (permanentes Lernen):**
+**Geplant - Gift (permanentes Lernen):**
 ```
 // Gift-Disziplinierung hat stärkere Wirkung
 IF Disziplin_Counter["Gift"] >= 1:
   Gift_Utility_Modifier = -0.8 (permanent für Spielsitzung)
-  
+
 // Gift wird nie vergessen (kein Verfall des Counters)
 ```
 
-**Hundefutter (positive Verstärkung):**
+**Geplant - Hundefutter (positive Verstärkung):**
 ```
 // Hundefutter-Disziplinierung ist weniger effektiv
 Hundefutter_Modifier = Progressiv_Modifier * 0.5
 ```
 
-#### 6.2.4 Cleverness-Einfluss auf Lernen
+#### 6.2.4 Cleverness-Einfluss auf Lernen ❌
+
+**Status:** Nicht implementiert - Persönlichkeitsparameter existieren nicht.
 
 Der Persönlichkeitsparameter `cleverness` beeinflusst die Lerngeschwindigkeit:
 
@@ -428,7 +462,7 @@ Effektiver_Counter = Disziplin_Counter * (1.0 + cleverness * 0.5)
 
 Beispiel:
 - Dummer Hund (cleverness=0.3): Benötigt 3 echte Disziplinierungen
-- Schlauer Hund (cleverness=0.9): Benötigt ~2 echte Disziplinierungen 
+- Schlauer Hund (cleverness=0.9): Benötigt ~2 echte Disziplinierungen
                                     (3 * 1.45 ≈ 4.35 effektiv)
 ```
 
@@ -461,16 +495,27 @@ Disziplin_Counter["Schokolade"] = 0
 → Hund "vergisst" langsam und könnte wieder Schokolade probieren
 ```
 
-### 6.3 Hunger-System
+### 6.3 Hunger-System ⚠️
+
+**Implementiert in:** `scripts/dog.gd` → `update_hunger()`, Konstanten am Dateianfang
 
 **Hunger-Mechanik:**
+```gdscript
+# Aktuelle Konstanten:
+const HUNGER_INCREASE_PER_SEC: float = 0.01
+const HUNGER_REDUCTION_PER_SNACK: float = 0.3
 ```
-Hunger_Level: 0.0 - 1.0
 
-Anstieg: +0.01 pro Sekunde
-Reduktion: -0.3 pro gegessenem Snack
+**Was implementiert ist:** ✅
+- Hunger_Level: 0.0 - 1.0
+- Anstieg: +0.01 pro Sekunde
+- Reduktion: -0.3 pro gegessenem Snack
+- Hunger beeinflusst EAT_SNACK Utility: `hunger * 0.3` (linear)
 
-Effekt auf Verhalten:
+**Was NICHT implementiert ist:** ❌
+Die gestaffelten Hunger-Schwellenwerte:
+```
+Geplant (nicht implementiert):
 - Bei Hunger < 0.3: Normales Verhalten
 - Bei Hunger 0.3 - 0.7: +0.15 auf alle EAT_SNACK Utilities
 - Bei Hunger > 0.7: +0.3 auf alle EAT_SNACK Utilities, -0.2 auf FLEE
@@ -488,6 +533,47 @@ Effekt auf Verhalten:
 **Performance:**
 - Maximale Pfadlänge: 20 Einheiten
 - Bei unerreichbarem Ziel: Utility = 0.0
+
+---
+
+## 6.5 Bonus-Features (nicht im Original-Regelwerk) ✅
+
+Die folgenden Features wurden während der Implementierung hinzugefügt:
+
+### 6.5.1 Food Carrying (Essen mitnehmen)
+
+**Implementiert in:** `scripts/dog.gd` → `finish_carried_food()`, `update_carrying_food_visual()`
+
+Wenn der Hund beim Fressen durch hohe Flucht-Utility (> 0.6) unterbrochen wird, nimmt er das Essen mit:
+
+```gdscript
+# Konstanten:
+const FINISH_CARRIED_FOOD_DELAY: float = 3.0  # Sekunden bis Essen fertig
+
+# Variablen:
+var carrying_food: bool = false
+var carried_snack_type: int = -1
+var carrying_food_timer: float = 0.0
+```
+
+**Ablauf:**
+1. Hund frisst (is_eating = true)
+2. Spieler nähert sich → Flucht-Utility > 0.6
+3. Hund unterbricht Fressen, nimmt Essen mit (carrying_food = true)
+4. Nach 3 Sekunden Flucht: Essen wird "fertig gegessen"
+5. Snack-Effekte werden angewendet (Hunger-Reduktion, Chocolate-Counter, etc.)
+
+**Visuell:** Kleines Snack-Modell am `FoodCarrierMarker` Node des Hundes.
+
+### 6.5.2 Disziplin-Pause
+
+**Implementiert in:** `scripts/dog.gd` → `on_disciplined()`
+
+```gdscript
+const DISCIPLINE_PAUSE_DURATION: float = 2.0  # Sekunden Pause nach Disziplinierung
+```
+
+Nach Disziplinierung pausiert der Hund für 2 Sekunden und spielt eine "beschämte" Animation.
 
 ---
 
@@ -575,6 +661,7 @@ Empfohlene Visualisierungen für Entwicklung:
 | Version | Datum | Änderungen | Autor |
 |---------|-------|------------|-------|
 | 1.0 | 24.10.2025 | Initiales Regelwerk erstellt | Team |
+| 2.0 | 17.01.2026 | Implementierungsstatus aktualisiert, Code-Referenzen hinzugefügt, Bonus-Features dokumentiert | Team |
 
 ---
 
