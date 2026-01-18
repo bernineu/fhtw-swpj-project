@@ -20,7 +20,7 @@ data = PackedVector3Array(-0.13069999, 0.24, 0, -0.0924, 0.32, 0.0924, -0.130699
 script = ExtResource("1_ayh3o")
 
 [node name="Arrowbrown" type="MeshInstance3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+transform = Transform3D(60, 0, 0, 0, -30, 9.059748e-06, 0, -4.529874e-06, -60, 0.311525, 6, -1.4973948)
 mesh = ExtResource("2_l8yni")
 surface_material_override/0 = SubResource("StandardMaterial3D_pat0b")
 

@@ -18,7 +18,7 @@ script = ExtResource("1_evpet")
 snack_type = 2
 
 [node name="Arrowbrown" type="MeshInstance3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+transform = Transform3D(60, 0, 0, 0, -30, 9.059748e-06, 0, -4.529874e-06, -60, 0.28693938, 6, -1.491394)
 mesh = ExtResource("2_u5f5b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

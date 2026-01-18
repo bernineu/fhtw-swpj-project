@@ -21,7 +21,7 @@ script = ExtResource("1_wmrna")
 snack_type = 1
 
 [node name="Arrowbrown" type="MeshInstance3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, -30, 4.529874e-06, 0, -4.529874e-06, -30, 0.153, 6, -0.745)
+transform = Transform3D(60, 0, 0, 0, -30, 9.059748e-06, 0, -4.529874e-06, -60, 0.28933465, 6, -1.4758077)
 mesh = ExtResource("2_vy55m")
 surface_material_override/0 = SubResource("StandardMaterial3D_l5y1h")
 
