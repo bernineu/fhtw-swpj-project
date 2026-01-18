@@ -126,6 +126,15 @@ func _build_discipline_ui() -> void:
 	for c in discipline_list.get_children():
 		c.queue_free()
 	discipline_rows.clear()
+	
+	var title := HBoxContainer.new()
+	title.add_theme_constant_override("separation", 8)
+
+	var titleLbl := Label.new()
+	titleLbl.text = "Disciplined:"
+
+	title.add_child(titleLbl)
+	discipline_list.add_child(title)
 
 	var displaynames = ["🥫", "🧀", "🍫", "☠️"]
 	for i in range(4):
