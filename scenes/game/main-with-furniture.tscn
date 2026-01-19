@@ -443,7 +443,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08135986, 0.5051106, 0.0156
 shape = SubResource("BoxShape3D_yemsi")
 
 [node name="floormesh" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
-transform = Transform3D(1, 0, 0, 0, 0.9999997, 1.3969839e-09, 0, -1.3969839e-09, 0.9999997, 0, 0.5065265, -0.0026521906)
+transform = Transform3D(1, 0, 0, 0, 0.9999996, 1.8626451e-09, 0, -1.8626451e-09, 0.9999996, 0, 0.5052805, -0.0026456676)
 mesh = SubResource("PlaneMesh_n1pca")
 surface_material_override/0 = SubResource("StandardMaterial3D_fxdbq")
 
@@ -786,13 +786,13 @@ mesh = ExtResource("55_ciotp")
 shape = SubResource("ConcavePolygonShape3D_4mff8")
 
 [node name="RugRounded" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
-transform = Transform3D(-4.371139e-07, 0, 14, 0, 12, 0, -10, 0, -6.119594e-07, 12.828938, 0.2, -22.694801)
+transform = Transform3D(-4.371139e-07, 0, 14, 0, 12.000001, 2.220446e-16, -9.999999, -7.450581e-09, -6.1195936e-07, 12.828938, 0.012936503, -22.693823)
 mesh = ExtResource("59_nkyc3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/RugRounded"]
 
 [node name="RugSquare" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1.828949, 0.1, -18.394806)
+transform = Transform3D(20, 0, 0, 0, 19.999996, 0, 0, 0, 19.999996, 1.828949, -0.059116464, -18.393972)
 mesh = ExtResource("60_vslsl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/RugSquare"]
@@ -1121,12 +1121,3 @@ mesh = ExtResource("54_okyck")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/Desk3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oxfrr")
-
-[node name="BookcaseOpenLow2" type="MeshInstance3D" parent="NavigationRegion3D/furniture"]
-transform = Transform3D(15, 0, 0, 0, 7, 0, 0, 0, 7, 34.928944, 0, -8.694805)
-mesh = ExtResource("73_3qitt")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/furniture/BookcaseOpenLow2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_3jfsy")

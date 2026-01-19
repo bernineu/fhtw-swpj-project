@@ -7,6 +7,9 @@ enum SnackType {
 	CHOCOLATE,
 	POISON
 }
+var pickup_buffer_time := 0.15
+var pickup_buffer := 0.0
+
 
 @export var snack_type: SnackType = SnackType.DOG_FOOD
 
@@ -46,8 +49,14 @@ func _process(delta: float) -> void:
 		dog = get_tree().get_first_node_in_group("dog")
 
 	# Player-Pickup per Taste
-	if player and Input.is_action_just_pressed("pickup"):
+	
+	if Input.is_action_just_pressed("pickup"):
+		pickup_buffer = pickup_buffer_time
+
+	if pickup_buffer > 0.0:
+		pickup_buffer -= delta
 		_try_pickup()
+
 
 	# Hund frisst automatisch, wenn er nah genug ist
 	if dog:
